@@ -37,8 +37,8 @@ export default function Button({
   const classes = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<any>, {
-      className: `${classes} ${(children as React.ReactElement<any>).props.className || ''}`,
+    return React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
+      className: `${classes} ${(children as React.ReactElement<Record<string, unknown>>).props.className || ''}`,
       disabled,
       ...props,
     });
