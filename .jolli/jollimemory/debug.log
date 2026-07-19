@@ -1,0 +1,78 @@
+[2026-07-19T12:11:17.194Z] INFO  [DistPathWriter] Wrote dist-paths/vscode (version=0.99.8, distDir=/Users/rahulsanap/.vscode/extensions/jolli.jollimemory-vscode-0.99.8/dist)
+[2026-07-19T12:11:17.195Z] INFO  [SessionTracker] Config saved to /Users/rahulsanap/.jolli/jollimemory
+[2026-07-19T12:11:17.198Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.claude/skills/jolli-recall/SKILL.md
+[2026-07-19T12:11:17.199Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.claude/skills/jolli-search/SKILL.md
+[2026-07-19T12:11:17.199Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.claude/skills/jolli-pr/SKILL.md
+[2026-07-19T12:11:17.200Z] INFO  [SkillInstaller] Wrote SKILL.md (revision -1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.claude/skills/jolli-local-run/SKILL.md
+[2026-07-19T12:11:17.201Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.claude/skills/jolli/SKILL.md
+[2026-07-19T12:11:17.201Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.agents/skills/jolli-recall/SKILL.md
+[2026-07-19T12:11:17.202Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.agents/skills/jolli-search/SKILL.md
+[2026-07-19T12:11:17.203Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.agents/skills/jolli-pr/SKILL.md
+[2026-07-19T12:11:17.204Z] INFO  [SkillInstaller] Wrote SKILL.md (revision -1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.agents/skills/jolli-local-run/SKILL.md
+[2026-07-19T12:11:17.204Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 1) to /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.agents/skills/jolli/SKILL.md
+[2026-07-19T12:11:17.208Z] WARN  [SummaryStore] loadIndex: index.json unreadable from jb (fresh repo or backend read failed)
+[2026-07-19T12:11:17.233Z] INFO  [GitExclude] Updated /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.git/info/exclude with 12 Jolli skill exclude paths
+[2026-07-19T12:11:17.234Z] INFO  [McpRegistration] Registered MCP server in /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.mcp.json
+[2026-07-19T12:11:17.235Z] INFO  [JsonMcpWriter] Registered MCP server in /Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/.cursor/mcp.json
+[2026-07-19T12:11:17.239Z] INFO  [StorageFactory] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-19T12:11:17.280Z] INFO  [StorageFactory] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-19T12:11:17.288Z] INFO  [JsonMcpWriter] Registered MCP server in /Users/rahulsanap/.gemini/settings.json
+[2026-07-19T12:11:17.297Z] INFO  [CodexTomlWriter] Registered Codex MCP server in /Users/rahulsanap/.codex/config.toml
+[2026-07-19T12:11:17.297Z] INFO  [StorageFactory] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-19T12:11:17.341Z] INFO  [StorageFactory] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-19T12:11:17.345Z] INFO  [JsonMcpWriter] Registered MCP server in /Users/rahulsanap/.config/opencode/opencode.json
+[2026-07-19T12:11:17.346Z] INFO  [JsonMcpWriter] Registered MCP server in /Users/rahulsanap/Library/Application Support/Code/User/mcp.json
+[2026-07-19T12:11:17.347Z] INFO  [GitHookInstaller] Git post-commit hook installed
+[2026-07-19T12:11:17.347Z] INFO  [GitHookInstaller] Git post-rewrite hook installed
+[2026-07-19T12:11:17.348Z] INFO  [GitHookInstaller] Git prepare-commit-msg hook installed
+[2026-07-19T12:11:17.349Z] INFO  [GitHookInstaller] Git post-merge hook installed
+[2026-07-19T12:11:17.349Z] INFO  [GitHookInstaller] Git pre-push hook installed
+[2026-07-19T12:11:17.350Z] INFO  [SessionTracker] Config saved to /Users/rahulsanap/.jolli/jollimemory
+[2026-07-19T12:11:17.350Z] INFO  [Installer] Codex CLI detected — enabled Codex session discovery
+[2026-07-19T12:11:17.350Z] INFO  [GeminiHookInstaller] Gemini AfterAgent hook installed
+[2026-07-19T12:11:17.351Z] INFO  [SessionTracker] Config saved to /Users/rahulsanap/.jolli/jollimemory
+[2026-07-19T12:11:17.351Z] INFO  [Installer] Gemini CLI detected — enabled Gemini session tracking
+[2026-07-19T12:11:17.352Z] INFO  [SessionTracker] Config saved to /Users/rahulsanap/.jolli/jollimemory
+[2026-07-19T12:11:17.352Z] INFO  [Installer] OpenCode detected — enabled OpenCode session discovery
+[2026-07-19T12:11:17.353Z] INFO  [SessionTracker] Config saved to /Users/rahulsanap/.jolli/jollimemory
+[2026-07-19T12:11:17.353Z] INFO  [Installer] Cursor detected — enabled Cursor Composer session discovery
+[2026-07-19T12:11:17.354Z] INFO  [SessionTracker] Config saved to /Users/rahulsanap/.jolli/jollimemory
+[2026-07-19T12:11:17.354Z] INFO  [Installer] GitHub Copilot detected (CLI=false, Chat=true) — enabled session discovery
+[2026-07-19T12:11:17.354Z] INFO  [Installer] Skipping v5 migration on vscode-extension source — Extension.ts owns it with UI
+[2026-07-19T12:11:17.354Z] INFO  [Installer] Installation complete
+[2026-07-19T12:11:17.354Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-19T12:11:17.382Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-19T12:11:17.382Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-19T12:11:17.383Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-19T12:11:17.383Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-19T12:11:17.383Z] INFO  [SchemaV5Migration] Storage backend not initialized yet — skipping schema v5 migration (no data to migrate)
+[2026-07-19T12:11:17.383Z] INFO  [activate] Schema v5 migration: alreadyDone=false fresh=true migrated=0 skipped=0
+[2026-07-19T12:11:17.446Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"1b05f9ed","author":"rrs301"}
+[2026-07-19T12:11:17.530Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=1, summaries=0, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-19T12:11:17.530Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=1, summaries=0, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-19T12:11:17.530Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-19T12:11:17.531Z] INFO  [Installer] Status: enabled=false, claude=false, git=false, geminiHook=false, worktreeHooks=false, sessions=1, summaries=0, codex=true/undefined, gemini=true/undefined, enabledWorktrees=1, opencode=true/undefined, cursor=true/undefined, copilot=false/undefined, copilotChat=true
+[2026-07-19T12:11:17.533Z] INFO  [initialLoad] All panels loaded — updating status bar
+[2026-07-19T12:11:17.533Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-19T12:11:17.604Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=1, summaries=0, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-19T12:11:17.605Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=1, summaries=0, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-19T12:11:17.605Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-19T12:11:17.605Z] INFO  [StorageFactory] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-19T12:11:17.642Z] INFO  [StorageFactory] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-19T12:11:17.656Z] WARN  [SummaryStore] loadIndex: index.json unreadable from jb (fresh repo or backend read failed)
+[2026-07-19T12:11:17.736Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=1, summaries=0, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-19T12:11:32.778Z] INFO  [SidebarWebviewProvider] pushMemories: 0 item(s)
+[2026-07-19T12:11:32.783Z] INFO  [SidebarWebviewProvider] pushCommits: 0 item(s), mode=empty
+[2026-07-19T12:11:32.839Z] WARN  [ReadStorageResolver] createReadStorage: folder lacks index.json — falling back to orphan branch (migration incomplete, or folder wiped)
+[2026-07-19T12:11:32.849Z] INFO  [CodexDiscovery] Codex discovery pass: 1 session(s) scanned, 1 advanced
+[2026-07-19T12:11:32.855Z] WARN  [SummaryStore] loadIndex: index.json unreadable from $r (fresh repo or backend read failed)
+[2026-07-19T12:11:32.874Z] INFO  [SidebarWebviewProvider] pushMemories: 0 item(s)
+[2026-07-19T12:11:32.952Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"1b05f9ed","author":"rrs301"}
+[2026-07-19T12:11:53.364Z] INFO  [cmd] signIn invoked
+[2026-07-19T12:11:53.368Z] INFO  [AuthService] Opening browser for sign-in
+[2026-07-19T12:12:03.274Z] INFO  [uriHandler] Received callback vscode://jolli.jollimemory-vscode/auth-callback (2 params)
+[2026-07-19T12:12:03.709Z] INFO  [SessionTracker] Config saved to /Users/rahulsanap/.jolli/jollimemory
+[2026-07-19T12:12:03.713Z] INFO  [AuthService] Sign-in successful
+[2026-07-19T12:12:03.714Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-19T12:12:03.834Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=1, summaries=0, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-19T12:12:32.561Z] INFO  [CodexDiscovery] Codex discovery pass: 1 session(s) scanned, 0 advanced
