@@ -1,25 +1,34 @@
 {
-	"hooks": {
-		"Stop": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"$HOME/.jolli/jollimemory/run-hook\" stop",
-						"async": true
-					}
-				]
-			}
-		],
-		"SessionStart": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "\"$HOME/.jolli/jollimemory/run-hook\" session-start"
-					}
-				]
-			}
-		]
-	}
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(git add *)",
+      "Bash(git reset *)",
+      "Bash(git commit -m ' *)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.jolli/jollimemory/run-hook\" stop",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.jolli/jollimemory/run-hook\" session-start"
+          }
+        ]
+      }
+    ]
+  }
 }
