@@ -1,4 +1,11 @@
 {
 	"version": 1,
-	"sessions": {}
+	"sessions": {
+		"d8bc9920-356f-4655-a26e-64a75b17e56b": {
+			"sessionId": "d8bc9920-356f-4655-a26e-64a75b17e56b",
+			"transcriptPath": "/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/d8bc9920-356f-4655-a26e-64a75b17e56b.jsonl",
+			"updatedAt": "2026-07-19T14:08:14.966Z",
+			"source": "claude"
+		}
+	}
 }
