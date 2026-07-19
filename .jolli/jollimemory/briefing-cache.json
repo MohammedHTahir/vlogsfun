@@ -1,0 +1,6 @@
+{
+	"branch": "1.Agent.md-and-design-system-setup",
+	"lastCommitHash": "830546b2117ebc6d2e1d9a7c04f3e1109c6b9e5d",
+	"briefingText": "[Jolli Memory — 1.Agent.md-and-design-system-setup]\n2 commits (2026-07-19 ~ 2026-07-19) | 16 files, +812 -92\nLast: Redesign home page around AI prompt input and template cards (2026-07-19)\nDecisions: - **Fixed positioning for header and sidebar**: both elements stay pinned on screen while content scrolls underneath, giving users constant access to navigation and account controls regardless of pag…",
+	"generatedAt": "2026-07-19T17:55:46.375Z"
+}
