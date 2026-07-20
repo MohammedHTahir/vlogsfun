@@ -1,33 +1,31 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Box,
   Grid3x3,
   Home,
   Loader2,
   Monitor,
-  Plus,
   RotateCw,
+  ShoppingCart,
   Smartphone,
   Tablet,
+  Wallet,
   X,
 } from 'lucide-react';
+import { buildPreviewShell } from '@/lib/ai/sanitize';
+import { useBuilder, type PageState } from './BuilderContext';
+import type { PageType } from '@/lib/ai/events';
 
-type PageTabId = 'home' | 'product' | 'collection';
-
-interface PageTab {
-  id: PageTabId;
-  label: string;
-  icon: typeof Home;
-  path: string;
-}
-
-const PAGE_TABS: PageTab[] = [
-  { id: 'home', label: 'Home page', icon: Home, path: '/' },
-  { id: 'product', label: 'Product page', icon: Box, path: '/products/sample-product' },
-  { id: 'collection', label: 'Collection page', icon: Grid3x3, path: '/collections/all' },
-];
+const PAGE_ICONS: Record<PageType, typeof Home> = {
+  home: Home,
+  product: Box,
+  collection: Grid3x3,
+  cart: ShoppingCart,
+  checkout: Wallet,
+  custom: Grid3x3,
+};
 
 type Viewport = 'desktop' | 'tablet' | 'mobile';
 
@@ -40,64 +38,64 @@ const VIEWPORTS: { id: Viewport; label: string; icon: typeof Monitor; width: str
 const STORE_DOMAIN = 'your-store.myshopify.com';
 
 export default function EditorPreview() {
-  const [tabs, setTabs] = useState<PageTab[]>(PAGE_TABS);
-  const [activeTab, setActiveTab] = useState<PageTabId>('home');
+  const { pages, activePage, activePageId, setActivePage, closePage, generatingPageId } = useBuilder();
   const [viewport, setViewport] = useState<Viewport>('desktop');
+  const [reloadKey, setReloadKey] = useState(0);
 
-  const active = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const readyRef = useRef(false);
   const viewportWidth = VIEWPORTS.find((v) => v.id === viewport)?.width ?? '100%';
 
-  function closeTab(id: PageTabId) {
-    setTabs((prev) => {
-      const next = prev.filter((tab) => tab.id !== id);
-      if (id === activeTab && next.length > 0) setActiveTab(next[0].id);
-      return next;
-    });
-  }
+  // The iframe document is built once (Tailwind loads a single time); content is
+  // streamed in via postMessage so live updates never reload the frame.
+  const shell = useMemo(() => buildPreviewShell(), []);
+  const activeHtml = activePage?.html ?? '';
+
+  const postBody = (html: string) => {
+    iframeRef.current?.contentWindow?.postMessage({ type: 'builder:setBody', html }, '*');
+  };
+
+  // Wait for the iframe's "ready" handshake, then (re)send whenever the active
+  // page or its streaming HTML changes.
+  useEffect(() => {
+    function onMessage(event: MessageEvent) {
+      if (event.source !== iframeRef.current?.contentWindow) return;
+      if (event.data?.type === 'builder:ready') {
+        readyRef.current = true;
+        postBody(activeHtml);
+      }
+    }
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [activeHtml]);
+
+  useEffect(() => {
+    if (readyRef.current) postBody(activeHtml);
+  }, [activeHtml, activePageId]);
+
+  // A manual reload remounts the frame, so it must re-handshake.
+  useEffect(() => {
+    readyRef.current = false;
+  }, [reloadKey]);
 
   return (
     <section className="flex min-w-0 flex-1 flex-col">
       <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-[#ece6e2] bg-white shadow-[0_10px_30px_rgba(31,41,55,0.05)]">
         {/* Browser tab strip */}
-        <div className="flex items-center gap-1 border-b border-[#efeae6] bg-[#f4f0ec] px-2 pt-2">
-          {tabs.map((tab) => {
-            const Icon = tab.icon;
-            const isActive = tab.id === active?.id;
-            return (
-              <div
-                key={tab.id}
-                className={`group flex h-9 min-w-0 max-w-[180px] items-center gap-2 rounded-t-lg px-3 text-sm transition ${isActive
-                  ? '-mb-px border-x border-t border-[#efeae6] bg-white font-medium text-[#111827]'
-                  : 'text-[#6b7280] hover:bg-white/60'
-                  }`}
-              >
-                <button
-                  onClick={() => setActiveTab(tab.id)}
-                  className="flex min-w-0 items-center gap-2"
-                >
-                  <Icon
-                    size={15}
-                    strokeWidth={1.9}
-                    className={isActive ? 'text-[#f05a32]' : 'text-[#9aa2af]'}
-                  />
-                  <span className="truncate">{tab.label}</span>
-                </button>
-                <button
-                  aria-label={`Close ${tab.label}`}
-                  onClick={() => closeTab(tab.id)}
-                  className="grid h-5 w-5 shrink-0 place-items-center rounded-md text-[#9aa2af] opacity-0 transition hover:bg-black/5 hover:text-[#4b5563] group-hover:opacity-100"
-                >
-                  <X size={13} strokeWidth={2.2} />
-                </button>
-              </div>
-            );
-          })}
-          <button
-            aria-label="Add page"
-            className="mb-1 ml-1 grid h-7 w-7 shrink-0 place-items-center rounded-md text-[#6b7280] transition hover:bg-white/70"
-          >
-            <Plus size={16} strokeWidth={2} />
-          </button>
+        <div className="flex items-center gap-1 overflow-x-auto border-b border-[#efeae6] bg-[#f4f0ec] px-2 pt-2">
+          {pages.length === 0 && (
+            <div className="flex h-9 items-center px-3 text-sm text-[#9aa2af]">No pages yet</div>
+          )}
+          {pages.map((tab) => (
+            <PreviewTab
+              key={tab.id}
+              tab={tab}
+              isActive={tab.id === activePageId}
+              isGenerating={tab.id === generatingPageId}
+              onSelect={() => setActivePage(tab.id)}
+              onClose={() => closePage(tab.id)}
+            />
+          ))}
         </div>
 
         {/* Browser toolbar / address bar */}
@@ -114,10 +112,11 @@ export default function EditorPreview() {
             </span>
             <span className="truncate text-[13px] text-[#6b7280]">
               {STORE_DOMAIN}
-              <span className="text-[#9aa2af]">{active?.path}</span>
+              <span className="text-[#9aa2af]">{activePage?.path ?? '/'}</span>
             </span>
             <button
               aria-label="Reload preview"
+              onClick={() => setReloadKey((k) => k + 1)}
               className="ml-auto grid h-6 w-6 shrink-0 place-items-center rounded-md text-[#9aa2af] transition hover:bg-black/5 hover:text-[#4b5563]"
             >
               <RotateCw size={14} strokeWidth={2} />
@@ -134,10 +133,11 @@ export default function EditorPreview() {
                   aria-label={v.label}
                   aria-pressed={isActive}
                   onClick={() => setViewport(v.id)}
-                  className={`grid h-7 w-7 place-items-center rounded-md transition ${isActive
-                    ? 'bg-[#fff3ef] text-[#f05a32]'
-                    : 'text-[#9aa2af] hover:bg-[#faf8f6] hover:text-[#4b5563]'
-                    }`}
+                  className={`grid h-7 w-7 place-items-center rounded-md transition ${
+                    isActive
+                      ? 'bg-[#fff3ef] text-[#f05a32]'
+                      : 'text-[#9aa2af] hover:bg-[#faf8f6] hover:text-[#4b5563]'
+                  }`}
                 >
                   <Icon size={15} strokeWidth={1.9} />
                 </button>
@@ -149,20 +149,94 @@ export default function EditorPreview() {
         {/* Canvas */}
         <div className="flex-1 overflow-auto bg-[#fafafa] p-4">
           <div
-            className="mx-auto h-full min-h-full rounded-xl border border-[#ece6e2] bg-white transition-[max-width] duration-300"
+            className="relative mx-auto h-full min-h-full overflow-hidden rounded-xl border border-[#ece6e2] bg-white transition-[max-width] duration-300"
             style={{ maxWidth: viewportWidth }}
           >
-            <div className="grid h-full min-h-[320px] place-items-center">
-              <div className="flex flex-col items-center gap-3 text-center text-[#9aa2af]">
-                <Loader2 size={22} className="animate-spin text-[#ff8a66]" />
-                <p className="text-sm font-medium">
-                  Generating your {active?.label} preview…
-                </p>
+            {activePage ? (
+              <iframe
+                key={reloadKey}
+                ref={iframeRef}
+                title={`${activePage.label} preview`}
+                srcDoc={shell}
+                sandbox="allow-scripts"
+                onLoad={() => {
+                  // Reliable trigger (independent of the postMessage handshake):
+                  // by load, the shell's listener is attached and Tailwind is ready.
+                  readyRef.current = true;
+                  postBody(activeHtml);
+                }}
+                className="h-full min-h-[320px] w-full border-0"
+              />
+            ) : (
+              <div className="grid h-full min-h-[320px] place-items-center">
+                <div className="flex flex-col items-center gap-3 text-center text-[#9aa2af]">
+                  {generatingPageId ? (
+                    <>
+                      <Loader2 size={22} className="animate-spin text-[#ff8a66]" />
+                      <p className="text-sm font-medium">Generating your preview…</p>
+                    </>
+                  ) : (
+                    <p className="text-sm font-medium">
+                      Your storefront preview will appear here.
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Overlay while a page is still empty and generating. */}
+            {activePage && !activeHtml && generatingPageId === activePage.id && (
+              <div className="pointer-events-none absolute inset-0 grid place-items-center bg-white">
+                <div className="flex flex-col items-center gap-3 text-center text-[#9aa2af]">
+                  <Loader2 size={22} className="animate-spin text-[#ff8a66]" />
+                  <p className="text-sm font-medium">Generating your {activePage.label}…</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function PreviewTab({
+  tab,
+  isActive,
+  isGenerating,
+  onSelect,
+  onClose,
+}: {
+  tab: PageState;
+  isActive: boolean;
+  isGenerating: boolean;
+  onSelect: () => void;
+  onClose: () => void;
+}) {
+  const Icon = PAGE_ICONS[tab.type] ?? Grid3x3;
+  return (
+    <div
+      className={`group flex h-9 min-w-0 max-w-[180px] shrink-0 items-center gap-2 rounded-t-lg px-3 text-sm transition ${
+        isActive
+          ? '-mb-px border-x border-t border-[#efeae6] bg-white font-medium text-[#111827]'
+          : 'text-[#6b7280] hover:bg-white/60'
+      }`}
+    >
+      <button onClick={onSelect} className="flex min-w-0 items-center gap-2">
+        {isGenerating ? (
+          <Loader2 size={14} className="animate-spin text-[#f05a32]" />
+        ) : (
+          <Icon size={15} strokeWidth={1.9} className={isActive ? 'text-[#f05a32]' : 'text-[#9aa2af]'} />
+        )}
+        <span className="truncate">{tab.label}</span>
+      </button>
+      <button
+        aria-label={`Close ${tab.label}`}
+        onClick={onClose}
+        className="grid h-5 w-5 shrink-0 place-items-center rounded-md text-[#9aa2af] opacity-0 transition hover:bg-black/5 hover:text-[#4b5563] group-hover:opacity-100"
+      >
+        <X size={13} strokeWidth={2.2} />
+      </button>
+    </div>
   );
 }

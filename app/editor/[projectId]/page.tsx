@@ -6,6 +6,7 @@ import { Loader2 } from 'lucide-react';
 import EditorTopBar from '@/components/editor/EditorTopBar';
 import EditorChatPanel from '@/components/editor/EditorChatPanel';
 import EditorPreview from '@/components/editor/EditorPreview';
+import { BuilderProvider } from '@/components/editor/BuilderContext';
 import { getProject, type Project } from '@/lib/projects';
 import { useAuth } from '@/components';
 
@@ -78,14 +79,16 @@ export default function EditorPage() {
   }
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden bg-[#fafafa]">
-      <EditorTopBar collapsed={collapsed} onToggleSidebar={() => setCollapsed((c) => !c)} />
+    <BuilderProvider projectId={projectId} initialPrompt={project?.prompt ?? ''}>
+      <div className="flex h-screen flex-col overflow-hidden bg-[#fafafa]">
+        <EditorTopBar collapsed={collapsed} onToggleSidebar={() => setCollapsed((c) => !c)} />
 
-      <div className="flex min-h-0 flex-1">
-        {!collapsed && <EditorChatPanel prompt={project?.prompt ?? ''} />}
+        <div className="flex min-h-0 flex-1">
+          {!collapsed && <EditorChatPanel />}
 
-        <EditorPreview />
+          <EditorPreview />
+        </div>
       </div>
-    </div>
+    </BuilderProvider>
   );
 }
