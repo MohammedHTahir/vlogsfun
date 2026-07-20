@@ -49,6 +49,12 @@ interface BuilderContextValue {
   sendMessage: (text: string) => void;
   setActivePage: (id: string) => void;
   closePage: (id: string) => void;
+  /**
+   * Apply an in-preview inline edit to a page's HTML (from the iframe editor).
+   * Sanitizes, updates state, and persists just that page. Returns the sanitized
+   * HTML so the caller can avoid echoing it straight back into the iframe.
+   */
+  updatePageHtml: (pageId: string, html: string) => string;
   newChat: () => void;
 }
 
@@ -238,6 +244,9 @@ export function BuilderProvider({
   // Accumulated raw HTML per streaming page + a throttled flush to the preview.
   const rawHtmlRef = useRef<Record<string, string>>({});
   const flushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Debounced DB writes for inline edits, so dragging a style slider persists
+  // once it settles instead of on every input event.
+  const editPersistTimersRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
   const sendMessage = useCallback((text: string) => {
     const content = text.trim();
@@ -465,6 +474,39 @@ export function BuilderProvider({
     }
   }, [hydrated, initialPrompt, sendMessage]);
 
+  // Inline edits from the sandboxed preview: the iframe owns the DOM and posts
+  // back the whole edited body. Sanitize it (same pipeline as generated/patch
+  // HTML — AGENTS.md §9), update state, and persist just this one page.
+  const updatePageHtml = useCallback(
+    (pageId: string, html: string): string => {
+      const clean = sanitizeGeneratedHtml(html);
+      setPages((prev) =>
+        prev.map((p) => (p.id === pageId ? { ...p, html: clean, status: 'ready' } : p))
+      );
+
+      const timers = editPersistTimersRef.current;
+      if (timers[pageId]) clearTimeout(timers[pageId]);
+      timers[pageId] = setTimeout(() => {
+        delete timers[pageId];
+        const page = stateRef.current.pages.find((p) => p.id === pageId);
+        if (!page) return;
+        const index = stateRef.current.pages.findIndex((p) => p.id === pageId);
+        void savePage(projectId, {
+          pageKey: page.id,
+          label: page.label,
+          type: page.type,
+          path: page.path,
+          html: clean,
+          status: 'ready',
+          position: index < 0 ? 0 : index,
+        }).catch(() => {});
+      }, 600);
+
+      return clean;
+    },
+    [projectId]
+  );
+
   const setActivePage = useCallback((id: string) => setActivePageId(id), []);
 
   const closePage = useCallback(
@@ -519,6 +561,7 @@ export function BuilderProvider({
     () => () => {
       abortRef.current?.abort();
       if (flushTimerRef.current != null) clearTimeout(flushTimerRef.current);
+      Object.values(editPersistTimersRef.current).forEach(clearTimeout);
     },
     []
   );
@@ -540,6 +583,7 @@ export function BuilderProvider({
     sendMessage,
     setActivePage,
     closePage,
+    updatePageHtml,
     newChat,
   };
 

@@ -1941,3 +1941,263 @@
 [2026-07-20T17:46:35.001Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
 [2026-07-20T17:46:35.175Z] INFO  [SidebarWebviewProvider] pushCommits: 0 item(s), mode=empty
 [2026-07-20T17:46:35.195Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=10, summaries=9, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-20T17:46:44.290Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-07-20T17:46:44.316Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-07-20T17:46:44.430Z] INFO  [PostCommitHook] [trace=92e1580c1521a6a1d745f2e8105c068e] Detected operation: commit
+[2026-07-20T17:46:44.439Z] INFO  [PostCommitHook] [trace=92e1580c1521a6a1d745f2e8105c068e] Enqueued: type=commit hash=f6ec7e18
+[2026-07-20T17:46:44.439Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Launching background worker
+[2026-07-20T17:46:44.440Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Background worker spawned (PID: 69465)
+[2026-07-20T17:46:44.612Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] === Queue worker started === node=20.18.0 kind=vscode-plugin source=vscode pkgVer=0.99.8 cliVer=0.99.8 dist=/Users/rahulsanap/.vscode/extensions/jolli.jollimemory-vscode-0.99.8/dist
+[2026-07-20T17:46:44.627Z] INFO  [StorageFactory] [trace=92e1580c1521a6a1d745f2e8105c068e] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-20T17:46:44.649Z] INFO  [StorageFactory] [trace=92e1580c1521a6a1d745f2e8105c068e] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-20T17:46:44.651Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Processing queue entry: type=commit hash=f6ec7e18
+[2026-07-20T17:46:44.670Z] INFO  [GitOps] [trace=92e1580c1521a6a1d745f2e8105c068e] Commit f6ec7e18: feat: implement scoped editing for pages with patch operatio
+[2026-07-20T17:46:44.670Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Commit: f6ec7e18 - feat: implement scoped editing for pages with patch operations (14ms)
+[2026-07-20T17:46:44.681Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Discovered 2 Codex session(s)
+[2026-07-20T17:46:44.681Z] INFO  [OpenCodeDiscoverer] [trace=92e1580c1521a6a1d745f2e8105c068e] OpenCode support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-20T17:46:44.681Z] INFO  [CursorDetector] [trace=92e1580c1521a6a1d745f2e8105c068e] Cursor support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-20T17:46:44.681Z] INFO  [CopilotDetector] [trace=92e1580c1521a6a1d745f2e8105c068e] Copilot CLI support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-20T17:46:44.802Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Transcript source: session=b67b474f-a30f-4209-8f5b-d67bdfcaa23f, lines=0→471, entries=4
+[2026-07-20T17:46:44.828Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Git diff: 20 files changed, +1194 -77 (22ms)
+[2026-07-20T17:46:44.880Z] WARN  [GitOps] [trace=92e1580c1521a6a1d745f2e8105c068e] Diff exceeds 60000-char budget (98147 chars) — prepending --stat file list and truncating body
+[2026-07-20T17:46:44.884Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Prompt blocks: plans=0 notes=0 references=0 (AI soft-excluded 0)
+[2026-07-20T17:46:44.884Z] INFO  [Summarizer] [trace=92e1580c1521a6a1d745f2e8105c068e] Generating summary for commit f6ec7e18
+[2026-07-20T17:46:44.884Z] INFO  [Summarizer] [trace=92e1580c1521a6a1d745f2e8105c068e] Context: transcript=4, files=20, lines=1194+77
+[2026-07-20T17:46:44.884Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] LLM call: action=summarize source=jolli-proxy
+[2026-07-20T17:46:44.885Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T17:46:53.749Z] INFO  [PrePushHook] [trace=e714c72a3bc8950494c6ed728540dd38] pre-push hook: remote=origin budget=3000ms
+[2026-07-20T17:46:53.760Z] INFO  [PushPendingStore] [trace=e714c72a3bc8950494c6ed728540dd38] Enqueued 1 new push-pending entries (branch=6.Editor-Page-Fix)
+[2026-07-20T17:46:53.761Z] INFO  [PrePushHook] [trace=e714c72a3bc8950494c6ed728540dd38] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-07-20T17:46:53.761Z] INFO  [PrePushHook] [trace=e714c72a3bc8950494c6ed728540dd38] pre-push: starting inline sync — 2986ms of budget remaining
+[2026-07-20T17:46:53.762Z] INFO  [PushExecutor] [trace=e714c72a3bc8950494c6ed728540dd38] processPrePushInline: 1 commit(s) in this push, 2 pending entr(ies) on disk
+[2026-07-20T17:46:53.763Z] INFO  [PushExecutor] [trace=e714c72a3bc8950494c6ed728540dd38] processPrePushInline: claimed 1/1 candidate(s)
+[2026-07-20T17:46:53.763Z] INFO  [StorageFactory] [trace=e714c72a3bc8950494c6ed728540dd38] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-20T17:46:53.774Z] INFO  [StorageFactory] [trace=e714c72a3bc8950494c6ed728540dd38] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-20T17:46:53.803Z] INFO  [PushExecutor] [trace=e714c72a3bc8950494c6ed728540dd38] processPrePushInline: triage — withMemory=0 generating=1 mergedChildren=0
+[2026-07-20T17:46:53.803Z] INFO  [PrePushHook] [trace=e714c72a3bc8950494c6ed728540dd38] pre-push: inline sync done — pushed=0 failed=0 noMemory=1 notAttempted=0 children=0 (no candidates with memory)
+[2026-07-20T17:47:02.373Z] INFO  [SidebarWebviewProvider] pushMemories: 9 item(s)
+[2026-07-20T17:47:02.380Z] INFO  [SidebarWebviewProvider] pushCommits: 0 item(s), mode=empty
+[2026-07-20T17:47:02.408Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:47:17.008Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM response: action=summarize latency=32122ms
+[2026-07-20T17:47:17.010Z] INFO  [Summarizer] [trace=92e1580c1521a6a1d745f2e8105c068e] Parsed 4 topic(s) from delimited text format
+[2026-07-20T17:47:17.011Z] INFO  [Summarizer] [trace=92e1580c1521a6a1d745f2e8105c068e] Summary parsed: 4 topic(s), response length: 8710 chars
+[2026-07-20T17:47:17.011Z] INFO  [Summarizer] [trace=92e1580c1521a6a1d745f2e8105c068e]   Topic 1: Save AI-generated pages and chat to a database and load them by project
+[2026-07-20T17:47:17.011Z] INFO  [Summarizer] [trace=92e1580c1521a6a1d745f2e8105c068e]   Topic 2: Scoped page edits via patch operations instead of full regeneration
+[2026-07-20T17:47:17.011Z] INFO  [Summarizer] [trace=92e1580c1521a6a1d745f2e8105c068e]   Topic 3: Add new pages as connected tabs within the same project
+[2026-07-20T17:47:17.011Z] INFO  [Summarizer] [trace=92e1580c1521a6a1d745f2e8105c068e]   Topic 4: Project-wide global theme for consistent design across pages
+[2026-07-20T17:47:17.011Z] INFO  [Summarizer] [trace=92e1580c1521a6a1d745f2e8105c068e] Recap (1325 chars): This batch of work turned the page builder into a persistent, incrementally-editable system instead of a one-shot genera
+[2026-07-20T17:47:17.011Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] API summary generated (32.1s)
+[2026-07-20T17:47:17.013Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Plan registry scan: found 0 uncommitted slug(s) on 6.Editor-Page-Fix: []
+[2026-07-20T17:47:17.014Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Plan association: detected 0 slug(s) from transcripts: []
+[2026-07-20T17:47:17.014Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Note registry scan: found 0 uncommitted note(s) on 6.Editor-Page-Fix: []
+[2026-07-20T17:47:17.014Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Note association: detected 0 note(s): []
+[2026-07-20T17:47:17.014Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Reference association: detected 0 ref(s) for branch 6.Editor-Page-Fix
+[2026-07-20T17:47:17.015Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Summary built for f6ec7e18: recap=yes, topics=4, plans=absent, notes=absent, references=absent
+[2026-07-20T17:47:17.099Z] INFO  [GitOps] [trace=92e1580c1521a6a1d745f2e8105c068e] Updated branch 'jollimemory/summaries/v3': 4 written, 0 deleted (via fast-import)
+[2026-07-20T17:47:17.100Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Branch mapping created: 6.Editor-Page-Fix → 6.Editor-Page-Fix
+[2026-07-20T17:47:17.159Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest updated: 6.Editor-Page-Fix/feat-implement-scoped-editing-for-pages-with-patch-f6ec7e18.md (commit)
+[2026-07-20T17:47:17.159Z] INFO  [FolderStorage] [trace=92e1580c1521a6a1d745f2e8105c068e] Markdown generated: 6.Editor-Page-Fix/feat-implement-scoped-editing-for-pages-with-patch-f6ec7e18.md
+[2026-07-20T17:47:17.161Z] INFO  [FolderStorage] [trace=92e1580c1521a6a1d745f2e8105c068e] Wrote 4 files, deleted 0 (Add summary for f6ec7e18: feat: implement scoped editing for pages with patc)
+[2026-07-20T17:47:17.161Z] INFO  [SummaryStore] [trace=92e1580c1521a6a1d745f2e8105c068e] Summary stored successfully for commit f6ec7e18
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Summary stored successfully for commit f6ec7e18 (146ms, 0 plans, 0 notes, 0 references)
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] === Pipeline completed in 32.5s ===
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] === Summary content (4 topics) ===
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Topic: Save AI-generated pages and chat to a database and load them by project
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Trigger:   The user wanted every project's generated pages and chat history to be saved automatically, and reopening a project by its identifier should restore exactly what was built before, instead of re-generating everything from scratch each time.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Response:  - Added two new database tables, one row per page tab and one for chat history, each scoped to the owning user, mirroring the security pattern already used by the existing projects table.
+- Built repository modules (lib/pages.ts, lib/messages.ts) that handle loading, upserting, and clearing pages and chat messages, keeping all database calls out of UI components.
+- Reworked the editor's BuilderContext so it loads pages and chat from the database first on mount (falling back to a same-session snapshot only if that fails), skips re-running the founding prompt for an already-saved project, and persists automatically once each conversation turn completes.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Decisions: - **Database-first load, session storage only as fallback**: loading previously used only a browser-local snapshot, which vanished across devices or browser data clears; making the database authoritative on mount means opening a project by its id reliably restores the same pages and history anywhere.
+- **Automatic persistence tied to turn completion**: rather than requiring an explicit save action, the app writes the final chat and page state right after each generation or edit finishes, so nothing is lost if the user navigates away, while still saving only the piece of data that actually changed instead of the whole project every time.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Todo:      Wire the top-bar Save button to trigger a manual "save now" action, since automatic persistence currently makes it purely decorative.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Topic: Scoped page edits via patch operations instead of full regeneration
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Trigger:   The user asked that when the AI updates a page, it should change only the requested piece rather than rebuilding or regenerating the whole page's code, and that this update should also be reflected in the saved database correctly.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Response:  - Introduced an "edit_page" action to the AI's turn-planning step, and added a provider capability that returns a validated list of scoped patch operations (replacing inner or outer content, updating text, classes, or a single attribute) targeting stable element/section ids already present on the open page.
+- Built a shared patch module that sanitizes model-produced operations on the server and applies them to the live page's markup in the browser using safe DOM parsing, so untouched sections of the page are preserved exactly as they were.
+- Updated the API route to send the open page's current markup to the model for edits, and updated the builder client to apply the returned patch to the in-memory page and re-save only that one page to the database, rather than the whole project.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Decisions: - **Operation list over full HTML diffing**: rather than trying to detect and merge differences in a whole regenerated page, the AI directly returns a small structured list of targeted changes, which is simpler to validate for safety and guarantees unrelated markup is left untouched.
+- **Fallback to full generation when editing isn't possible**: if the AI decides to edit a page but no current markup was available for it, the system falls back to generating that page fully instead of failing the turn, prioritizing a working result over reliability of the scoped-edit path in every case.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Topic: Add new pages as connected tabs within the same project
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Trigger:   The user wanted requests for additional pages inside an existing project to appear as new tabs connected to the rest of the site, without disturbing pages that already exist.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Response:  - Extended the turn-planning prompt so a request for a page not currently open is treated as creating a brand-new tab with a fresh identifier, while a request to change the currently open page routes to the scoped-edit path instead.
+- Passed the list of sibling pages (their names and paths) into the page-generation prompt so a newly generated page's navigation and footer link correctly to the existing pages in the same project.
+- Left all existing pages untouched and still individually persisted when a new page tab is added, so only the new page needs to be written to the database.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Decisions: Existing pages are not retroactively updated to add links back to a newly created page, since automatically rewriting their navigation would require regenerating pages that already work, directly conflicting with the requirement to avoid rebuilding existing work; this was flagged as a deliberate limitation that could be addressed later if requested.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Topic: Project-wide global theme for consistent design across pages
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Trigger:   The user wanted a single global stylesheet generated once per project and shared across every page, so the design, theme, logo, and reusable components stay consistent, and asked that any additional pages created also get saved properly.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Response:  - Added a project-level theme table storing a shared stylesheet and a short style guide, with a repository (lib/theme.ts) handling load, upsert, and clear operations, and a new provider capability that generates this theme once per project before its first page.
+- Updated the theme generation prompt to produce design tokens (colors, fonts) and reusable component classes for header, navigation, buttons, cards, logo, and footer, and threaded the resulting style guide into both page-generation and scoped-edit prompts so new and edited content reuses the same brand elements.
+- Sanitized the generated stylesheet against risky CSS constructs and injected it into the sandboxed preview through a dedicated style element updated via safe text assignment (not markup parsing), with BuilderContext loading, sending, and persisting the theme alongside pages and chat.
+[2026-07-20T17:47:17.161Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e]   Decisions: - **Generate the theme once, reuse everywhere, rather than per-page styling**: producing one shared stylesheet before the first page avoids inconsistent colors, fonts, or components appearing on different pages, at the cost of the AI needing to follow the shared style guide correctly on every future page.
+- **Consistency enforced through prompt instructions and shared classes, not hard enforcement**: the model is told to reuse the shared classes and brand details, but nothing prevents it from deviating; a stricter follow-up (such as an explicit "apply theme to all pages" action) was proposed as an option rather than built now, favoring simplicity today over guaranteed consistency.
+[2026-07-20T17:47:17.168Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Processed 1 queue entries
+[2026-07-20T17:47:17.169Z] INFO  [SessionTracker] [trace=92e1580c1521a6a1d745f2e8105c068e] Enqueued queue operation: type=ingest tag=ingest file=1784569637169-00000001-f39fffef-ingest.json
+[2026-07-20T17:47:17.169Z] INFO  [PushExecutor] [trace=92e1580c1521a6a1d745f2e8105c068e] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-07-20T17:47:17.170Z] INFO  [PushExecutor] [trace=92e1580c1521a6a1d745f2e8105c068e] processPushPending(post-queue): 2 pending entr(ies) (filtered to 1 hash(es))
+[2026-07-20T17:47:17.171Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] === Queue worker finished ===
+[2026-07-20T17:47:17.173Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Processing queue entry: type=ingest triggeredBy=post-commit
+[2026-07-20T17:47:17.195Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] LLM call: action=route source=jolli-proxy
+[2026-07-20T17:47:17.195Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM call: action=route url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T17:47:17.366Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-20T17:47:17.366Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-20T17:47:17.366Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-20T17:47:17.408Z] WARN  [SummaryStore] loadIndex: index.json unreadable from t (fresh repo or backend read failed)
+[2026-07-20T17:47:17.409Z] INFO  [SidebarWebviewProvider] pushMemories: 10 item(s)
+[2026-07-20T17:47:17.415Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:47:17.584Z] INFO  [PushExecutor] [trace=92e1580c1521a6a1d745f2e8105c068e] processPushPending(post-queue): claimed 1/1 candidate(s)
+[2026-07-20T17:47:17.594Z] INFO  [PushExecutor] [trace=92e1580c1521a6a1d745f2e8105c068e] processPushPending(post-queue): triage — withMemory=1 noMemory=0 mergedChildren=0
+[2026-07-20T17:47:17.617Z] INFO  [SidebarWebviewProvider] pushCommits: 1 item(s), mode=single
+[2026-07-20T17:47:17.642Z] INFO  [PushExecutor] [trace=92e1580c1521a6a1d745f2e8105c068e] processPushPending(post-queue): pushing 1 commit(s)
+[2026-07-20T17:47:18.414Z] INFO  [GitOps] [trace=92e1580c1521a6a1d745f2e8105c068e] Updated branch 'jollimemory/summaries/v3': 3 written, 0 deleted (via fast-import)
+[2026-07-20T17:47:18.416Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest updated: 6.Editor-Page-Fix/feat-implement-scoped-editing-for-pages-with-patch-f6ec7e18.md (commit)
+[2026-07-20T17:47:18.416Z] INFO  [FolderStorage] [trace=92e1580c1521a6a1d745f2e8105c068e] Markdown generated: 6.Editor-Page-Fix/feat-implement-scoped-editing-for-pages-with-patch-f6ec7e18.md
+[2026-07-20T17:47:18.417Z] INFO  [FolderStorage] [trace=92e1580c1521a6a1d745f2e8105c068e] Wrote 3 files, deleted 0 (Overwrite summary for f6ec7e18: feat: implement scoped editing for pages with patc)
+[2026-07-20T17:47:18.417Z] INFO  [SummaryStore] [trace=92e1580c1521a6a1d745f2e8105c068e] Summary stored successfully for commit f6ec7e18
+[2026-07-20T17:47:18.418Z] INFO  [PushExecutor] [trace=92e1580c1521a6a1d745f2e8105c068e] processPushPending(post-queue): write-back — writtenBack=1 childSkipped=0 cleanupPending=0 writeBackFailed=0
+[2026-07-20T17:47:18.428Z] INFO  [PushExecutor] [trace=92e1580c1521a6a1d745f2e8105c068e] processPushPending(post-queue): pushed=1 failed=0
+[2026-07-20T17:47:19.952Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM response: action=route latency=2756ms
+[2026-07-20T17:47:19.956Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] LLM call: action=reconcile source=jolli-proxy
+[2026-07-20T17:47:19.956Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM call: action=reconcile url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T17:47:56.824Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:47:59.896Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM response: action=reconcile latency=39935ms
+[2026-07-20T17:47:59.904Z] WARN  [ReconciledPage] [trace=92e1580c1521a6a1d745f2e8105c068e] reconcile echoed slug editor-page-layout-and-project-managemen, keeping authoritative editor-project-management
+[2026-07-20T17:47:59.965Z] INFO  [GitOps] [trace=92e1580c1521a6a1d745f2e8105c068e] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-20T17:47:59.966Z] INFO  [FolderStorage] [trace=92e1580c1521a6a1d745f2e8105c068e] Wrote 1 files, deleted 0 (Update topic page editor-project-management)
+[2026-07-20T17:47:59.998Z] INFO  [GitOps] [trace=92e1580c1521a6a1d745f2e8105c068e] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-20T17:47:59.998Z] INFO  [FolderStorage] [trace=92e1580c1521a6a1d745f2e8105c068e] Wrote 1 files, deleted 0 (Update topic KB index (6 topics))
+[2026-07-20T17:48:00.033Z] INFO  [GitOps] [trace=92e1580c1521a6a1d745f2e8105c068e] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-20T17:48:00.033Z] INFO  [FolderStorage] [trace=92e1580c1521a6a1d745f2e8105c068e] Wrote 1 files, deleted 0 (Update topic KB processed-source set)
+[2026-07-20T17:48:00.035Z] INFO  [QueueWorker] [trace=92e1580c1521a6a1d745f2e8105c068e] Ingest drained: 1 batches, 1 sources (post-commit)
+[2026-07-20T17:48:00.093Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest unregistered 7 entries of type=wiki
+[2026-07-20T17:48:00.096Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest updated: _wiki/topic--jolli-memory-integration.md (wiki)
+[2026-07-20T17:48:00.096Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest updated: _wiki/topic--design-system-tailwind.md (wiki)
+[2026-07-20T17:48:00.097Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest updated: _wiki/topic--nextjs-app-init.md (wiki)
+[2026-07-20T17:48:00.097Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest updated: _wiki/topic--agents-md-setup.md (wiki)
+[2026-07-20T17:48:00.098Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest updated: _wiki/topic--auth-db-setup.md (wiki)
+[2026-07-20T17:48:00.099Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest updated: _wiki/topic--editor-project-management.md (wiki)
+[2026-07-20T17:48:00.100Z] INFO  [MetadataManager] [trace=92e1580c1521a6a1d745f2e8105c068e] Manifest updated: _wiki/_index.md (wiki)
+[2026-07-20T17:48:00.100Z] INFO  [FolderStorage] [trace=92e1580c1521a6a1d745f2e8105c068e] Topic-KB wiki regenerated: 6 topics under /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2/_wiki
+[2026-07-20T17:48:00.105Z] INFO  [GraphBuilder] [trace=92e1580c1521a6a1d745f2e8105c068e] Building knowledge graph incrementally for /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2: 1 dirty, 0 new, 0 deleted, 5 clean
+[2026-07-20T17:48:00.105Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] LLM call: action=graph-units source=jolli-proxy
+[2026-07-20T17:48:00.108Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM call: action=graph-units url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T17:48:04.983Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM response: action=graph-units latency=4874ms
+[2026-07-20T17:48:04.986Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] LLM call: action=graph-categories-delta source=jolli-proxy
+[2026-07-20T17:48:04.986Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM call: action=graph-categories-delta url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T17:48:07.327Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM response: action=graph-categories-delta latency=2340ms
+[2026-07-20T17:48:07.330Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] LLM call: action=graph-edges source=jolli-proxy
+[2026-07-20T17:48:07.330Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM call: action=graph-edges url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T17:48:42.650Z] INFO  [LlmClient] [trace=92e1580c1521a6a1d745f2e8105c068e] Proxy LLM response: action=graph-edges latency=35318ms
+[2026-07-20T17:48:42.659Z] INFO  [GraphBuilder] [trace=92e1580c1521a6a1d745f2e8105c068e] Knowledge graph built (incremental): 4 categories, 6 topics, 32 units, 21 edges in 42556ms -> /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2/.jolli/graph/graph.json
+[2026-07-20T17:48:56.801Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:49:56.815Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:50:56.798Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:51:56.805Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:52:56.814Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:53:56.799Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:54:56.823Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:55:56.800Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:56:56.792Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:57:56.770Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:58:56.773Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T17:59:56.795Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:00:56.910Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:01:56.807Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:02:56.807Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:03:56.810Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:04:56.816Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:05:56.826Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:06:56.833Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:07:56.833Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:08:56.823Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:09:56.822Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:10:56.848Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:11:56.831Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:12:56.818Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:13:56.835Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:14:56.826Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:15:57.123Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:16:56.820Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:17:56.835Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:18:56.846Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:19:56.886Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:20:56.862Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:21:56.886Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:22:56.843Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:23:56.839Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:24:56.840Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:25:56.842Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:26:56.842Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:27:56.838Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:28:56.836Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:29:56.838Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:30:56.907Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:31:56.872Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:32:56.848Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:33:56.867Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:34:56.872Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:35:56.870Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:36:56.866Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:37:56.871Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:38:56.872Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:39:56.873Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:40:56.879Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:41:56.876Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:42:56.886Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:43:56.881Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:44:56.878Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:45:57.134Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:46:56.898Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:47:56.894Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:48:56.895Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:49:56.898Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:50:56.901Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:51:56.902Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:52:56.906Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:53:56.918Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:54:56.903Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:55:56.917Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T18:56:56.914Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T19:10:19.020Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T19:11:18.485Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T19:12:18.453Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T19:13:18.462Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T19:14:18.473Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T19:15:18.469Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T19:16:18.478Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T19:17:18.583Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 0 advanced
+[2026-07-20T19:17:41.094Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-20T19:17:41.128Z] WARN  [SummaryStore] resolveStorage fallback to OrphanBranchStorage — caller did not thread storage or call setActiveStorage. Folder-mode users will miss this write. cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-20T19:17:41.151Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-20T19:17:41.197Z] INFO  [StorageFactory] [trace=30bb1cec5690dc1333db6e2f31754ca2] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-20T19:17:41.261Z] INFO  [StorageFactory] [trace=30bb1cec5690dc1333db6e2f31754ca2] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-20T19:17:42.018Z] INFO  [McpServer] [trace=30bb1cec5690dc1333db6e2f31754ca2] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-20T19:18:19.529Z] INFO  [StopHook] Stop hook triggered (session=ce6343ad-3341-496b-8c27-79e49697d749)
+[2026-07-20T19:18:19.529Z] INFO  [StopHook] Hook input — session_id=ce6343ad-3341-496b-8c27-79e49697d749, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/ce6343ad-3341-496b-8c27-79e49697d749.jsonl
+[2026-07-20T19:18:19.532Z] INFO  [StopHook] Session saved successfully
+[2026-07-20T19:18:19.679Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-20T19:18:19.680Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-20T19:18:19.680Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-20T19:18:19.680Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-20T19:18:19.804Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=11, summaries=10, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-20T19:28:21.362Z] INFO  [StopHook] Stop hook triggered (session=ce6343ad-3341-496b-8c27-79e49697d749)
+[2026-07-20T19:28:21.363Z] INFO  [StopHook] Hook input — session_id=ce6343ad-3341-496b-8c27-79e49697d749, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/ce6343ad-3341-496b-8c27-79e49697d749.jsonl
+[2026-07-20T19:28:21.366Z] INFO  [StopHook] Session saved successfully
+[2026-07-20T19:28:21.461Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-20T19:28:21.461Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-20T19:28:21.461Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-20T19:28:21.461Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-20T19:28:21.602Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=11, summaries=10, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-20T19:40:20.886Z] INFO  [StopHook] Stop hook triggered (session=ce6343ad-3341-496b-8c27-79e49697d749)
+[2026-07-20T19:40:20.886Z] INFO  [StopHook] Hook input — session_id=ce6343ad-3341-496b-8c27-79e49697d749, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/ce6343ad-3341-496b-8c27-79e49697d749.jsonl
+[2026-07-20T19:40:20.888Z] INFO  [StopHook] Session saved successfully
+[2026-07-20T19:40:21.032Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-20T19:40:21.032Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-20T19:40:21.032Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-20T19:40:21.032Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-20T19:40:21.170Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=11, summaries=10, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-20T19:51:52.921Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-20T19:51:52.922Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-20T19:51:52.922Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-20T19:51:52.922Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-20T19:51:53.067Z] INFO  [SidebarWebviewProvider] pushCommits: 0 item(s), mode=empty
+[2026-07-20T19:51:53.117Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=11, summaries=10, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
