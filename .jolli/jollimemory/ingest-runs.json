@@ -46,5 +46,29 @@
 		"routeCalls": 1,
 		"reconcileCalls": 1,
 		"topicFailures": []
+	},
+	{
+		"startedAt": "2026-07-19T18:13:27.391Z",
+		"durationMs": 20534,
+		"triggeredBy": "post-commit",
+		"outcome": "OK",
+		"batches": 1,
+		"ingested": 1,
+		"touchedSlugs": 2,
+		"routeCalls": 1,
+		"reconcileCalls": 2,
+		"topicFailures": []
+	},
+	{
+		"startedAt": "2026-07-20T02:12:34.443Z",
+		"durationMs": 16285,
+		"triggeredBy": "post-commit",
+		"outcome": "OK",
+		"batches": 1,
+		"ingested": 1,
+		"touchedSlugs": 1,
+		"routeCalls": 1,
+		"reconcileCalls": 1,
+		"topicFailures": []
 	}
 ]
