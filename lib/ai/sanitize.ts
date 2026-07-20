@@ -8,6 +8,8 @@
  */
 
 import { previewEditorScript } from './preview-editor';
+import { applyImageKitToHtml } from '@/lib/images/rewrite';
+import { IMAGEKIT_URL_ENDPOINT } from '@/lib/images/imagekit';
 
 /** Remove scripts, event handlers, and unsafe URLs from model-generated HTML. */
 export function sanitizeGeneratedHtml(raw: string): string {
@@ -31,6 +33,10 @@ export function sanitizeGeneratedHtml(raw: string): string {
 
   // Drop <style> blocks — styling must come from Tailwind classes only.
   html = html.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
+
+  // Swap placeholder / data-ik-prompt <img> sources for ImageKit gen-image URLs
+  // (no-op when ImageKit isn't configured). Runs last so it acts on clean HTML.
+  html = applyImageKitToHtml(html);
 
   return html.trim();
 }
@@ -66,24 +72,72 @@ export function sanitizeThemeCss(raw: string): string {
  * export, per AGENTS.md §10.)
  */
 export function buildPreviewShell(): string {
+  // Public delivery endpoint only — safe to expose to the sandboxed iframe. It
+  // powers in-preview "Generate image" + AI transforms and carries no secret.
+  const ikEndpoint = IMAGEKIT_URL_ENDPOINT;
+  // A neutral inline SVG shown when an ImageKit image fails or times out.
+  const fallbackImg =
+    "data:image/svg+xml;utf8," +
+    encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">' +
+        '<rect width="800" height="600" fill="#f1ede9"/>' +
+        '<g fill="none" stroke="#c9bfb6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">' +
+        '<rect x="300" y="230" width="200" height="150" rx="12"/>' +
+        '<circle cx="352" cy="284" r="16"/><path d="M312 372l58-52 40 34 46-40 44 38"/></g>' +
+        '<text x="400" y="430" text-anchor="middle" fill="#a89f96" font-family="sans-serif" font-size="24">Image unavailable</text>' +
+        '</svg>'
+    );
+
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="https://cdn.tailwindcss.com"></script>
-<style>body{margin:0}</style>
+<style>
+  body{margin:0}
+  /* Loading shimmer behind every image so a slow ImageKit generation shows a
+     placeholder instead of a blank gap; the opaque image covers it once loaded. */
+  @keyframes __ik_pulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  body img{background-image:linear-gradient(100deg,#f1ede9 30%,#e7e0d9 50%,#f1ede9 70%);background-size:200% 100%;animation:__ik_pulse 1.3s ease-in-out infinite;}
+  body img.__ik-ready{background-image:none;animation:none;}
+</style>
 <style id="__builder_theme__"></style>
+<script>window.__IK_ENDPOINT__ = ${JSON.stringify(ikEndpoint)};</script>
 <script>${previewEditorScript()}</script>
 <script>
   (function () {
     var themeEl = document.getElementById('__builder_theme__');
     var editMode = false;
+    var FALLBACK = ${JSON.stringify(fallbackImg)};
+    // Stop the loading shimmer once an image paints; on failure/timeout swap in a
+    // neutral fallback so the layout never shows a broken-image icon.
+    function decorateImages() {
+      var imgs = document.body ? document.body.querySelectorAll('img') : [];
+      for (var i = 0; i < imgs.length; i++) {
+        (function (img) {
+          if (img.getAttribute('data-ik-fb') === 'watched') return;
+          img.setAttribute('data-ik-fb', 'watched');
+          function ready() { img.classList.add('__ik-ready'); }
+          function fail() {
+            img.classList.add('__ik-ready');
+            if (img.getAttribute('src') !== FALLBACK) img.src = FALLBACK;
+          }
+          if (img.complete && img.naturalWidth > 0) { ready(); return; }
+          img.addEventListener('load', ready);
+          img.addEventListener('error', fail);
+        })(imgs[i]);
+      }
+    }
+    // Let the inline editor re-watch images it adds or re-points (Generate image,
+    // AI transforms) so they get the same shimmer + fallback treatment.
+    window.__ikDecorate = decorateImages;
     window.addEventListener('message', function (event) {
       var data = event && event.data;
       if (!data) return;
       if (data.type === 'builder:setBody') {
         document.body.innerHTML = data.html || '';
+        decorateImages();
         // The new body has no editor UI or listeners; re-apply edit mode so
         // hover/highlight/toolbar keep working after a content swap.
         if (editMode && window.__builderSetEditMode) window.__builderSetEditMode(true);

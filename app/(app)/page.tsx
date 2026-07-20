@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowRight,
@@ -63,6 +63,7 @@ export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const promptRef = useRef<HTMLTextAreaElement | null>(null);
 
   async function startProject(rawPrompt: string) {
     const trimmed = rawPrompt.trim();
@@ -87,6 +88,12 @@ export default function Home() {
   function onSubmit(event: React.FormEvent) {
     event.preventDefault();
     void startProject(prompt);
+  }
+
+  function applySuggestion(nextPrompt: string) {
+    setPrompt(nextPrompt);
+    setError(null);
+    promptRef.current?.focus();
   }
 
   return (
@@ -125,6 +132,7 @@ export default function Home() {
             className="rounded-2xl border border-[#e8e2de] bg-white p-4 shadow-[0_18px_40px_rgba(31,41,55,0.07)]"
           >
             <textarea
+              ref={promptRef}
               aria-label="Describe a Shopify page or theme"
               placeholder="Ask me to build a Shopify page or theme..."
               value={prompt}
@@ -172,7 +180,7 @@ export default function Home() {
                 <button
                   key={card.title}
                   type="button"
-                  onClick={() => void startProject(card.prompt)}
+                  onClick={() => applySuggestion(card.prompt)}
                   disabled={submitting}
                   className="group flex min-h-[100px] items-center justify-between gap-4 rounded-2xl border border-[#eee7e3] bg-white p-4 text-left shadow-[0_10px_24px_rgba(31,41,55,0.035)] transition hover:border-[#ffd4c7] hover:shadow-[0_16px_32px_rgba(31,41,55,0.06)] disabled:cursor-not-allowed disabled:opacity-60"
                 >
