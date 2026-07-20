@@ -1756,3 +1756,188 @@
 [2026-07-20T15:41:24.248Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
 [2026-07-20T15:41:24.392Z] INFO  [SidebarWebviewProvider] pushCommits: 0 item(s), mode=empty
 [2026-07-20T15:41:24.425Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=9, summaries=8, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-20T15:41:31.922Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-07-20T15:41:31.935Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-07-20T15:41:32.025Z] INFO  [PostCommitHook] [trace=b1b5707af7b788de209654aed814f9f0] Detected operation: commit
+[2026-07-20T15:41:32.034Z] INFO  [PostCommitHook] [trace=b1b5707af7b788de209654aed814f9f0] Enqueued: type=commit hash=7e2877a6
+[2026-07-20T15:41:32.034Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Launching background worker
+[2026-07-20T15:41:32.036Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Background worker spawned (PID: 95997)
+[2026-07-20T15:41:32.163Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] === Queue worker started === node=20.18.0 kind=vscode-plugin source=vscode pkgVer=0.99.8 cliVer=0.99.8 dist=/Users/rahulsanap/.vscode/extensions/jolli.jollimemory-vscode-0.99.8/dist
+[2026-07-20T15:41:32.177Z] INFO  [StorageFactory] [trace=b1b5707af7b788de209654aed814f9f0] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-20T15:41:32.205Z] INFO  [StorageFactory] [trace=b1b5707af7b788de209654aed814f9f0] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-20T15:41:32.207Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Processing queue entry: type=commit hash=7e2877a6
+[2026-07-20T15:41:32.226Z] INFO  [GitOps] [trace=b1b5707af7b788de209654aed814f9f0] Commit 7e2877a6: feat: implement AI-driven page builder with streaming capabi
+[2026-07-20T15:41:32.226Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Commit: 7e2877a6 - feat: implement AI-driven page builder with streaming capabilities (15ms)
+[2026-07-20T15:41:32.238Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Discovered 2 Codex session(s)
+[2026-07-20T15:41:32.239Z] INFO  [OpenCodeDiscoverer] [trace=b1b5707af7b788de209654aed814f9f0] OpenCode support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-20T15:41:32.239Z] INFO  [CursorDetector] [trace=b1b5707af7b788de209654aed814f9f0] Cursor support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-20T15:41:32.239Z] INFO  [CopilotDetector] [trace=b1b5707af7b788de209654aed814f9f0] Copilot CLI support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-20T15:41:32.347Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Transcript source: session=ba84ff81-7558-4714-9cf9-c314d4e34493, lines=0→312, entries=4
+[2026-07-20T15:41:32.351Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Transcript source: session=019f8017-a633-7200-9e49-624055dc90cc, lines=0→112, entries=2
+[2026-07-20T15:41:32.377Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Git diff: 21 files changed, +1768 -147 (25ms)
+[2026-07-20T15:41:32.426Z] WARN  [GitOps] [trace=b1b5707af7b788de209654aed814f9f0] Diff exceeds 60000-char budget (116106 chars) — prepending --stat file list and truncating body
+[2026-07-20T15:41:32.431Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Prompt blocks: plans=0 notes=0 references=0 (AI soft-excluded 0)
+[2026-07-20T15:41:32.431Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0] Generating summary for commit 7e2877a6
+[2026-07-20T15:41:32.431Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0] Context: transcript=6, files=21, lines=1768+147
+[2026-07-20T15:41:32.431Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] LLM call: action=summarize source=jolli-proxy
+[2026-07-20T15:41:32.431Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T15:41:37.293Z] INFO  [PrePushHook] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] pre-push hook: remote=origin budget=3000ms
+[2026-07-20T15:41:37.322Z] INFO  [PushPendingStore] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] Enqueued 1 new push-pending entries (branch=5.-Edior-WebPage-Builder-using-AI)
+[2026-07-20T15:41:37.323Z] INFO  [PrePushHook] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-07-20T15:41:37.323Z] INFO  [PrePushHook] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] pre-push: starting inline sync — 2959ms of budget remaining
+[2026-07-20T15:41:37.324Z] INFO  [PushExecutor] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] processPrePushInline: 1 commit(s) in this push, 2 pending entr(ies) on disk
+[2026-07-20T15:41:37.328Z] INFO  [PushExecutor] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] processPrePushInline: claimed 1/1 candidate(s)
+[2026-07-20T15:41:37.328Z] INFO  [StorageFactory] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-20T15:41:37.356Z] INFO  [StorageFactory] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-20T15:41:37.422Z] INFO  [PushExecutor] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] processPrePushInline: triage — withMemory=0 generating=1 mergedChildren=0
+[2026-07-20T15:41:37.422Z] INFO  [PrePushHook] [trace=f389d3a221e9594bb1d496bdeb5a6e0c] pre-push: inline sync done — pushed=0 failed=0 noMemory=1 notAttempted=0 children=0 (no candidates with memory)
+[2026-07-20T15:42:33.502Z] ERROR [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM error: status=504 body=<html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-20T15:42:33.503Z] WARN  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] First API attempt failed: LLM proxy request failed with status 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+. Retrying in 2000ms...
+[2026-07-20T15:42:35.505Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0] Generating summary for commit 7e2877a6
+[2026-07-20T15:42:35.505Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0] Context: transcript=6, files=21, lines=1768+147
+[2026-07-20T15:42:35.505Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] LLM call: action=summarize source=jolli-proxy
+[2026-07-20T15:42:35.508Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T15:43:08.843Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM response: action=summarize latency=33333ms
+[2026-07-20T15:43:08.846Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0] Parsed 3 topic(s) from delimited text format
+[2026-07-20T15:43:08.846Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0] Summary parsed: 3 topic(s), response length: 8457 chars
+[2026-07-20T15:43:08.846Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0]   Topic 1: Build AI-powered page generator with streaming chat and live preview
+[2026-07-20T15:43:08.846Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0]   Topic 2: Fix streaming preview not rendering or generating any webpage code
+[2026-07-20T15:43:08.846Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0]   Topic 3: Fix duplicate canceled AI request on editor page load
+[2026-07-20T15:43:08.846Z] INFO  [Summarizer] [trace=b1b5707af7b788de209654aed814f9f0] Recap (1587 chars): This batch of work delivered the core AI page-building experience for the storefront editor. Users can now describe the 
+[2026-07-20T15:43:08.846Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] API summary generated (96.4s)
+[2026-07-20T15:43:08.847Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Plan registry scan: found 0 uncommitted slug(s) on 5.-Edior-WebPage-Builder-using-AI: []
+[2026-07-20T15:43:08.847Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Plan association: detected 0 slug(s) from transcripts: []
+[2026-07-20T15:43:08.848Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Note registry scan: found 0 uncommitted note(s) on 5.-Edior-WebPage-Builder-using-AI: []
+[2026-07-20T15:43:08.848Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Note association: detected 0 note(s): []
+[2026-07-20T15:43:08.849Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Reference association: detected 0 ref(s) for branch 5.-Edior-WebPage-Builder-using-AI
+[2026-07-20T15:43:08.849Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Summary built for 7e2877a6: recap=yes, topics=3, plans=absent, notes=absent, references=absent
+[2026-07-20T15:43:08.941Z] INFO  [GitOps] [trace=b1b5707af7b788de209654aed814f9f0] Updated branch 'jollimemory/summaries/v3': 4 written, 0 deleted (via fast-import)
+[2026-07-20T15:43:08.943Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Branch mapping created: 5.-Edior-WebPage-Builder-using-AI → 5.-Edior-WebPage-Builder-using-AI
+[2026-07-20T15:43:09.119Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest updated: 5.-Edior-WebPage-Builder-using-AI/feat-implement-ai-driven-page-builder-with-streami-7e2877a6.md (commit)
+[2026-07-20T15:43:09.119Z] INFO  [FolderStorage] [trace=b1b5707af7b788de209654aed814f9f0] Markdown generated: 5.-Edior-WebPage-Builder-using-AI/feat-implement-ai-driven-page-builder-with-streami-7e2877a6.md
+[2026-07-20T15:43:09.121Z] INFO  [FolderStorage] [trace=b1b5707af7b788de209654aed814f9f0] Wrote 4 files, deleted 0 (Add summary for 7e2877a6: feat: implement AI-driven page builder with stream)
+[2026-07-20T15:43:09.121Z] INFO  [SummaryStore] [trace=b1b5707af7b788de209654aed814f9f0] Summary stored successfully for commit 7e2877a6
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Summary stored successfully for commit 7e2877a6 (274ms, 0 plans, 0 notes, 0 references)
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] === Pipeline completed in 96.9s ===
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] === Summary content (3 topics) ===
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Topic: Build AI-powered page generator with streaming chat and live preview
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Trigger:   The user wanted an AI model that acts as a professional website builder, generating one e-commerce page at a time from HTML and Tailwind CSS, streaming its response into the chatbox while showing a live real-time preview on the right side, and asking for clarification before making changes.
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Response:  - Built a provider-independent AI layer with a shared event protocol for streaming, a Zod validation schema for every AI input/output boundary, an HTML sanitizer that strips scripts/handlers/styles, and a Gemini adapter selected through an environment-driven provider factory (no hardcoded model).
+- Implemented a thin streaming API route that validates the request, asks the provider to plan the turn (reply plus a decision on whether to build), and then streams the HTML for exactly one page while emitting page-plan events for full-store requests (Home, Product, Collection, Cart, Checkout tabs).
+- Rebuilt the client editor: a builder context that owns chat messages, page tabs, and streamed content; a rewritten chat panel with real input, streaming bubbles, and a "generating" indicator; and a rewritten preview panel with dynamic browser-style tabs and a sandboxed iframe that fills in as HTML streams.
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Decisions: - **Two-phase generation, one page per turn**: the AI first decides what to say and whether to build (asking for clarification when a request is ambiguous or risky), then generates only one page's HTML per turn, matching the explicit product rule that a full store request creates page tabs but streams only one page at a time.
+- **Server-side keys and sanitization**: the API key and provider selection stay on the server, and all generated HTML is sanitized (no scripts, inline styles, or event handlers) before ever reaching the browser, since AI output is treated as untrusted content rendered in a sandboxed preview.
+- **Provider-independent AI interface**: only the two capabilities needed right now (planning a turn and streaming a page) were implemented against an abstract provider interface, deferring inline editing and Shopify export support until those features are actually built, to avoid speculative complexity.
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Todo:      Add a mock provider so the streaming flow can be tested without a live API key; add editSelection/generateShopifySection to the provider interface when inline editing and Shopify export are built; replace the admin key currently shipped as a public environment variable with a real publishable key (pre-existing issue, flagged not fixed).
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Topic: Fix streaming preview not rendering or generating any webpage code
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Trigger:   After the initial build, the user reported that no webpage code was being generated and no streaming response with a live preview was showing up, and asked for the AI to reliably call the model, stream its response, and immediately display the result.
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Response:  - Diagnosed the backend as working correctly via a live request test, then traced the real problem to the client: every streamed chunk carried the full cumulative HTML document instead of just the new text, causing a 3.3MB stream made of hundreds of ever-growing payloads.
+- Changed the event protocol and API route to send small incremental HTML chunks per delta instead of the whole growing document, and reworked the builder context to accumulate raw chunks with a throttled (~120ms) sanitize-and-render flush instead of reprocessing on every token.
+- Replaced the preview's per-delta iframe reload (which re-downloaded the Tailwind script hundreds of times) with a stable iframe shell loaded once, updated live via cross-window messaging, and fixed a hydration mismatch caused by reading saved session data during initial render instead of after mount.
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Decisions: - **Incremental over cumulative streaming**: switching from resending the whole growing HTML document to sending only new chunks cut the same page's data transfer from 3.3MB down to about 26KB, directly fixing the browser jank that was preventing the preview from ever settling.
+- **Stable preview frame with message-based updates**: instead of reassigning the preview's document on every update (which forced a full reload and repeated script re-downloads), the preview frame is now created once and receives content updates directly, so the page can render progressively without visual resets or a stalled Tailwind load.
+- **Defer session restoration to after mount**: reading saved chat/session data during the component's first render caused the server-rendered and client-rendered output to disagree; moving that restoration into a post-mount step keeps the initial render consistent while still preserving user sessions across reloads.
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Todo:      Consider auto-recovering the preview by re-generating a page when a saved session has tabs but no HTML (e.g. from opening a project saved during the earlier broken build).
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Topic: Fix duplicate canceled AI request on editor page load
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Trigger:   The user noticed the browser network panel showing a canceled request to the AI generation endpoint when opening the editor and asked for it to be investigated.
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Response:  - Traced the canceled request to the editor's auto-send behavior firing twice during a development-mode remount: the first request was aborted while a second, real one continued, leaving a misleading canceled row in the network panel.
+- Modified the builder context to persist per-project chat, page, and "already started" state in session storage, and to key that state by the project's identifier so a remount restores the existing session instead of re-triggering the initial prompt.
+- Made sure the "already started" flag itself is saved immediately when set, preventing a stale snapshot from being read on remount and causing the duplicate request.
+[2026-07-20T15:43:09.123Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0]   Decisions: The fix targeted the root cause (duplicate request bootstrapping) rather than suppressing the browser's network log, since persisting session state per project also improves the editor's resilience to remounts and page reloads beyond just eliminating the confusing canceled entry.
+[2026-07-20T15:43:09.155Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Processed 1 queue entries
+[2026-07-20T15:43:09.156Z] INFO  [SessionTracker] [trace=b1b5707af7b788de209654aed814f9f0] Enqueued queue operation: type=ingest tag=ingest file=1784562189156-00000001-075c67a1-ingest.json
+[2026-07-20T15:43:09.157Z] INFO  [PushExecutor] [trace=b1b5707af7b788de209654aed814f9f0] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-07-20T15:43:09.157Z] INFO  [PushExecutor] [trace=b1b5707af7b788de209654aed814f9f0] processPushPending(post-queue): 2 pending entr(ies) (filtered to 1 hash(es))
+[2026-07-20T15:43:09.159Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] === Queue worker finished ===
+[2026-07-20T15:43:09.160Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Processing queue entry: type=ingest triggeredBy=post-commit
+[2026-07-20T15:43:09.178Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] LLM call: action=route source=jolli-proxy
+[2026-07-20T15:43:09.178Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM call: action=route url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T15:43:09.362Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-20T15:43:09.362Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-20T15:43:09.362Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-20T15:43:09.396Z] WARN  [SummaryStore] loadIndex: index.json unreadable from t (fresh repo or backend read failed)
+[2026-07-20T15:43:09.402Z] INFO  [SidebarWebviewProvider] pushMemories: 9 item(s)
+[2026-07-20T15:43:09.411Z] INFO  [CodexDiscovery] Codex discovery pass: 2 session(s) scanned, 1 advanced
+[2026-07-20T15:43:09.619Z] INFO  [SidebarWebviewProvider] pushCommits: 1 item(s), mode=single
+[2026-07-20T15:43:09.642Z] INFO  [PushExecutor] [trace=b1b5707af7b788de209654aed814f9f0] processPushPending(post-queue): claimed 1/1 candidate(s)
+[2026-07-20T15:43:09.651Z] INFO  [PushExecutor] [trace=b1b5707af7b788de209654aed814f9f0] processPushPending(post-queue): triage — withMemory=1 noMemory=0 mergedChildren=0
+[2026-07-20T15:43:09.695Z] INFO  [PushExecutor] [trace=b1b5707af7b788de209654aed814f9f0] processPushPending(post-queue): pushing 1 commit(s)
+[2026-07-20T15:43:10.510Z] INFO  [GitOps] [trace=b1b5707af7b788de209654aed814f9f0] Updated branch 'jollimemory/summaries/v3': 3 written, 0 deleted (via fast-import)
+[2026-07-20T15:43:10.511Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest updated: 5.-Edior-WebPage-Builder-using-AI/feat-implement-ai-driven-page-builder-with-streami-7e2877a6.md (commit)
+[2026-07-20T15:43:10.511Z] INFO  [FolderStorage] [trace=b1b5707af7b788de209654aed814f9f0] Markdown generated: 5.-Edior-WebPage-Builder-using-AI/feat-implement-ai-driven-page-builder-with-streami-7e2877a6.md
+[2026-07-20T15:43:10.512Z] INFO  [FolderStorage] [trace=b1b5707af7b788de209654aed814f9f0] Wrote 3 files, deleted 0 (Overwrite summary for 7e2877a6: feat: implement AI-driven page builder with stream)
+[2026-07-20T15:43:10.512Z] INFO  [SummaryStore] [trace=b1b5707af7b788de209654aed814f9f0] Summary stored successfully for commit 7e2877a6
+[2026-07-20T15:43:10.512Z] INFO  [PushExecutor] [trace=b1b5707af7b788de209654aed814f9f0] processPushPending(post-queue): write-back — writtenBack=1 childSkipped=0 cleanupPending=0 writeBackFailed=0
+[2026-07-20T15:43:10.518Z] INFO  [PushExecutor] [trace=b1b5707af7b788de209654aed814f9f0] processPushPending(post-queue): pushed=1 failed=0
+[2026-07-20T15:43:14.390Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM response: action=route latency=5210ms
+[2026-07-20T15:43:14.394Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] LLM call: action=reconcile source=jolli-proxy
+[2026-07-20T15:43:14.395Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM call: action=reconcile url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T15:43:43.580Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM response: action=reconcile latency=29184ms
+[2026-07-20T15:43:43.584Z] WARN  [ReconciledPage] [trace=b1b5707af7b788de209654aed814f9f0] reconcile echoed slug editor-page-layout-and-project-managemen, keeping authoritative editor-project-management
+[2026-07-20T15:43:43.657Z] INFO  [GitOps] [trace=b1b5707af7b788de209654aed814f9f0] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-20T15:43:43.658Z] INFO  [FolderStorage] [trace=b1b5707af7b788de209654aed814f9f0] Wrote 1 files, deleted 0 (Update topic page editor-project-management)
+[2026-07-20T15:43:43.690Z] INFO  [GitOps] [trace=b1b5707af7b788de209654aed814f9f0] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-20T15:43:43.691Z] INFO  [FolderStorage] [trace=b1b5707af7b788de209654aed814f9f0] Wrote 1 files, deleted 0 (Update topic KB index (6 topics))
+[2026-07-20T15:43:43.722Z] INFO  [GitOps] [trace=b1b5707af7b788de209654aed814f9f0] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-20T15:43:43.722Z] INFO  [FolderStorage] [trace=b1b5707af7b788de209654aed814f9f0] Wrote 1 files, deleted 0 (Update topic KB processed-source set)
+[2026-07-20T15:43:43.724Z] INFO  [QueueWorker] [trace=b1b5707af7b788de209654aed814f9f0] Ingest drained: 1 batches, 1 sources (post-commit)
+[2026-07-20T15:43:43.795Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest unregistered 7 entries of type=wiki
+[2026-07-20T15:43:43.797Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest updated: _wiki/topic--jolli-memory-integration.md (wiki)
+[2026-07-20T15:43:43.798Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest updated: _wiki/topic--design-system-tailwind.md (wiki)
+[2026-07-20T15:43:43.799Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest updated: _wiki/topic--nextjs-app-init.md (wiki)
+[2026-07-20T15:43:43.799Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest updated: _wiki/topic--agents-md-setup.md (wiki)
+[2026-07-20T15:43:43.800Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest updated: _wiki/topic--auth-db-setup.md (wiki)
+[2026-07-20T15:43:43.800Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest updated: _wiki/topic--editor-project-management.md (wiki)
+[2026-07-20T15:43:43.800Z] INFO  [MetadataManager] [trace=b1b5707af7b788de209654aed814f9f0] Manifest updated: _wiki/_index.md (wiki)
+[2026-07-20T15:43:43.800Z] INFO  [FolderStorage] [trace=b1b5707af7b788de209654aed814f9f0] Topic-KB wiki regenerated: 6 topics under /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2/_wiki
+[2026-07-20T15:43:43.805Z] INFO  [GraphBuilder] [trace=b1b5707af7b788de209654aed814f9f0] Building knowledge graph incrementally for /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2: 0 dirty, 1 new, 0 deleted, 5 clean
+[2026-07-20T15:43:43.806Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] LLM call: action=graph-units source=jolli-proxy
+[2026-07-20T15:43:43.806Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM call: action=graph-units url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T15:43:55.534Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM response: action=graph-units latency=11727ms
+[2026-07-20T15:43:55.535Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] LLM call: action=graph-categories-delta source=jolli-proxy
+[2026-07-20T15:43:55.535Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM call: action=graph-categories-delta url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T15:44:00.070Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM response: action=graph-categories-delta latency=4534ms
+[2026-07-20T15:44:00.072Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] LLM call: action=graph-edges source=jolli-proxy
+[2026-07-20T15:44:00.072Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM call: action=graph-edges url=https://jolli.ai/api/push/llm/complete
+[2026-07-20T15:44:38.283Z] INFO  [LlmClient] [trace=b1b5707af7b788de209654aed814f9f0] Proxy LLM response: action=graph-edges latency=38209ms
+[2026-07-20T15:44:38.301Z] INFO  [GraphBuilder] [trace=b1b5707af7b788de209654aed814f9f0] Knowledge graph built (incremental): 4 categories, 6 topics, 39 units, 21 edges in 54499ms -> /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2/.jolli/graph/graph.json
+[2026-07-20T17:04:54.186Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-20T17:04:54.213Z] WARN  [SummaryStore] resolveStorage fallback to OrphanBranchStorage — caller did not thread storage or call setActiveStorage. Folder-mode users will miss this write. cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-20T17:04:54.237Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-20T17:04:54.283Z] INFO  [StorageFactory] [trace=4e65c026fcbc86c61a0daa29c08aa6fa] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-20T17:04:54.320Z] INFO  [StorageFactory] [trace=4e65c026fcbc86c61a0daa29c08aa6fa] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-20T17:04:55.175Z] INFO  [McpServer] [trace=4e65c026fcbc86c61a0daa29c08aa6fa] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-20T17:26:36.131Z] INFO  [StopHook] Stop hook triggered (session=b67b474f-a30f-4209-8f5b-d67bdfcaa23f)
+[2026-07-20T17:26:36.138Z] INFO  [StopHook] Hook input — session_id=b67b474f-a30f-4209-8f5b-d67bdfcaa23f, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/b67b474f-a30f-4209-8f5b-d67bdfcaa23f.jsonl
+[2026-07-20T17:26:36.140Z] INFO  [StopHook] Session saved successfully
+[2026-07-20T17:26:36.259Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-20T17:26:36.259Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-20T17:26:36.259Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-20T17:26:36.259Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-20T17:26:36.428Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=10, summaries=9, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-20T17:40:19.252Z] INFO  [StopHook] Stop hook triggered (session=b67b474f-a30f-4209-8f5b-d67bdfcaa23f)
+[2026-07-20T17:40:19.253Z] INFO  [StopHook] Hook input — session_id=b67b474f-a30f-4209-8f5b-d67bdfcaa23f, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/b67b474f-a30f-4209-8f5b-d67bdfcaa23f.jsonl
+[2026-07-20T17:40:19.255Z] INFO  [StopHook] Session saved successfully
+[2026-07-20T17:40:19.367Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-20T17:40:19.369Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-20T17:40:19.369Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-20T17:40:19.369Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-20T17:40:19.523Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=10, summaries=9, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-20T17:46:35.000Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-20T17:46:35.001Z] INFO  [plans] detectPlans found 0 plans (0 in registry)
+[2026-07-20T17:46:35.001Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-20T17:46:35.001Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-20T17:46:35.175Z] INFO  [SidebarWebviewProvider] pushCommits: 0 item(s), mode=empty
+[2026-07-20T17:46:35.195Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=10, summaries=9, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
