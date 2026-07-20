@@ -12,6 +12,10 @@ import {
 } from 'react';
 import { createEventParser, type BuilderPage } from '@/lib/ai/events';
 import { sanitizeGeneratedHtml } from '@/lib/ai/sanitize';
+import { applyPatchOperations } from '@/lib/ai/patch';
+import { getProjectPages, savePage, deletePage, clearPages } from '@/lib/pages';
+import { getProjectMessages, appendMessages, clearMessages } from '@/lib/messages';
+import { getProjectTheme, saveTheme, clearTheme } from '@/lib/theme';
 
 /**
  * Client-side builder state: chat messages, page tabs, and the live preview,
@@ -37,6 +41,8 @@ interface BuilderContextValue {
   pages: PageState[];
   activePageId: string | null;
   activePage: PageState | null;
+  /** The project's global stylesheet, applied to every page's preview. */
+  themeCss: string;
   isStreaming: boolean;
   generatingPageId: string | null;
   error: string | null;
@@ -119,6 +125,7 @@ export function BuilderProvider({
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [pages, setPages] = useState<PageState[]>([]);
   const [activePageId, setActivePageId] = useState<string | null>(null);
+  const [themeCss, setThemeCss] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
   const [generatingPageId, setGeneratingPageId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -133,21 +140,86 @@ export function BuilderProvider({
   const kickedOff = useRef(false);
   const hydratedRef = useRef(false);
 
-  // Restore any saved session for this project, once, after mount. Setting state
-  // from storage here is intentional (client-only session rehydration), which is
-  // why the initial state is empty to keep SSR hydration consistent.
+  // Persistence bookkeeping (see the persist effect below).
+  const persistedMessageCountRef = useRef(0); // messages already written to the DB
+  const pagesDirtyRef = useRef(false); // a page changed this turn and needs saving
+  const erroredRef = useRef(false); // the current turn hit an error
+  const persistArmedRef = useRef(false); // a completed turn is waiting to be persisted
+  // The project's global theme: kept in a ref so the streaming request can read
+  // it without re-subscribing, plus a dirty flag for persistence.
+  const themeRef = useRef<{ css: string; styleGuide: string } | null>(null);
+  const themeDirtyRef = useRef(false);
+
+  // Load this project's saved pages + chat once, after mount. The database is the
+  // source of truth across sessions; a same-session sessionStorage snapshot is
+  // only a fallback (e.g. a reload mid-generation, before the turn was saved).
+  // Setting state from async here is intentional; initial state is empty so SSR
+  // hydration stays consistent.
   useEffect(() => {
-    const snapshot = readSnapshot(projectId);
-    if (snapshot) {
-      /* eslint-disable react-hooks/set-state-in-effect */
-      setMessages(snapshot.messages);
-      setPages(snapshot.pages);
-      setActivePageId(snapshot.activePageId);
-      /* eslint-enable react-hooks/set-state-in-effect */
-      kickedOff.current = snapshot.kickedOff;
-    }
-    hydratedRef.current = true;
-    setHydrated(true);
+    let active = true;
+
+    const finish = () => {
+      if (!active) return;
+      hydratedRef.current = true;
+      setHydrated(true);
+    };
+
+    (async () => {
+      try {
+        const [dbPages, dbMessages, dbTheme] = await Promise.all([
+          getProjectPages(projectId),
+          getProjectMessages(projectId),
+          getProjectTheme(projectId),
+        ]);
+        if (!active) return;
+
+        // Restore the project's global theme (if any) so every page renders with
+        // the shared design system, and the next turn reuses it.
+        if (dbTheme) {
+          themeRef.current = { css: dbTheme.css, styleGuide: dbTheme.style_guide };
+          setThemeCss(dbTheme.css);
+        }
+
+        if (dbPages.length > 0 || dbMessages.length > 0) {
+          const loadedPages: PageState[] = dbPages.map((row) => ({
+            id: row.page_key,
+            label: row.label,
+            type: row.type,
+            path: row.path,
+            html: row.html,
+            status: row.html ? 'ready' : 'idle',
+          }));
+          const loadedMessages: ChatMessage[] = dbMessages.map((row) => ({
+            id: newId(),
+            role: row.role,
+            content: row.content,
+          }));
+          setMessages(loadedMessages);
+          setPages(loadedPages);
+          setActivePageId(loadedPages[0]?.id ?? null);
+          persistedMessageCountRef.current = loadedMessages.length;
+          kickedOff.current = true; // a saved project must not re-run its founding prompt
+          finish();
+          return;
+        }
+      } catch {
+        // Fall through to the sessionStorage fallback below.
+      }
+
+      if (!active) return;
+      const snapshot = readSnapshot(projectId);
+      if (snapshot) {
+        setMessages(snapshot.messages);
+        setPages(snapshot.pages);
+        setActivePageId(snapshot.activePageId);
+        kickedOff.current = snapshot.kickedOff;
+      }
+      finish();
+    })();
+
+    return () => {
+      active = false;
+    };
   }, [projectId]);
 
   // Persist the session — but only after hydration, so we never overwrite a
@@ -175,6 +247,7 @@ export function BuilderProvider({
     const outgoing = [...priorMessages, { role: 'user' as const, content }];
 
     const assistantId = newId();
+    erroredRef.current = false;
     setError(null);
     setMessages((prev) => [
       ...prev,
@@ -200,6 +273,13 @@ export function BuilderProvider({
             messages: outgoing.map(({ role, content }) => ({ role, content })),
             pages: stateRef.current.pages.map(({ id, label, type, path }) => ({ id, label, type, path })),
             activePageId: stateRef.current.activePageId,
+            // Send only the open page's HTML so a scoped edit can target its
+            // existing ids without regenerating the whole page.
+            activePageHtml:
+              stateRef.current.pages.find((p) => p.id === stateRef.current.activePageId)?.html ?? null,
+            // The project's shared theme (if generated). Lets the server reuse the
+            // same design system and skip regenerating it.
+            theme: themeRef.current,
           }),
           signal: controller.signal,
         });
@@ -221,10 +301,18 @@ export function BuilderProvider({
               case 'message':
                 updateAssistant(() => event.text);
                 break;
+              case 'theme':
+                // Store the project's global stylesheet; it applies to every page.
+                themeRef.current = { css: event.css, styleGuide: event.styleGuide };
+                themeDirtyRef.current = true;
+                setThemeCss(event.css);
+                break;
               case 'plan':
+                pagesDirtyRef.current = true;
                 setPages((prev) => mergePages(prev, event.pages));
                 break;
               case 'page_start':
+                pagesDirtyRef.current = true;
                 rawHtmlRef.current[event.page.id] = '';
                 setPages((prev) =>
                   mergePages(prev, [event.page]).map((p) =>
@@ -262,7 +350,27 @@ export function BuilderProvider({
                 setGeneratingPageId(null);
                 break;
               }
+              case 'page_patch': {
+                // Scoped edit: apply the operations to the existing page HTML in
+                // place, so unrelated sections are preserved (no regeneration).
+                const pageId = event.pageId;
+                pagesDirtyRef.current = true;
+                setPages((prev) =>
+                  prev.map((p) =>
+                    p.id === pageId
+                      ? {
+                          ...p,
+                          html: sanitizeGeneratedHtml(applyPatchOperations(p.html, event.operations)),
+                          status: 'ready',
+                        }
+                      : p
+                  )
+                );
+                setActivePageId(pageId);
+                break;
+              }
               case 'error':
+                erroredRef.current = true;
                 setError(event.message);
                 updateAssistant((t) => t || 'Something went wrong while generating.');
                 break;
@@ -273,16 +381,79 @@ export function BuilderProvider({
         }
       } catch (err) {
         if (!controller.signal.aborted) {
+          erroredRef.current = true;
           setError(err instanceof Error ? err.message : 'Generation failed.');
           updateAssistant((t) => t || 'Something went wrong. Please try again.');
         }
       } finally {
+        // Arm persistence only for a clean turn; the persist effect saves the
+        // final committed state once streaming stops.
+        persistArmedRef.current = !controller.signal.aborted && !erroredRef.current;
         abortRef.current = null;
         setIsStreaming(false);
         setGeneratingPageId(null);
       }
     })();
   }, []);
+
+  // Persist a completed turn to the database: append any not-yet-saved chat
+  // messages and upsert changed pages. Only one page/message set is written per
+  // turn, so a small edit saves just the page it touched — never the whole
+  // project (AGENTS.md §8).
+  const persistTurn = useCallback(
+    async (currentPages: PageState[], currentMessages: ChatMessage[]) => {
+      try {
+        // Save the project's global theme first, so pages that reference its
+        // shared classes are never persisted ahead of the stylesheet itself.
+        if (themeDirtyRef.current && themeRef.current) {
+          themeDirtyRef.current = false;
+          await saveTheme(projectId, themeRef.current);
+        }
+
+        const alreadySaved = persistedMessageCountRef.current;
+        const newMessages = currentMessages.slice(alreadySaved);
+        if (newMessages.length > 0) {
+          await appendMessages(
+            projectId,
+            newMessages.map((m, i) => ({
+              role: m.role,
+              content: m.content,
+              position: alreadySaved + i,
+            }))
+          );
+          persistedMessageCountRef.current = alreadySaved + newMessages.length;
+        }
+
+        if (pagesDirtyRef.current) {
+          pagesDirtyRef.current = false;
+          await Promise.all(
+            currentPages.map((p, i) =>
+              savePage(projectId, {
+                pageKey: p.id,
+                label: p.label,
+                type: p.type,
+                path: p.path,
+                html: p.html,
+                status: p.status,
+                position: i,
+              })
+            )
+          );
+        }
+      } catch {
+        // Persistence is best-effort; the in-memory + sessionStorage state stays.
+      }
+    },
+    [projectId]
+  );
+
+  // When a turn finishes streaming, save the final committed state. Runs after
+  // `isStreaming` flips false, so `pages`/`messages` are fully up to date.
+  useEffect(() => {
+    if (isStreaming || !persistArmedRef.current) return;
+    persistArmedRef.current = false;
+    void persistTurn(pages, messages);
+  }, [isStreaming, pages, messages, persistTurn]);
 
   // Auto-send the project's founding prompt exactly once — after the saved
   // session has been restored, so a completed project doesn't re-generate.
@@ -296,13 +467,18 @@ export function BuilderProvider({
 
   const setActivePage = useCallback((id: string) => setActivePageId(id), []);
 
-  const closePage = useCallback((id: string) => {
-    setPages((prev) => {
-      const next = prev.filter((p) => p.id !== id);
-      setActivePageId((current) => (current === id ? next[0]?.id ?? null : current));
-      return next;
-    });
-  }, []);
+  const closePage = useCallback(
+    (id: string) => {
+      setPages((prev) => {
+        const next = prev.filter((p) => p.id !== id);
+        setActivePageId((current) => (current === id ? next[0]?.id ?? null : current));
+        return next;
+      });
+      // Remove the tab from the project permanently.
+      void deletePage(projectId, id).catch(() => {});
+    },
+    [projectId]
+  );
 
   const newChat = useCallback(() => {
     abortRef.current?.abort();
@@ -313,9 +489,15 @@ export function BuilderProvider({
     }
     rawHtmlRef.current = {};
     kickedOff.current = true; // don't re-fire the initial prompt after a reset
+    persistArmedRef.current = false; // don't persist the cleared state as a turn
+    persistedMessageCountRef.current = 0;
+    pagesDirtyRef.current = false;
+    themeRef.current = null;
+    themeDirtyRef.current = false;
     setMessages([]);
     setPages([]);
     setActivePageId(null);
+    setThemeCss('');
     setGeneratingPageId(null);
     setError(null);
     setIsStreaming(false);
@@ -325,6 +507,12 @@ export function BuilderProvider({
       activePageId: null,
       kickedOff: true,
     });
+    // Wipe the saved project so a fresh build starts clean.
+    void Promise.all([
+      clearMessages(projectId),
+      clearPages(projectId),
+      clearTheme(projectId),
+    ]).catch(() => {});
   }, [projectId]);
 
   useEffect(
@@ -345,6 +533,7 @@ export function BuilderProvider({
     pages,
     activePageId,
     activePage,
+    themeCss,
     isStreaming,
     generatingPageId,
     error,

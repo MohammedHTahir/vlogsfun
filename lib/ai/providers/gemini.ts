@@ -1,8 +1,26 @@
 import 'server-only';
 import { GoogleGenAI } from '@google/genai';
-import type { AIProvider, PlanTurnInput, StreamPageInput } from '../types';
-import { turnPlanSchema, type TurnPlan } from '../schema';
-import { planTurnSystemPrompt, streamPageSystemPrompt } from '../prompts';
+import type {
+  AIProvider,
+  PlanTurnInput,
+  StreamPageInput,
+  EditPageInput,
+  GenerateThemeInput,
+} from '../types';
+import {
+  turnPlanSchema,
+  pagePatchSchema,
+  themeSpecSchema,
+  type TurnPlan,
+  type PagePatch,
+  type ThemeSpec,
+} from '../schema';
+import {
+  planTurnSystemPrompt,
+  streamPageSystemPrompt,
+  editPageSystemPrompt,
+  themeSystemPrompt,
+} from '../prompts';
 
 /**
  * Gemini adapter. All Gemini-specific request shaping lives here so the rest of
@@ -56,12 +74,39 @@ export function createGeminiProvider(model: string): AIProvider {
       return result.data;
     },
 
+    async generateTheme(input: GenerateThemeInput): Promise<ThemeSpec> {
+      const response = await ai.models.generateContent({
+        model,
+        contents: toContents(input.messages),
+        config: {
+          systemInstruction: themeSystemPrompt(),
+          temperature: 0.7,
+          responseMimeType: 'application/json',
+          maxOutputTokens: 8192,
+          abortSignal: input.abortSignal,
+        },
+      });
+
+      const text = response.text ?? '';
+      let raw: unknown;
+      try {
+        raw = JSON.parse(text);
+      } catch {
+        throw new Error('The model returned an invalid theme.');
+      }
+      const parsed = themeSpecSchema.safeParse(raw);
+      if (!parsed.success) {
+        throw new Error('The model returned an invalid theme.');
+      }
+      return parsed.data;
+    },
+
     async *streamPage(input: StreamPageInput): AsyncIterable<string> {
       const stream = await ai.models.generateContentStream({
         model,
         contents: toContents(input.messages),
         config: {
-          systemInstruction: streamPageSystemPrompt(input.page),
+          systemInstruction: streamPageSystemPrompt(input.page, input.siblingPages, input.styleGuide),
           temperature: 0.8,
           maxOutputTokens: 32768,
           abortSignal: input.abortSignal,
@@ -72,6 +117,36 @@ export function createGeminiProvider(model: string): AIProvider {
         const text = chunk.text;
         if (text) yield text;
       }
+    },
+
+    async editPage(input: EditPageInput): Promise<PagePatch> {
+      const response = await ai.models.generateContent({
+        model,
+        contents: toContents(input.messages),
+        config: {
+          systemInstruction: editPageSystemPrompt(input.page, input.html, input.styleGuide),
+          temperature: 0.4,
+          responseMimeType: 'application/json',
+          maxOutputTokens: 32768,
+          abortSignal: input.abortSignal,
+        },
+      });
+
+      const text = response.text ?? '';
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(text);
+      } catch {
+        // Model didn't return clean JSON — no operations to apply.
+        return { operations: [] as PagePatch['operations'] };
+      }
+
+      const result = pagePatchSchema.safeParse(parsed);
+      if (!result.success) {
+        // Drop the whole patch rather than apply partially-invalid operations.
+        return { operations: [] as PagePatch['operations'] };
+      }
+      return result.data;
     },
   };
 }

@@ -38,7 +38,8 @@ const VIEWPORTS: { id: Viewport; label: string; icon: typeof Monitor; width: str
 const STORE_DOMAIN = 'your-store.myshopify.com';
 
 export default function EditorPreview() {
-  const { pages, activePage, activePageId, setActivePage, closePage, generatingPageId } = useBuilder();
+  const { pages, activePage, activePageId, themeCss, setActivePage, closePage, generatingPageId } =
+    useBuilder();
   const [viewport, setViewport] = useState<Viewport>('desktop');
   const [reloadKey, setReloadKey] = useState(0);
 
@@ -55,23 +56,33 @@ export default function EditorPreview() {
     iframeRef.current?.contentWindow?.postMessage({ type: 'builder:setBody', html }, '*');
   };
 
-  // Wait for the iframe's "ready" handshake, then (re)send whenever the active
-  // page or its streaming HTML changes.
+  const postTheme = (css: string) => {
+    iframeRef.current?.contentWindow?.postMessage({ type: 'builder:setTheme', css }, '*');
+  };
+
+  // Wait for the iframe's "ready" handshake, then (re)send the project stylesheet
+  // and the active page whenever either changes.
   useEffect(() => {
     function onMessage(event: MessageEvent) {
       if (event.source !== iframeRef.current?.contentWindow) return;
       if (event.data?.type === 'builder:ready') {
         readyRef.current = true;
+        postTheme(themeCss);
         postBody(activeHtml);
       }
     }
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
-  }, [activeHtml]);
+  }, [activeHtml, themeCss]);
 
   useEffect(() => {
     if (readyRef.current) postBody(activeHtml);
   }, [activeHtml, activePageId]);
+
+  // Push the global stylesheet whenever it changes so every page stays on-theme.
+  useEffect(() => {
+    if (readyRef.current) postTheme(themeCss);
+  }, [themeCss]);
 
   // A manual reload remounts the frame, so it must re-handshake.
   useEffect(() => {
@@ -133,11 +144,10 @@ export default function EditorPreview() {
                   aria-label={v.label}
                   aria-pressed={isActive}
                   onClick={() => setViewport(v.id)}
-                  className={`grid h-7 w-7 place-items-center rounded-md transition ${
-                    isActive
+                  className={`grid h-7 w-7 place-items-center rounded-md transition ${isActive
                       ? 'bg-[#fff3ef] text-[#f05a32]'
                       : 'text-[#9aa2af] hover:bg-[#faf8f6] hover:text-[#4b5563]'
-                  }`}
+                    }`}
                 >
                   <Icon size={15} strokeWidth={1.9} />
                 </button>
@@ -147,7 +157,7 @@ export default function EditorPreview() {
         </div>
 
         {/* Canvas */}
-        <div className="flex-1 overflow-auto bg-[#fafafa] p-4">
+        <div className="flex-1 overflow-auto bg-[#fafafa]">
           <div
             className="relative mx-auto h-full min-h-full overflow-hidden rounded-xl border border-[#ece6e2] bg-white transition-[max-width] duration-300"
             style={{ maxWidth: viewportWidth }}
@@ -163,6 +173,7 @@ export default function EditorPreview() {
                   // Reliable trigger (independent of the postMessage handshake):
                   // by load, the shell's listener is attached and Tailwind is ready.
                   readyRef.current = true;
+                  postTheme(themeCss);
                   postBody(activeHtml);
                 }}
                 className="h-full min-h-[320px] w-full border-0"
@@ -216,11 +227,10 @@ function PreviewTab({
   const Icon = PAGE_ICONS[tab.type] ?? Grid3x3;
   return (
     <div
-      className={`group flex h-9 min-w-0 max-w-[180px] shrink-0 items-center gap-2 rounded-t-lg px-3 text-sm transition ${
-        isActive
+      className={`group flex h-9 min-w-0 max-w-[180px] shrink-0 items-center gap-2 rounded-t-lg px-3 text-sm transition ${isActive
           ? '-mb-px border-x border-t border-[#efeae6] bg-white font-medium text-[#111827]'
           : 'text-[#6b7280] hover:bg-white/60'
-      }`}
+        }`}
     >
       <button onClick={onSelect} className="flex min-w-0 items-center gap-2">
         {isGenerating ? (

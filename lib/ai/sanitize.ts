@@ -34,6 +34,27 @@ export function sanitizeGeneratedHtml(raw: string): string {
 }
 
 /**
+ * Sanitize the project-level global stylesheet (AGENTS.md §9). It is applied via
+ * `style.textContent`, which never parses HTML, so tag breakout isn't possible;
+ * this strips the CSS-specific risks (external fetches and legacy script vectors)
+ * and any stray <style> wrapper the model may have added.
+ */
+export function sanitizeThemeCss(raw: string): string {
+  let css = raw;
+
+  // Drop accidental markdown code fences and any <style> wrapper.
+  css = css.replace(/```(?:css)?\s*/gi, '').replace(/```\s*$/g, '');
+  css = css.replace(/<\/?style\b[^>]*>/gi, '');
+
+  // Remove external fetches and legacy JS-in-CSS vectors.
+  css = css.replace(/@import\b[^;]*;?/gi, '');
+  css = css.replace(/expression\s*\(/gi, '(');
+  css = css.replace(/javascript:/gi, '');
+
+  return css.trim();
+}
+
+/**
  * The preview iframe document, loaded exactly ONCE per editor session. Tailwind
  * loads a single time; page content is streamed in afterwards via postMessage
  * (`builder:setBody`), so live updates never reload the document or re-fetch the
@@ -50,12 +71,19 @@ export function buildPreviewShell(): string {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="https://cdn.tailwindcss.com"></script>
 <style>body{margin:0}</style>
+<style id="__builder_theme__"></style>
 <script>
   (function () {
+    var themeEl = document.getElementById('__builder_theme__');
     window.addEventListener('message', function (event) {
       var data = event && event.data;
-      if (data && data.type === 'builder:setBody') {
+      if (!data) return;
+      if (data.type === 'builder:setBody') {
         document.body.innerHTML = data.html || '';
+      } else if (data.type === 'builder:setTheme') {
+        // Assigning textContent never parses HTML, so the project stylesheet
+        // cannot break out of this <style> element.
+        if (themeEl) themeEl.textContent = data.css || '';
       }
     });
     // Tell the parent the listener is attached and it can send content.
