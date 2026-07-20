@@ -49,6 +49,66 @@ export function previewEditorScript(): string {
 
   function post(msg) { if (parentWin) parentWin.postMessage(msg, '*'); }
 
+  // ------------------------- ImageKit URL helpers ---------------------------
+  // Mirror of lib/images/imagekit.ts, written for the sandboxed iframe. Uses the
+  // public delivery endpoint injected as window.__IK_ENDPOINT__ (no secret).
+  function ikEndpoint() {
+    var e = window.__IK_ENDPOINT__ || '';
+    while (e.length && e.charAt(e.length - 1) === '/') e = e.slice(0, -1);
+    return e;
+  }
+  function ikSlug(text) {
+    var s = (text || '').toLowerCase(), out = '';
+    for (var i = 0; i < s.length; i++) {
+      var c = s.charAt(i);
+      out += ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) ? c : '-';
+    }
+    var parts = out.split('-').filter(function (p) { return p; });
+    var slug = parts.join('-');
+    if (slug.length > 60) slug = slug.slice(0, 60);
+    return slug || 'image';
+  }
+  function ikIsImageKit(url) {
+    if (!url) return false;
+    var ep = ikEndpoint();
+    if (ep && url.indexOf(ep) === 0) return true;
+    return url.indexOf('ik.imagekit.io/') > -1 || url.indexOf('/ik-genimg-') > -1;
+  }
+  function ikBuildGen(prompt, w, h) {
+    var ep = ikEndpoint();
+    if (!ep) return '';
+    var text = (prompt || '').trim() || 'clean modern product photo';
+    // Date-based seed varies the path so each generation returns a fresh image
+    // (ik-genimg caches per path/filename).
+    var file = ikSlug(text) + '-' + Date.now().toString(36) + '.jpg';
+    var tr = [];
+    if (w) tr.push('w-' + Math.round(w));
+    if (h) tr.push('h-' + Math.round(h));
+    var q = tr.length ? ('?tr=' + tr.join(',')) : '';
+    return ep + '/ik-genimg-prompt-' + encodeURIComponent(text) + '/' + file + q;
+  }
+  function ikAddTransform(url, token) {
+    if (!url || !token) return url;
+    var hash = '', h = url.indexOf('#');
+    if (h > -1) { hash = url.slice(h); url = url.slice(0, h); }
+    var base = url, query = '', q = url.indexOf('?');
+    if (q > -1) { base = url.slice(0, q); query = url.slice(q + 1); }
+    var params = query ? query.split('&') : [], found = false;
+    for (var i = 0; i < params.length; i++) {
+      if (params[i].indexOf('tr=') === 0) {
+        found = true;
+        var ex = params[i].slice(3);
+        params[i] = 'tr=' + (ex ? ex + ':' + token : token);
+      }
+    }
+    if (!found) params.push('tr=' + token);
+    return base + '?' + params.join('&') + hash;
+  }
+  function ikB64(text) { return btoa(unescape(encodeURIComponent(text || ''))); }
+  function ikPromptToken(effect, prompt) {
+    return 'e-' + effect + '-prompte-' + encodeURIComponent(ikB64(prompt));
+  }
+
   // ---- icons (inline SVG so we don't need an icon library in the iframe) ----
   function svg(paths) {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
@@ -124,6 +184,13 @@ export function previewEditorScript(): string {
       n.classList.remove('__be-hover');
       n.classList.remove('__be-selected');
       n.classList.remove('__be-edit-text');
+      if (n.getAttribute('class') === '') n.removeAttribute('class');
+    });
+    // Strip transient image markers the preview shell adds (loading shimmer /
+    // fallback watch) so persisted HTML stays clean.
+    clone.querySelectorAll('img').forEach(function (n) {
+      n.classList.remove('__ik-ready');
+      n.removeAttribute('data-ik-fb');
       if (n.getAttribute('class') === '') n.removeAttribute('class');
     });
     post({ type: 'builder:bodyChanged', html: clone.innerHTML });
@@ -252,7 +319,7 @@ export function previewEditorScript(): string {
     toolbar.appendChild(tbButton(ICON.ai, 'Edit with AI', false, function () { openAIPanel('edit'); }));
     if (isImageTarget(el)) {
       toolbar.appendChild(tbButton(ICON.image, 'Change image', false, openImagePanel));
-      toolbar.appendChild(tbButton(ICON.aiImage, 'Generate / transform image with AI', false, function () { openAIPanel('image'); }));
+      toolbar.appendChild(tbButton(ICON.aiImage, 'Generate & transform image (ImageKit)', false, openImageKitPanel));
     }
     toolbar.appendChild(tbButton(ICON.style, 'Edit style', false, openStylePanel));
     toolbar.appendChild(sep());
@@ -573,6 +640,135 @@ export function previewEditorScript(): string {
     });
     body.appendChild(send);
     setTimeout(function () { ta.focus(); }, 0);
+  }
+
+  // --------------------- ImageKit generate / transform ----------------------
+  // The action popover for images: generate a brand-new image from a prompt, or
+  // apply ImageKit AI transforms (remove bg, upscale, retouch, drop shadow,
+  // variation, replace background, AI edit) directly on the delivery URL. These
+  // are pure URL operations — instant, no AI round-trip.
+  function firstImg(el) {
+    return el.tagName === 'IMG' ? el : el.querySelector('img');
+  }
+
+  function openImageKitPanel() {
+    if (!active) return;
+    var el = active;
+    selectTarget(el);
+    var img = firstImg(el);
+    var body = buildPanel('AI image · ImageKit');
+
+    if (!ikEndpoint()) {
+      var warn = document.createElement('p');
+      warn.className = '__be-hint';
+      warn.textContent = 'Set NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT in .env.local to enable AI image generation and transforms.';
+      body.appendChild(warn);
+      return;
+    }
+    if (!img) {
+      var none = document.createElement('p');
+      none.className = '__be-hint';
+      none.textContent = 'No image here to work with. Use "Change image" to add one first.';
+      body.appendChild(none);
+      return;
+    }
+
+    function refresh() {
+      img.classList.remove('__ik-ready');
+      if (window.__ikDecorate) window.__ikDecorate();
+      emitChange();
+    }
+    function applyToken(token) {
+      var cur = img.getAttribute('src') || img.src;
+      if (!ikIsImageKit(cur)) return;
+      img.setAttribute('src', ikAddTransform(cur, token));
+      refresh();
+    }
+
+    // --- Generate a new image from a prompt ---
+    var ta = document.createElement('textarea');
+    ta.placeholder = 'Describe the image to generate…';
+    ta.value = img.getAttribute('data-ik-prompt') || img.getAttribute('alt') || '';
+    body.appendChild(row('Generate a new image', ta));
+    var gen = document.createElement('button');
+    gen.className = '__be-btn';
+    gen.textContent = 'Generate image';
+    gen.addEventListener('click', function () {
+      var p = ta.value.trim();
+      if (!p) return;
+      var wAttr = img.getAttribute('width');
+      var hAttr = img.getAttribute('height');
+      var w = wAttr ? parseInt(wAttr, 10) : (img.clientWidth || 1200);
+      var h = hAttr ? parseInt(hAttr, 10) : 0;
+      var url = ikBuildGen(p, w, h);
+      if (!url) return;
+      img.setAttribute('data-ik-prompt', p);
+      img.setAttribute('src', url);
+      refresh();
+      // Rebuild so the AI-transform controls appear now that the image is IK.
+      openImageKitPanel();
+    });
+    body.appendChild(gen);
+
+    var curSrc = img.getAttribute('src') || img.src || '';
+    if (!ikIsImageKit(curSrc)) {
+      var tip = document.createElement('p');
+      tip.className = '__be-hint';
+      tip.textContent = 'Generate an image above to unlock AI transforms (remove background, upscale, replace background, and more).';
+      body.appendChild(tip);
+      setTimeout(function () { ta.focus(); }, 0);
+      return;
+    }
+
+    // --- One-click AI transforms ---
+    var chips = document.createElement('div');
+    chips.style.display = 'flex';
+    chips.style.flexWrap = 'wrap';
+    chips.style.gap = '6px';
+    [
+      ['Remove background', 'e-bgremove'],
+      ['Upscale', 'e-upscale'],
+      ['Retouch', 'e-retouch'],
+      ['Drop shadow', 'e-dropshadow'],
+      ['Variation', 'e-genvar'],
+    ].forEach(function (c) {
+      var b = document.createElement('button');
+      b.className = '__be-btn __be-ghost';
+      b.style.padding = '7px 10px';
+      b.style.flex = '0 0 auto';
+      b.textContent = c[0];
+      b.addEventListener('click', function () { applyToken(c[1]); });
+      chips.appendChild(b);
+    });
+    body.appendChild(row('AI transforms', chips));
+
+    // --- Prompt-based transforms ---
+    function promptRow(label, effect, ph) {
+      var inp = document.createElement('input');
+      inp.type = 'text';
+      inp.placeholder = ph;
+      var apply = document.createElement('button');
+      apply.className = '__be-btn';
+      apply.style.padding = '7px 11px';
+      apply.textContent = 'Apply';
+      apply.addEventListener('click', function () {
+        var v = inp.value.trim();
+        if (!v) return;
+        applyToken(ikPromptToken(effect, v));
+        inp.value = '';
+      });
+      var w = document.createElement('div');
+      w.className = '__be-inline';
+      w.appendChild(inp); w.appendChild(apply);
+      return row(label, w);
+    }
+    body.appendChild(promptRow('Replace background', 'changebg', 'e.g. on a sunny beach'));
+    body.appendChild(promptRow('AI edit', 'edit', 'e.g. make the mug red'));
+
+    var hint = document.createElement('p');
+    hint.className = '__be-hint';
+    hint.textContent = 'Transforms stack on the current image and update the live preview instantly.';
+    body.appendChild(hint);
   }
 
   // ---------------------------- element actions -----------------------------
