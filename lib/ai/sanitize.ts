@@ -7,6 +7,8 @@
  * `buildPreviewShell` runs in the client, but neither imports server-only code.
  */
 
+import { previewEditorScript } from './preview-editor';
+
 /** Remove scripts, event handlers, and unsafe URLs from model-generated HTML. */
 export function sanitizeGeneratedHtml(raw: string): string {
   let html = raw;
@@ -72,18 +74,26 @@ export function buildPreviewShell(): string {
 <script src="https://cdn.tailwindcss.com"></script>
 <style>body{margin:0}</style>
 <style id="__builder_theme__"></style>
+<script>${previewEditorScript()}</script>
 <script>
   (function () {
     var themeEl = document.getElementById('__builder_theme__');
+    var editMode = false;
     window.addEventListener('message', function (event) {
       var data = event && event.data;
       if (!data) return;
       if (data.type === 'builder:setBody') {
         document.body.innerHTML = data.html || '';
+        // The new body has no editor UI or listeners; re-apply edit mode so
+        // hover/highlight/toolbar keep working after a content swap.
+        if (editMode && window.__builderSetEditMode) window.__builderSetEditMode(true);
       } else if (data.type === 'builder:setTheme') {
         // Assigning textContent never parses HTML, so the project stylesheet
         // cannot break out of this <style> element.
         if (themeEl) themeEl.textContent = data.css || '';
+      } else if (data.type === 'builder:setEditMode') {
+        editMode = !!data.enabled;
+        if (window.__builderSetEditMode) window.__builderSetEditMode(editMode);
       }
     });
     // Tell the parent the listener is attached and it can send content.

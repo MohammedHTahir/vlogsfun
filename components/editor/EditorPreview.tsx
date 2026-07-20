@@ -3,10 +3,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Box,
+  Check,
   Grid3x3,
   Home,
   Loader2,
   Monitor,
+  Pencil,
   RotateCw,
   ShoppingCart,
   Smartphone,
@@ -38,13 +40,26 @@ const VIEWPORTS: { id: Viewport; label: string; icon: typeof Monitor; width: str
 const STORE_DOMAIN = 'your-store.myshopify.com';
 
 export default function EditorPreview() {
-  const { pages, activePage, activePageId, themeCss, setActivePage, closePage, generatingPageId } =
-    useBuilder();
+  const {
+    pages,
+    activePage,
+    activePageId,
+    themeCss,
+    setActivePage,
+    closePage,
+    generatingPageId,
+    sendMessage,
+    updatePageHtml,
+  } = useBuilder();
   const [viewport, setViewport] = useState<Viewport>('desktop');
   const [reloadKey, setReloadKey] = useState(0);
+  const [editMode, setEditMode] = useState(false);
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const readyRef = useRef(false);
+  // The last body HTML we received *from* the iframe (an inline edit). Guards the
+  // postBody effect so we never echo an edit straight back and reset the frame.
+  const lastSyncedHtmlRef = useRef<string | null>(null);
   const viewportWidth = VIEWPORTS.find((v) => v.id === viewport)?.width ?? '100%';
 
   // The iframe document is built once (Tailwind loads a single time); content is
@@ -60,29 +75,73 @@ export default function EditorPreview() {
     iframeRef.current?.contentWindow?.postMessage({ type: 'builder:setTheme', css }, '*');
   };
 
-  // Wait for the iframe's "ready" handshake, then (re)send the project stylesheet
-  // and the active page whenever either changes.
+  const postEditMode = (enabled: boolean) => {
+    iframeRef.current?.contentWindow?.postMessage({ type: 'builder:setEditMode', enabled }, '*');
+  };
+
+  // Latest values the (mount-once) message listener needs, without re-subscribing.
+  const ctxRef = useRef({ activePageId, activeHtml, themeCss, editMode, sendMessage, updatePageHtml });
+  useEffect(() => {
+    ctxRef.current = { activePageId, activeHtml, themeCss, editMode, sendMessage, updatePageHtml };
+  });
+
+  // Single listener for every iframe -> parent message. The iframe owns the
+  // preview DOM (sandboxed, no same-origin), so inline edits and AI requests all
+  // arrive here as postMessages.
   useEffect(() => {
     function onMessage(event: MessageEvent) {
       if (event.source !== iframeRef.current?.contentWindow) return;
-      if (event.data?.type === 'builder:ready') {
+      const data = event.data;
+      if (!data || typeof data.type !== 'string') return;
+      const ctx = ctxRef.current;
+
+      if (data.type === 'builder:ready') {
         readyRef.current = true;
-        postTheme(themeCss);
-        postBody(activeHtml);
+        postTheme(ctx.themeCss);
+        postBody(ctx.activeHtml);
+        if (ctx.editMode) postEditMode(true);
+      } else if (data.type === 'builder:bodyChanged') {
+        // An inline edit was applied inside the preview; persist just this page.
+        if (!ctx.activePageId || typeof data.html !== 'string') return;
+        lastSyncedHtmlRef.current = ctx.updatePageHtml(ctx.activePageId, data.html);
+      } else if (data.type === 'builder:requestAIEdit' || data.type === 'builder:requestAIImage') {
+        const isImage = data.type === 'builder:requestAIImage';
+        const targetId = typeof data.targetId === 'string' ? data.targetId : '';
+        const prompt = typeof data.prompt === 'string' ? data.prompt : '';
+        if (!prompt) return;
+        ctx.sendMessage(
+          isImage
+            ? `Update the image in the element with id "${targetId}": ${prompt}`
+            : `In the element with id "${targetId}": ${prompt}`
+        );
       }
     }
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
-  }, [activeHtml, themeCss]);
+  }, []);
+
+  // Switching pages invalidates the echo guard (each page has its own HTML).
+  useEffect(() => {
+    lastSyncedHtmlRef.current = null;
+  }, [activePageId]);
 
   useEffect(() => {
-    if (readyRef.current) postBody(activeHtml);
+    if (!readyRef.current) return;
+    // Skip when this HTML is the inline edit we just received from the iframe —
+    // re-posting it would wipe the frame's live edit state.
+    if (activeHtml === lastSyncedHtmlRef.current) return;
+    postBody(activeHtml);
   }, [activeHtml, activePageId]);
 
   // Push the global stylesheet whenever it changes so every page stays on-theme.
   useEffect(() => {
     if (readyRef.current) postTheme(themeCss);
   }, [themeCss]);
+
+  // Toggle edit mode inside the preview whenever the button flips.
+  useEffect(() => {
+    if (readyRef.current) postEditMode(editMode);
+  }, [editMode]);
 
   // A manual reload remounts the frame, so it must re-handshake.
   useEffect(() => {
@@ -162,6 +221,22 @@ export default function EditorPreview() {
             className="relative mx-auto h-full min-h-full overflow-hidden rounded-xl border border-[#ece6e2] bg-white transition-[max-width] duration-300"
             style={{ maxWidth: viewportWidth }}
           >
+            {/* Inline-edit toggle — top-right of the preview. */}
+            {activePage && activeHtml && (
+              <button
+                onClick={() => setEditMode((v) => !v)}
+                aria-pressed={editMode}
+                className={`absolute right-3 top-3 z-20 flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[13px] font-medium shadow-sm transition ${
+                  editMode
+                    ? 'border-transparent bg-[#f05a32] text-white hover:bg-[#e14a24]'
+                    : 'border-[#eee7e3] bg-white/90 text-[#4b5563] backdrop-blur hover:bg-white hover:text-[#111827]'
+                }`}
+              >
+                {editMode ? <Check size={15} strokeWidth={2.2} /> : <Pencil size={15} strokeWidth={2} />}
+                {editMode ? 'Done' : 'Edit'}
+              </button>
+            )}
+
             {activePage ? (
               <iframe
                 key={reloadKey}
@@ -173,8 +248,10 @@ export default function EditorPreview() {
                   // Reliable trigger (independent of the postMessage handshake):
                   // by load, the shell's listener is attached and Tailwind is ready.
                   readyRef.current = true;
+                  lastSyncedHtmlRef.current = null;
                   postTheme(themeCss);
                   postBody(activeHtml);
+                  if (editMode) postEditMode(true);
                 }}
                 className="h-full min-h-[320px] w-full border-0"
               />
