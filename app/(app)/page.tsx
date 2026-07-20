@@ -3,7 +3,6 @@
 import {
   ArrowRight,
   ArrowUp,
-  AtSign,
   Box,
   Grid3x3,
   LayoutTemplate,
@@ -13,6 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Image from "next/image";
+import { AuthButtons } from "@/components";
 
 const templateCards = [
   {
@@ -59,12 +59,7 @@ export default function Home() {
           >
             <Settings size={18} strokeWidth={1.8} />
           </button>
-          <button className="h-10 rounded-xl border border-[#e8e2de] bg-white px-6 text-[15px] font-medium text-[#111827] shadow-[0_10px_24px_rgba(31,41,55,0.04)] transition hover:bg-[#fff8f5]">
-            Sign in
-          </button>
-          <button className="h-10 rounded-xl bg-[#ff6747] px-6 text-[15px] font-medium text-white shadow-[0_12px_22px_rgba(255,103,71,0.18)] transition hover:bg-[#f85b3a]">
-            Sign up
-          </button>
+          <AuthButtons />
         </div>
 
         <section className="mx-auto w-full max-w-[780px]">

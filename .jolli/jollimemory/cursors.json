@@ -3,13 +3,18 @@
 	"cursors": {
 		"/Users/rahulsanap/.codex/sessions/2026/07/17/rollout-2026-07-17T14-25-10-019f7153-46ef-7822-a02f-0dd7b621d5c3.jsonl": {
 			"transcriptPath": "/Users/rahulsanap/.codex/sessions/2026/07/17/rollout-2026-07-17T14-25-10-019f7153-46ef-7822-a02f-0dd7b621d5c3.jsonl",
-			"lineNumber": 14,
-			"updatedAt": "2026-07-19T17:50:16.428Z"
+			"lineNumber": 196,
+			"updatedAt": "2026-07-19T18:11:23.711Z"
 		},
 		"/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/d8bc9920-356f-4655-a26e-64a75b17e56b.jsonl": {
 			"transcriptPath": "/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/d8bc9920-356f-4655-a26e-64a75b17e56b.jsonl",
 			"lineNumber": 160,
-			"updatedAt": "2026-07-19T17:50:16.427Z"
+			"updatedAt": "2026-07-19T18:11:23.691Z"
+		},
+		"/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/5a389a91-baac-495f-853f-e5a815cf73b3.jsonl": {
+			"transcriptPath": "/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/5a389a91-baac-495f-853f-e5a815cf73b3.jsonl",
+			"lineNumber": 206,
+			"updatedAt": "2026-07-19T18:11:23.703Z"
 		}
 	}
 }

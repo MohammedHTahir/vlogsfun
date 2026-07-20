@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Home, FolderOpen, Lightbulb } from 'lucide-react';
+import SidebarUser from './SidebarUser';
 
 const navigationItems = [
   { href: '/', label: 'Home', icon: Home },
@@ -52,11 +53,7 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="mt-auto border-t border-[#ece6e2] px-1 pt-8">
-        <p className="max-w-[205px] text-sm font-medium leading-6 text-[#6b7280]">
-          Build amazing Shopify themes with the power of AI.
-        </p>
-      </div>
+      <SidebarUser />
     </aside>
   );
 }
