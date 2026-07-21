@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import {
   ChevronDown,
@@ -11,33 +11,60 @@ import {
   Save,
   Store,
 } from 'lucide-react';
-
-const EXPORT_OPTIONS = [
-  { id: 'shopify', label: 'Export to Shopify', icon: Store },
-  { id: 'zip', label: 'Download ZIP', icon: Download },
-  { id: 'json', label: 'Export Theme JSON', icon: Code2 },
-  { id: 'preview', label: 'Preview Theme', icon: Eye },
-];
+import { useBuilder } from './BuilderContext';
+import ExportDialog from './ExportDialog';
+import type { ExportPage } from '@/lib/shopify/types';
 
 interface EditorTopBarProps {
   collapsed: boolean;
   onToggleSidebar: () => void;
+  projectId: string;
+  projectName: string;
 }
 
-export default function EditorTopBar({ collapsed, onToggleSidebar }: EditorTopBarProps) {
-  const [exportOpen, setExportOpen] = useState(false);
+export default function EditorTopBar({
+  collapsed,
+  onToggleSidebar,
+  projectId,
+  projectName,
+}: EditorTopBarProps) {
+  const { pages, themeCss } = useBuilder();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const exportRef = useRef<HTMLDivElement>(null);
 
+  // Only fully generated pages (with HTML) are exportable.
+  const exportPages = useMemo<ExportPage[]>(
+    () =>
+      pages
+        .filter((p) => p.html && p.html.trim())
+        .map((p) => ({ key: p.id, label: p.label, type: p.type, path: p.path, html: p.html })),
+    [pages]
+  );
+  const hasExportablePages = exportPages.length > 0;
+
+  const EXPORT_OPTIONS = [
+    { id: 'shopify', label: 'Export to Shopify', icon: Store, action: () => openExport() },
+    { id: 'zip', label: 'Download ZIP', icon: Download, action: () => openExport() },
+    { id: 'json', label: 'Export Theme JSON', icon: Code2, action: () => {} },
+    { id: 'preview', label: 'Preview Theme', icon: Eye, action: () => {} },
+  ];
+
+  function openExport() {
+    setMenuOpen(false);
+    setDialogOpen(true);
+  }
+
   useEffect(() => {
-    if (!exportOpen) return;
+    if (!menuOpen) return;
     function onClick(event: MouseEvent) {
       if (exportRef.current && !exportRef.current.contains(event.target as Node)) {
-        setExportOpen(false);
+        setMenuOpen(false);
       }
     }
     document.addEventListener('mousedown', onClick);
     return () => document.removeEventListener('mousedown', onClick);
-  }, [exportOpen]);
+  }, [menuOpen]);
 
   return (
     <header className="flex h-16 shrink-0 items-center justify-between gap-3 border-b border-[#ece6e2] bg-white px-4">
@@ -69,29 +96,38 @@ export default function EditorTopBar({ collapsed, onToggleSidebar }: EditorTopBa
       <div className="flex shrink-0 items-center gap-3">
         <div className="relative" ref={exportRef}>
           <button
-            onClick={() => setExportOpen((open) => !open)}
-            className="flex h-11 items-center gap-2 rounded-xl border border-[#e8e2de] bg-white px-4 text-sm font-medium text-[#111827] shadow-[0_8px_20px_rgba(31,41,55,0.04)] transition hover:bg-[#fff8f5]"
+            onClick={() => setMenuOpen((open) => !open)}
+            disabled={dialogOpen}
+            className="flex h-11 items-center gap-2 rounded-xl border border-[#e8e2de] bg-white px-4 text-sm font-medium text-[#111827] shadow-[0_8px_20px_rgba(31,41,55,0.04)] transition hover:bg-[#fff8f5] disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Store size={17} strokeWidth={1.9} className="text-[#35b86b]" />
             Export to Shopify
             <ChevronDown
               size={16}
               strokeWidth={2}
-              className={`text-[#9aa2af] transition-transform ${exportOpen ? 'rotate-180' : ''}`}
+              className={`text-[#9aa2af] transition-transform ${menuOpen ? 'rotate-180' : ''}`}
             />
           </button>
 
-          {exportOpen && (
+          {menuOpen && (
             <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-64 overflow-hidden rounded-2xl border border-[#eee7e3] bg-white p-2 shadow-[0_24px_48px_rgba(31,41,55,0.14)]">
               <p className="px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-[#9aa2af]">
                 Export options
               </p>
+              {!hasExportablePages && (
+                <p className="px-3 pb-2 text-[11px] text-[#b7ada4]">
+                  Generate a page first to enable export.
+                </p>
+              )}
               {EXPORT_OPTIONS.map((option) => {
                 const Icon = option.icon;
+                const disabled = (option.id === 'shopify' || option.id === 'zip') && !hasExportablePages;
                 return (
                   <button
                     key={option.id}
-                    className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-[#111827] transition hover:bg-[#fff3ef]"
+                    onClick={option.action}
+                    disabled={disabled}
+                    className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-[#111827] transition hover:bg-[#fff3ef] disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     <Icon size={17} strokeWidth={1.9} className="text-[#6b7280]" />
                     {option.label}
@@ -107,6 +143,15 @@ export default function EditorTopBar({ collapsed, onToggleSidebar }: EditorTopBa
           Save
         </button>
       </div>
+
+      <ExportDialog
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        projectId={projectId}
+        projectName={projectName}
+        pages={exportPages}
+        themeCss={themeCss}
+      />
     </header>
   );
 }
