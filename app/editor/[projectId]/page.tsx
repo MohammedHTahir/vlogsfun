@@ -81,7 +81,12 @@ export default function EditorPage() {
   return (
     <BuilderProvider projectId={projectId} initialPrompt={project?.prompt ?? ''}>
       <div className="flex h-screen flex-col overflow-hidden bg-[#fafafa]">
-        <EditorTopBar collapsed={collapsed} onToggleSidebar={() => setCollapsed((c) => !c)} />
+        <EditorTopBar
+          collapsed={collapsed}
+          onToggleSidebar={() => setCollapsed((c) => !c)}
+          projectId={projectId}
+          projectName={project?.name ?? 'Storefront'}
+        />
 
         <div className="flex min-h-0 flex-1">
           {!collapsed && <EditorChatPanel />}
