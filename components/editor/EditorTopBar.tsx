@@ -15,6 +15,8 @@ import {
 } from 'lucide-react';
 import { useBuilder } from './BuilderContext';
 import ExportDialog from './ExportDialog';
+import { useSubscription } from '@/components/billing/SubscriptionProvider';
+import UpgradeDialog from '@/components/billing/UpgradeDialog';
 import { exportPagesAsCodeZip } from '@/lib/export/code';
 import { exportPagesAsPng } from '@/lib/export/png';
 import type { ExportPage } from '@/lib/shopify/types';
@@ -33,8 +35,10 @@ export default function EditorTopBar({
   projectName,
 }: EditorTopBarProps) {
   const { pages, themeCss, styleGuide } = useBuilder();
+  const { entitlement } = useSubscription();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
   // Which direct export (code/png) is currently running, plus any last error.
   const [busy, setBusy] = useState<null | 'code' | 'png'>(null);
   const [pngStatus, setPngStatus] = useState('');
@@ -59,8 +63,16 @@ export default function EditorTopBar({
     { id: 'preview', label: 'Preview Theme', icon: Eye, action: () => {} },
   ];
 
+  // Shopify theme export is a paid feature. Free users get the upgrade dialog
+  // instead of the export flow (product spec §"Free Plan Limits").
+  const canExport = entitlement?.canExport ?? false;
+
   function openExport() {
     setMenuOpen(false);
+    if (!canExport) {
+      setUpgradeOpen(true);
+      return;
+    }
     setDialogOpen(true);
   }
 
@@ -211,6 +223,13 @@ export default function EditorTopBar({
         pages={exportPages}
         themeCss={themeCss}
         styleGuide={styleGuide}
+      />
+
+      <UpgradeDialog
+        open={upgradeOpen}
+        onClose={() => setUpgradeOpen(false)}
+        title="Exporting is a Pro feature"
+        description="Upgrade to export your design as a Shopify theme ZIP and unlock unlimited projects."
       />
     </header>
   );

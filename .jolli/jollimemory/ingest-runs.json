@@ -154,5 +154,26 @@
 		"routeCalls": 1,
 		"reconcileCalls": 1,
 		"topicFailures": []
+	},
+	{
+		"startedAt": "2026-07-22T03:28:24.524Z",
+		"durationMs": 1080194,
+		"triggeredBy": "post-commit",
+		"outcome": "OK",
+		"batches": 1,
+		"ingested": 0,
+		"touchedSlugs": 0,
+		"routeCalls": 1,
+		"reconcileCalls": 2,
+		"topicFailures": [
+			{
+				"slug": "editor-project-management",
+				"code": "RECONCILE_CALL_FAILED"
+			},
+			{
+				"slug": "projects-page-thumbnails",
+				"code": "RECONCILE_CALL_FAILED"
+			}
+		]
 	}
 ]
