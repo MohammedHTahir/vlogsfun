@@ -16,6 +16,7 @@ import { applyPatchOperations } from '@/lib/ai/patch';
 import { getProjectPages, savePage, deletePage, clearPages } from '@/lib/pages';
 import { getProjectMessages, appendMessages, clearMessages } from '@/lib/messages';
 import { getProjectTheme, saveTheme, clearTheme } from '@/lib/theme';
+import { captureAndSaveThumbnail } from '@/lib/thumbnail';
 
 /**
  * Client-side builder state: chat messages, page tabs, and the live preview,
@@ -157,6 +158,9 @@ export function BuilderProvider({
   // it without re-subscribing, plus a dirty flag for persistence.
   const themeRef = useRef<{ css: string; styleGuide: string } | null>(null);
   const themeDirtyRef = useRef(false);
+  // HTML last rasterized into the project's preview thumbnail — so an unchanged
+  // page never triggers a redundant re-capture.
+  const lastThumbnailHtmlRef = useRef<string | null>(null);
 
   // Load this project's saved pages + chat once, after mount. The database is the
   // source of truth across sessions; a same-session sessionStorage snapshot is
@@ -454,6 +458,17 @@ export function BuilderProvider({
       } catch {
         // Persistence is best-effort; the in-memory + sessionStorage state stays.
       }
+
+      // Refresh the project's card thumbnail from the home (or first ready) page
+      // once a turn settles. Fully best-effort and non-blocking — a capture
+      // failure never affects generation or persistence (AGENTS.md §8).
+      const previewPage =
+        currentPages.find((p) => p.type === 'home' && p.status === 'ready' && p.html.trim()) ??
+        currentPages.find((p) => p.status === 'ready' && p.html.trim());
+      if (previewPage && previewPage.html !== lastThumbnailHtmlRef.current) {
+        lastThumbnailHtmlRef.current = previewPage.html;
+        void captureAndSaveThumbnail(projectId, previewPage.html, themeRef.current?.css ?? '');
+      }
     },
     [projectId]
   );
@@ -538,6 +553,7 @@ export function BuilderProvider({
     pagesDirtyRef.current = false;
     themeRef.current = null;
     themeDirtyRef.current = false;
+    lastThumbnailHtmlRef.current = null;
     setMessages([]);
     setPages([]);
     setActivePageId(null);

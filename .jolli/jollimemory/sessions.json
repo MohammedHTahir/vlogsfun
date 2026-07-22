@@ -48,6 +48,12 @@
 			"transcriptPath": "/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/a97a6dca-3a43-4c44-badf-bceab2c0f0d8.jsonl",
 			"updatedAt": "2026-07-22T02:55:30.437Z",
 			"source": "claude"
+		},
+		"dc0a03f7-08ed-4f30-b454-67e8d1a10658": {
+			"sessionId": "dc0a03f7-08ed-4f30-b454-67e8d1a10658",
+			"transcriptPath": "/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/dc0a03f7-08ed-4f30-b454-67e8d1a10658.jsonl",
+			"updatedAt": "2026-07-22T03:23:21.181Z",
+			"source": "claude"
 		}
 	}
 }

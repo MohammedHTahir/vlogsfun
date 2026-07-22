@@ -13,16 +13,29 @@ export interface Project {
   name: string;
   prompt: string | null;
   status: string;
+  /** Public URL of the auto-captured preview thumbnail, or null before first capture. */
+  thumbnail_url: string | null;
+  /** Storage object key for the thumbnail (kept alongside the URL per the InsForge pattern). */
+  thumbnail_key: string | null;
   created_at: string;
   updated_at: string;
 }
 
-/** Derive a short, human-friendly project name from the first line of the prompt. */
+/** Common lead-ins users write ("Create a landing page…") that add no signal to a title. */
+const TITLE_FILLER = /^(please\s+)?(can you\s+)?(create|build|design|make|generate|develop|explore|add|show)\s+(me\s+)?(a|an|the|my|some)?\s*/i;
+
+/**
+ * Derive a short, human-friendly project title from the prompt. We strip common
+ * command lead-ins ("Create a…", "Build a…") and capitalize so the card shows a
+ * clean name like "Landing page for my Shopify store" instead of the raw prompt.
+ */
 function deriveProjectName(prompt: string): string {
   const firstLine = prompt.trim().split('\n')[0]?.trim() ?? '';
   if (!firstLine) return 'Untitled project';
-  const clipped = firstLine.length > 60 ? `${firstLine.slice(0, 57)}…` : firstLine;
-  return clipped;
+
+  const stripped = firstLine.replace(TITLE_FILLER, '').trim() || firstLine;
+  const title = stripped.charAt(0).toUpperCase() + stripped.slice(1);
+  return title.length > 60 ? `${title.slice(0, 57).trimEnd()}…` : title;
 }
 
 /**
@@ -62,6 +75,44 @@ export async function createProject(prompt: string): Promise<Project> {
   }
 
   return project as Project;
+}
+
+/**
+ * List every project owned by the current user, newest first. RLS scopes the
+ * query to the owner, so no client-supplied user id is trusted (AGENTS.md §14).
+ */
+export async function listProjects(): Promise<Project[]> {
+  const { data, error } = await insforge.database
+    .from('projects')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    throw new Error(error.message ?? 'Failed to load projects.');
+  }
+  return (Array.isArray(data) ? data : []) as Project[];
+}
+
+/**
+ * Persist the auto-captured preview thumbnail for a project. Stores both the
+ * public `url` and the storage `key`. RLS scopes the update to the owner.
+ */
+export async function saveProjectThumbnail(
+  projectId: string,
+  thumbnail: { url: string; key: string }
+): Promise<void> {
+  const { error } = await insforge.database
+    .from('projects')
+    .update({
+      thumbnail_url: thumbnail.url,
+      thumbnail_key: thumbnail.key,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', projectId);
+
+  if (error) {
+    throw new Error(error.message ?? 'Failed to save project thumbnail.');
+  }
 }
 
 /** Fetch a single project by id. RLS guarantees it belongs to the current user. */

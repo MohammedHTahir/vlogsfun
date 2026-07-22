@@ -10,6 +10,15 @@
 			"commitHash": "26a8c82f43331e2edcb428503674fb386d32e769",
 			"branch": "9.Imagekit-Setup",
 			"contentHashAtCommit": "d721285224277e3030a7452f71f4f4721ec66e0bfd52fb69d3a085336f0f1e2b"
+		},
+		"projects-thumbnails-setup": {
+			"slug": "projects-thumbnails-setup",
+			"title": "Projects page & thumbnails — backend setup",
+			"sourcePath": "/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/docs/projects-thumbnails-setup.md",
+			"addedAt": "2026-07-22T03:17:10.968Z",
+			"updatedAt": "2026-07-22T03:17:10.968Z",
+			"commitHash": null,
+			"branch": "11.-Export-to-Code-and-Image"
 		}
 	}
 }

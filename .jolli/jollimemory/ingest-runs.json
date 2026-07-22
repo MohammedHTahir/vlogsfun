@@ -142,5 +142,17 @@
 		"routeCalls": 1,
 		"reconcileCalls": 1,
 		"topicFailures": []
+	},
+	{
+		"startedAt": "2026-07-22T03:07:55.177Z",
+		"durationMs": 16483,
+		"triggeredBy": "post-commit",
+		"outcome": "OK",
+		"batches": 1,
+		"ingested": 1,
+		"touchedSlugs": 1,
+		"routeCalls": 1,
+		"reconcileCalls": 1,
+		"topicFailures": []
 	}
 ]
