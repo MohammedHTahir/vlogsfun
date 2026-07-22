@@ -11,11 +11,6 @@
 			"lineNumber": 34,
 			"updatedAt": "2026-07-19T18:49:23.810Z"
 		},
-		"/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/5effd00f-6a82-42a0-9dd5-3e01b6594211.jsonl": {
-			"transcriptPath": "/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/5effd00f-6a82-42a0-9dd5-3e01b6594211.jsonl",
-			"lineNumber": 232,
-			"updatedAt": "2026-07-20T13:56:00.687Z"
-		},
 		"/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/ba84ff81-7558-4714-9cf9-c314d4e34493.jsonl": {
 			"transcriptPath": "/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/ba84ff81-7558-4714-9cf9-c314d4e34493.jsonl",
 			"lineNumber": 312,
@@ -85,6 +80,11 @@
 			"transcriptPath": "/Users/rahulsanap/.codex/sessions/2026/07/22/rollout-2026-07-22T09-19-06-019f89fa-d969-7c20-bc4e-90648feef886.jsonl",
 			"lineNumber": 127,
 			"updatedAt": "2026-07-22T13:38:10.245Z"
+		},
+		"/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/6f8de4af-2d5e-454e-8033-8f255605ba09.jsonl": {
+			"transcriptPath": "/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/6f8de4af-2d5e-454e-8033-8f255605ba09.jsonl",
+			"lineNumber": 45,
+			"updatedAt": "2026-07-22T13:56:43.177Z"
 		}
 	}
 }
