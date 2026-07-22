@@ -175,5 +175,17 @@
 				"code": "RECONCILE_CALL_FAILED"
 			}
 		]
+	},
+	{
+		"startedAt": "2026-07-22T13:15:18.364Z",
+		"durationMs": 24817,
+		"triggeredBy": "post-commit",
+		"outcome": "OK",
+		"batches": 1,
+		"ingested": 4,
+		"touchedSlugs": 2,
+		"routeCalls": 1,
+		"reconcileCalls": 2,
+		"topicFailures": []
 	}
 ]

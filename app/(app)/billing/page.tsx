@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import {
   AlertTriangle,
   Check,
@@ -48,8 +47,7 @@ function formatDate(iso: string | null): string {
 }
 
 export default function BillingPage() {
-  const router = useRouter();
-  const { user, loading: authLoading } = useAuth();
+  const { loading: authLoading } = useAuth();
   const { entitlement, loading, refresh } = useSubscription();
 
   const [busy, setBusy] = useState<string | null>(null);
@@ -61,11 +59,6 @@ export default function BillingPage() {
     const checkout = new URLSearchParams(window.location.search).get('checkout');
     return checkout === 'success' ? 'success' : checkout === 'cancelled' ? 'cancelled' : null;
   });
-
-  useEffect(() => {
-    if (authLoading) return;
-    if (!user) router.replace('/sign-in');
-  }, [user, authLoading, router]);
 
   // After a successful checkout, refresh entitlement so permissions reflect the
   // just-completed webhook, then clean the query string from the URL.

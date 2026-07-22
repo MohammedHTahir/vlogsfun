@@ -26,9 +26,10 @@
 			"title": "Billing & subscriptions setup (Stripe + InsForge)",
 			"sourcePath": "/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/docs/billing-setup.md",
 			"addedAt": "2026-07-22T12:57:03.584Z",
-			"updatedAt": "2026-07-22T12:57:03.584Z",
-			"commitHash": null,
-			"branch": "12.-AI-Shopify-template-builder"
+			"updatedAt": "2026-07-22T13:14:55.892Z",
+			"commitHash": "c8701962383353ba3911711c6766e8ea37d4336d",
+			"branch": "12.-AI-Shopify-template-builder",
+			"contentHashAtCommit": "260bdd053c01c7608ffffd1091785e6c270ac881183b701ba2e157697c5f2a2f"
 		}
 	}
 }

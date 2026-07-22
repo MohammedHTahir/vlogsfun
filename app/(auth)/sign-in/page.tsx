@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { AuthShell, GoogleButton, Input, Button, useAuth } from '@/components';
 import { insforge } from '@/lib/insforge';
 
 export default function SignInPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { refresh } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +32,8 @@ export default function SignInPage() {
     }
 
     await refresh();
-    router.push('/');
+    const next = searchParams.get('next');
+    router.push(next && next.startsWith('/') ? next : '/');
   };
 
   return (
