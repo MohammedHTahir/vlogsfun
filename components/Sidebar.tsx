@@ -10,7 +10,6 @@ import SidebarBilling from './billing/SidebarBilling';
 const navigationItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/projects', label: 'Projects', icon: FolderOpen },
-  { href: '/inspiration', label: 'Inspiration', icon: Lightbulb },
   { href: '/billing', label: 'Billing', icon: CreditCard },
 ];
 
@@ -42,8 +41,8 @@ export default function Sidebar() {
               key={href}
               href={href}
               className={`flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] transition-colors ${isActive
-                  ? 'bg-[#fff3ef] text-[#f05a32]'
-                  : 'text-[#1f2937] hover:bg-[#fff8f5]'
+                ? 'bg-[#fff3ef] text-[#f05a32]'
+                : 'text-[#1f2937] hover:bg-[#fff8f5]'
                 }`}
             >
               <span className={`grid h-7 w-7 place-items-center rounded-lg ${isActive ? 'bg-white/60' : 'bg-neutral-50'}`}>

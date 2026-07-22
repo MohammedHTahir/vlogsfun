@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { FolderOpen, ImageOff, Loader2, Plus } from 'lucide-react';
 import { useAuth } from '@/components';
 import { listProjects, type Project } from '@/lib/projects';
@@ -22,18 +21,13 @@ function formatCreatedAt(iso: string): string {
 }
 
 export default function ProjectsPage() {
-  const router = useRouter();
   const { user, loading: authLoading } = useAuth();
 
   const [projects, setProjects] = useState<Project[]>([]);
   const [state, setState] = useState<LoadState>('loading');
 
   useEffect(() => {
-    if (authLoading) return;
-    if (!user) {
-      router.replace('/sign-in');
-      return;
-    }
+    if (authLoading || !user) return;
 
     let active = true;
     (async () => {
@@ -65,7 +59,7 @@ export default function ProjectsPage() {
     return () => {
       active = false;
     };
-  }, [user, authLoading, router]);
+  }, [user, authLoading]);
 
   return (
     <div className="min-h-screen bg-[#fffdfc] px-8 py-10">
