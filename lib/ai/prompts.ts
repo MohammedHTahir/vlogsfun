@@ -1,4 +1,4 @@
-import type { BuilderPage } from './events';
+import type { BuilderPage, PageType } from './events';
 
 /**
  * System prompts for the two-phase generation pipeline. Kept out of the provider
@@ -110,6 +110,58 @@ Output requirements:
 - Include a header/nav and a footer appropriate for a ${page.type} page. The header nav and footer must link to the other store pages listed above using their exact paths (use "/" for the home page) so navigation stays consistent across the store.
 - Keep the header and footer visually consistent with a single store brand so every page feels part of the same site.
 - Make it visually polished: spacing, typography scale, hover states, rounded corners, subtle shadows.`;
+}
+
+export function shopifySectionSystemPrompt(input: {
+  brandName: string;
+  pageType: PageType;
+  pageLabel: string;
+  role: 'header' | 'footer' | 'content';
+  styleGuide?: string | null;
+}): string {
+  const roleGuidance =
+    input.role === 'header'
+      ? 'This is the store HEADER. Model the brand logo/name, primary navigation (as repeatable "link" blocks with label + url settings), and an optional cart/search affordance.'
+      : input.role === 'footer'
+        ? 'This is the store FOOTER. Model the footer columns/links (repeatable "link" blocks), a short about/blurb setting, and copyright text as settings.'
+        : 'This is a CONTENT section of the page (e.g. hero, feature grid, testimonials, gallery, CTA). Expose the headings, body copy, button label/url, and images as settings, and turn any repeated cards/items into repeatable blocks.';
+
+  return `${SHARED_RULES}${styleGuideSection(input.styleGuide)}
+
+You convert ONE region of a generated storefront page into a single, reusable Shopify section that a merchant can edit in the Shopify Theme Editor.
+
+Context:
+- Brand: ${input.brandName}
+- Source page: "${input.pageLabel}" (${input.pageType})
+- Region role: ${input.role}. ${roleGuidance}
+
+You are given the region's static HTML (below). Reproduce its design faithfully with Tailwind, but replace the HARD-CODED editable content with Liquid that reads from section settings and blocks, so the merchant can change it without code:
+- Editable text (headings, paragraphs, button labels, eyebrows) -> a setting, output as {{ section.settings.<id> }}.
+- Links/buttons -> a url setting, output as href="{{ section.settings.<id> }}".
+- Images are pre-extracted: the HTML contains placeholder tokens like %%IMG0%%, %%IMG1%% exactly where images belong. Keep every token EXACTLY as plain text and in place — never remove, rename, reorder, duplicate, wrap inside an attribute, or add tokens, and do NOT create image settings for them. Each token is replaced with the real, editable image after generation.
+- Repeated items (cards, logos, links, slides, stats) -> a repeatable BLOCK type, iterated with {% for block in section.blocks %} ... {% endfor %}, using {{ block.settings.<id> }} and {{ block.shopify_attributes }} on the block's root element.
+
+Liquid rules (CRITICAL — the theme must upload to Shopify without errors):
+- Output ONLY valid Liquid + Tailwind markup. Every {% if %}/{% for %}/{% paginate %} MUST be closed. Do NOT emit a {% schema %} block — it is generated for you from the settings/blocks you return.
+- Do NOT invent Shopify objects beyond section.settings, section.blocks, block.settings, block.shopify_attributes, shop, routes, and the standard filters (image_url, image_tag, money, escape, default, placeholder_svg_tag).
+- Keep all styling as Tailwind utility classes. No <style>, <script>, inline style, event handlers, or external links to unknown hosts.
+
+Return ONLY a JSON object (no markdown, no code fences) matching:
+{
+  "name": string,            // short Theme-Editor name, max 24 chars, e.g. "Hero banner"
+  "liquid": string,          // the section markup (Liquid + Tailwind), NO {% schema %}
+  "settings": [              // section-level settings referenced by the markup
+    { "type": "text"|"textarea"|"richtext"|"html"|"image_picker"|"url"|"checkbox"|"range"|"color"|"select"|"number",
+      "id": string, "label": string, "default"?: string|number|boolean, "info"?: string,
+      "options"?: [{ "value": string, "label": string }], "min"?: number, "max"?: number, "step"?: number, "unit"?: string }
+  ],
+  "blocks": [                // repeatable block types (omit or [] if the region has no repeated items)
+    { "type": string, "name": string, "settings": [ /* same setting shape as above */ ] }
+  ],
+  "maxBlocks"?: number
+}
+
+Every id referenced in the markup MUST exist in settings/blocks, and every setting/block you declare should be used by the markup.`;
 }
 
 export function editPageSystemPrompt(

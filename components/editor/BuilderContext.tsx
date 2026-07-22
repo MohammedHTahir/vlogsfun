@@ -43,6 +43,8 @@ interface BuilderContextValue {
   activePage: PageState | null;
   /** The project's global stylesheet, applied to every page's preview. */
   themeCss: string;
+  /** The project's shared style guide (brand, palette, component classes), if generated. */
+  styleGuide: string | null;
   isStreaming: boolean;
   generatingPageId: string | null;
   error: string | null;
@@ -577,6 +579,7 @@ export function BuilderProvider({
     activePageId,
     activePage,
     themeCss,
+    styleGuide: themeRef.current?.styleGuide ?? null,
     isStreaming,
     generatingPageId,
     error,

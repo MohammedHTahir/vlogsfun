@@ -32,6 +32,7 @@ interface ExportDialogProps {
   projectName: string;
   pages: ExportPage[];
   themeCss: string;
+  styleGuide: string | null;
 }
 
 const STEP_LIST: { id: ExportStepId; label: string }[] = [
@@ -71,6 +72,7 @@ export default function ExportDialog({
   projectName,
   pages,
   themeCss,
+  styleGuide,
 }: ExportDialogProps) {
   const [state, setState] = useState<DialogState>('checking');
   const [existing, setExisting] = useState<ThemeExportRow | null>(null);
@@ -94,6 +96,7 @@ export default function ExportDialog({
         projectName,
         pages,
         themeCss,
+        styleGuide,
         onProgress: setProgress,
       });
       setResult(res);
@@ -104,7 +107,7 @@ export default function ExportDialog({
     } finally {
       runningRef.current = false;
     }
-  }, [projectId, projectName, pages, themeCss]);
+  }, [projectId, projectName, pages, themeCss, styleGuide]);
 
   // On open: reset, then check for an existing export. If one exists, offer the
   // choices; otherwise begin the export immediately.
@@ -307,9 +310,22 @@ export default function ExportDialog({
                   <FileArchive size={13} />
                   {result.fileName} · {formatSize(result.row.file_size)} · v{result.row.theme_version}
                 </div>
+                {result.sectionStats.total > 0 && (
+                  <p className="mt-2 text-[11px] text-[#9aa2af]">
+                    {result.sectionStats.total} editable section
+                    {result.sectionStats.total === 1 ? '' : 's'} generated
+                    {result.sectionStats.ai > 0 && ` · ${result.sectionStats.ai} AI-authored`}
+                    {result.sectionStats.fallback > 0 &&
+                      ` · ${result.sectionStats.fallback} basic (AI unavailable)`}
+                  </p>
+                )}
                 <div className="mt-5 flex flex-col gap-2.5">
                   <button
                     onClick={() => {
+                      if (result.row.download_url) {
+                        triggerDownload(result.row.download_url, result.fileName);
+                        return;
+                      }
                       const url = URL.createObjectURL(result.blob);
                       triggerDownload(url, result.fileName, true);
                     }}

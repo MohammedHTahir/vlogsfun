@@ -5,6 +5,7 @@ import { validateTheme } from './validate';
 import { createZip } from './zip';
 import { uploadThemeZip } from './storage';
 import { slugify } from './liquid';
+import { convertPagesWithAI } from './ai-sections';
 import type { ExportPage, ExportProgress, ExportStepId } from './types';
 
 /**
@@ -21,6 +22,8 @@ export interface RunExportInput {
   projectName: string;
   pages: ExportPage[];
   themeCss: string;
+  /** The project's shared style guide, so AI section conversion stays on-brand. */
+  styleGuide?: string | null;
   onProgress?: (progress: ExportProgress) => void;
 }
 
@@ -29,17 +32,23 @@ export interface RunExportResult {
   /** The freshly built ZIP, so the dialog can offer an instant download. */
   blob: Blob;
   fileName: string;
+  /** How the designed sections were produced (AI vs. raw fallback). */
+  sectionStats: { total: number; ai: number; fallback: number };
 }
 
-/** Ordered step metadata: label + the percent reached when the step completes. */
+/**
+ * Ordered step metadata: label + the percent reached when the step completes.
+ * The `sections` step is the real work (per-region AI conversion); its percent
+ * is interpolated live between the previous step and its `done` mark.
+ */
 const STEPS: Record<ExportStepId, { message: string; done: number }> = {
-  analyze: { message: 'Analyzing generated pages…', done: 8 },
-  convert: { message: 'Converting HTML into Shopify Liquid…', done: 24 },
-  sections: { message: 'Generating reusable sections…', done: 42 },
-  templates: { message: 'Creating templates and snippets…', done: 58 },
-  assets: { message: 'Processing images and assets…', done: 68 },
-  validate: { message: 'Validating the Shopify theme structure…', done: 80 },
-  zip: { message: 'Creating the ZIP archive…', done: 90 },
+  analyze: { message: 'Analyzing generated pages…', done: 6 },
+  convert: { message: 'Preparing theme assets…', done: 12 },
+  sections: { message: 'Generating reusable sections…', done: 62 },
+  templates: { message: 'Creating templates and snippets…', done: 70 },
+  assets: { message: 'Processing images and assets…', done: 76 },
+  validate: { message: 'Validating the Shopify theme structure…', done: 84 },
+  zip: { message: 'Creating the ZIP archive…', done: 92 },
   upload: { message: 'Uploading the ZIP file to storage…', done: 100 },
 };
 
@@ -73,16 +82,41 @@ export async function runShopifyExport(input: RunExportInput): Promise<RunExport
   const tailwindCss = await loadTailwindCss();
   await tick();
 
-  // 3–4. Build sections + templates (deterministic, in one pass).
+  // 3. Sections — AI-convert each designed page region into a real, editable
+  // Shopify section (shared header/footer + per-page bodies). Progress is REAL:
+  // reported per region as each conversion lands. A failed region falls back to
+  // a raw section (never fatal), so the export always completes.
   report('sections');
-  const build = buildThemeFiles({
-    projectName: input.projectName || 'AI Storefront',
+  const sectionsStart = STEPS.convert.done;
+  const sectionsEnd = STEPS.sections.done;
+  const converted = await convertPagesWithAI({
     pages,
-    themeCss: input.themeCss || '',
-    tailwindCss,
+    brandName: input.projectName || 'AI Storefront',
+    styleGuide: input.styleGuide ?? null,
+    onProgress: ({ processed, total }) => {
+      const ratio = total > 0 ? processed / total : 1;
+      input.onProgress?.({
+        step: 'sections',
+        message:
+          total > 0
+            ? `Generating reusable sections… (${processed}/${total})`
+            : STEPS.sections.message,
+        percent: sectionsStart + (sectionsEnd - sectionsStart) * ratio,
+      });
+    },
   });
-  await tick();
+
+  // 4. Templates — assemble the full theme file set (deterministic).
   report('templates');
+  const build = buildThemeFiles(
+    {
+      projectName: input.projectName || 'AI Storefront',
+      pages,
+      themeCss: input.themeCss || '',
+      tailwindCss,
+    },
+    converted
+  );
   await tick();
 
   // 5. Assets — images are kept as approved public URLs (AGENTS.md §12).
@@ -126,5 +160,5 @@ export async function runShopifyExport(input: RunExportInput): Promise<RunExport
   });
 
   report('upload', 'Export complete.');
-  return { row, blob, fileName: downloadName };
+  return { row, blob, fileName: downloadName, sectionStats: converted.stats };
 }

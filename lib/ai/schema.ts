@@ -121,5 +121,105 @@ export const turnPlanSchema = z.object({
 
 export type TurnPlan = z.infer<typeof turnPlanSchema>;
 
+/**
+ * AI-driven Shopify section conversion (AGENTS.md §7/§10). During export, each
+ * designed page region is turned into a real, editable Shopify section: the model
+ * returns the section markup plus a STRUCTURED list of settings/blocks, and we
+ * assemble the `{% schema %}` JSON deterministically so it is always valid and
+ * exposes Theme-Editor controls (AGENTS.md §10: editable text → settings,
+ * repeated cards → blocks).
+ */
+
+/** A Shopify schema setting the model may emit (safe subset we can render). */
+export const sectionSettingSchema = z.object({
+  type: z.enum([
+    'text',
+    'textarea',
+    'richtext',
+    'html',
+    'image_picker',
+    'url',
+    'checkbox',
+    'range',
+    'color',
+    'select',
+    'number',
+  ]),
+  id: z
+    .string()
+    .min(1)
+    .max(40)
+    .regex(/^[a-z][a-z0-9_]*$/, 'Setting id must be a lowercase snake_case key.'),
+  label: z.string().min(1).max(60),
+  default: z.union([z.string().max(2000), z.number(), z.boolean()]).optional(),
+  info: z.string().max(160).optional(),
+  placeholder: z.string().max(120).optional(),
+  options: z
+    .array(z.object({ value: z.string().min(1).max(60), label: z.string().min(1).max(60) }))
+    .max(12)
+    .optional(),
+  min: z.number().optional(),
+  max: z.number().optional(),
+  step: z.number().optional(),
+  unit: z.string().max(6).optional(),
+});
+
+export type SectionSetting = z.infer<typeof sectionSettingSchema>;
+
+/** A repeatable block type within a section (e.g. a card, a nav link). */
+export const sectionBlockSchema = z.object({
+  type: z
+    .string()
+    .min(1)
+    .max(30)
+    .regex(/^[a-z][a-z0-9_]*$/, 'Block type must be a lowercase snake_case key.'),
+  name: z.string().min(1).max(40),
+  settings: z.array(sectionSettingSchema).max(15).default([]),
+});
+
+export type SectionBlock = z.infer<typeof sectionBlockSchema>;
+
+/** The model's output for converting ONE page region into a Shopify section. */
+export const shopifySectionSpecSchema = z.object({
+  /** Human-facing section name shown in the Theme Editor. */
+  name: z.string().min(1).max(24),
+  /**
+   * The section markup: Liquid + Tailwind. May reference `section.settings.*` and
+   * iterate `section.blocks`. Must NOT include its own `{% schema %}` — we build
+   * it from `settings`/`blocks`.
+   */
+  liquid: z.string().min(1).max(40_000),
+  settings: z.array(sectionSettingSchema).max(20).default([]),
+  blocks: z.array(sectionBlockSchema).max(6).default([]),
+  /** Cap on total blocks a merchant can add (defaults sensibly when omitted). */
+  maxBlocks: z.number().int().min(1).max(50).optional(),
+});
+
+export type ShopifySectionSpec = z.infer<typeof shopifySectionSpecSchema>;
+
+/** One region to convert, sent to the `/api/shopify/sections` route. */
+export const shopifySectionInputSchema = z.object({
+  /** Unique id across the export so results map back to the right region. */
+  ref: z.string().min(1).max(120),
+  pageKey: z.string().min(1).max(40),
+  pageType: pageTypeSchema,
+  pageLabel: z.string().min(1).max(60),
+  /** Where the region sits so the prompt can tailor the section. */
+  role: z.enum(['header', 'footer', 'content']),
+  kind: z.string().max(60).default('content'),
+  html: z.string().min(1).max(40_000),
+});
+
+export type ShopifySectionRequestItem = z.infer<typeof shopifySectionInputSchema>;
+
+/** Body of a POST to `/api/shopify/sections`. */
+export const shopifySectionsRequestSchema = z.object({
+  brandName: z.string().min(1).max(80),
+  styleGuide: z.string().max(6000).nullish(),
+  sections: z.array(shopifySectionInputSchema).min(1).max(40),
+});
+
+export type ShopifySectionsRequest = z.infer<typeof shopifySectionsRequestSchema>;
+
 // Re-export the shared runtime types for convenience.
 export type { BuilderPage, PageType };
