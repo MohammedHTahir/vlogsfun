@@ -6,20 +6,24 @@ import type {
   StreamPageInput,
   EditPageInput,
   GenerateThemeInput,
+  ShopifySectionInput,
 } from '../types';
 import {
   turnPlanSchema,
   pagePatchSchema,
   themeSpecSchema,
+  shopifySectionSpecSchema,
   type TurnPlan,
   type PagePatch,
   type ThemeSpec,
+  type ShopifySectionSpec,
 } from '../schema';
 import {
   planTurnSystemPrompt,
   streamPageSystemPrompt,
   editPageSystemPrompt,
   themeSystemPrompt,
+  shopifySectionSystemPrompt,
 } from '../prompts';
 
 /**
@@ -147,6 +151,39 @@ export function createGeminiProvider(model: string): AIProvider {
         return { operations: [] as PagePatch['operations'] };
       }
       return result.data;
+    },
+
+    async generateShopifySection(input: ShopifySectionInput): Promise<ShopifySectionSpec> {
+      const response = await ai.models.generateContent({
+        model,
+        contents: [{ role: 'user', parts: [{ text: input.html }] }],
+        config: {
+          systemInstruction: shopifySectionSystemPrompt({
+            brandName: input.brandName,
+            pageType: input.pageType,
+            pageLabel: input.pageLabel,
+            role: input.role,
+            styleGuide: input.styleGuide,
+          }),
+          temperature: 0.4,
+          responseMimeType: 'application/json',
+          maxOutputTokens: 32768,
+          abortSignal: input.abortSignal,
+        },
+      });
+
+      const text = response.text ?? '';
+      let raw: unknown;
+      try {
+        raw = JSON.parse(text);
+      } catch {
+        throw new Error('The model returned an invalid Shopify section.');
+      }
+      const parsed = shopifySectionSpecSchema.safeParse(raw);
+      if (!parsed.success) {
+        throw new Error('The model returned an invalid Shopify section.');
+      }
+      return parsed.data;
     },
   };
 }

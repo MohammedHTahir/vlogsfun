@@ -12,6 +12,10 @@ const REQUIRED_FILES = [
   'config/settings_schema.json',
   'config/settings_data.json',
   'templates/index.json',
+  'templates/product.json',
+  'templates/collection.json',
+  'templates/cart.json',
+  'snippets/meta-tags.liquid',
 ];
 
 const REQUIRED_DIR_PREFIXES = [

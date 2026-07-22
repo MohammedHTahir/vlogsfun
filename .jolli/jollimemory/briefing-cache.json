@@ -1,6 +1,6 @@
 {
-	"branch": "3.Auth-&-DB-Setup",
-	"lastCommitHash": "9620237fa1f434273ee15276b01e4b8d78c88c33",
-	"briefingText": "[Jolli Memory — 3.Auth-&-DB-Setup]\n1 commits (2026-07-20 ~ 2026-07-20) | 25 files, +1614 -29\nLast: InsForge backend CLI setup and project linking (2026-07-20)\nDecisions: - **Never expose the admin database key to the browser**: while wiring up the client, testing revealed that the only locally available API credential could read every user's data even when unauthenti…",
-	"generatedAt": "2026-07-20T13:36:15.777Z"
+	"branch": "10.Export-to-Shopify-template",
+	"lastCommitHash": "26a8c82f43331e2edcb428503674fb386d32e769",
+	"briefingText": "[Jolli Memory — 10.Export-to-Shopify-template]\n1 commits (2026-07-21 ~ 2026-07-21) | 22 files, +1804 -32\nLast: Refactor code structure for improved readability and maintainability (2026-07-21)\nTip: run the jolli-recall skill (e.g. /jolli-recall in Claude Code) for full context",
+	"generatedAt": "2026-07-22T02:45:26.411Z"
 }

@@ -8,11 +8,15 @@ import {
   Code2,
   Download,
   Eye,
+  FileImage,
+  Loader2,
   Save,
   Store,
 } from 'lucide-react';
 import { useBuilder } from './BuilderContext';
 import ExportDialog from './ExportDialog';
+import { exportPagesAsCodeZip } from '@/lib/export/code';
+import { exportPagesAsPng } from '@/lib/export/png';
 import type { ExportPage } from '@/lib/shopify/types';
 
 interface EditorTopBarProps {
@@ -28,9 +32,13 @@ export default function EditorTopBar({
   projectId,
   projectName,
 }: EditorTopBarProps) {
-  const { pages, themeCss } = useBuilder();
+  const { pages, themeCss, styleGuide } = useBuilder();
   const [menuOpen, setMenuOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  // Which direct export (code/png) is currently running, plus any last error.
+  const [busy, setBusy] = useState<null | 'code' | 'png'>(null);
+  const [pngStatus, setPngStatus] = useState('');
+  const [exportError, setExportError] = useState('');
   const exportRef = useRef<HTMLDivElement>(null);
 
   // Only fully generated pages (with HTML) are exportable.
@@ -46,13 +54,48 @@ export default function EditorTopBar({
   const EXPORT_OPTIONS = [
     { id: 'shopify', label: 'Export to Shopify', icon: Store, action: () => openExport() },
     { id: 'zip', label: 'Download ZIP', icon: Download, action: () => openExport() },
-    { id: 'json', label: 'Export Theme JSON', icon: Code2, action: () => {} },
+    { id: 'code', label: 'Export Code', icon: Code2, action: () => void runCodeExport() },
+    { id: 'png', label: 'Export to PNG image', icon: FileImage, action: () => void runPngExport() },
     { id: 'preview', label: 'Preview Theme', icon: Eye, action: () => {} },
   ];
 
   function openExport() {
     setMenuOpen(false);
     setDialogOpen(true);
+  }
+
+  async function runCodeExport() {
+    if (busy) return;
+    setMenuOpen(false);
+    setExportError('');
+    setBusy('code');
+    try {
+      await exportPagesAsCodeZip(exportPages, themeCss, projectName);
+    } catch (err) {
+      setExportError(err instanceof Error ? err.message : 'Export failed. Please try again.');
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function runPngExport() {
+    if (busy) return;
+    setMenuOpen(false);
+    setExportError('');
+    setPngStatus('Rendering pages…');
+    setBusy('png');
+    try {
+      await exportPagesAsPng(exportPages, themeCss, projectName, ({ processed, total, label }) => {
+        setPngStatus(
+          processed < total ? `Rendering ${label || 'page'}… (${processed + 1}/${total})` : 'Packaging…'
+        );
+      });
+    } catch (err) {
+      setExportError(err instanceof Error ? err.message : 'PNG export failed. Please try again.');
+    } finally {
+      setBusy(null);
+      setPngStatus('');
+    }
   }
 
   useEffect(() => {
@@ -97,16 +140,25 @@ export default function EditorTopBar({
         <div className="relative" ref={exportRef}>
           <button
             onClick={() => setMenuOpen((open) => !open)}
-            disabled={dialogOpen}
+            disabled={dialogOpen || busy !== null}
             className="flex h-11 items-center gap-2 rounded-xl border border-[#e8e2de] bg-white px-4 text-sm font-medium text-[#111827] shadow-[0_8px_20px_rgba(31,41,55,0.04)] transition hover:bg-[#fff8f5] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            <Store size={17} strokeWidth={1.9} className="text-[#35b86b]" />
-            Export to Shopify
-            <ChevronDown
-              size={16}
-              strokeWidth={2}
-              className={`text-[#9aa2af] transition-transform ${menuOpen ? 'rotate-180' : ''}`}
-            />
+            {busy ? (
+              <>
+                <Loader2 size={16} strokeWidth={2} className="animate-spin text-[#ff6747]" />
+                {busy === 'png' ? pngStatus || 'Exporting…' : 'Exporting…'}
+              </>
+            ) : (
+              <>
+                <Store size={17} strokeWidth={1.9} className="text-[#35b86b]" />
+                Export to Shopify
+                <ChevronDown
+                  size={16}
+                  strokeWidth={2}
+                  className={`text-[#9aa2af] transition-transform ${menuOpen ? 'rotate-180' : ''}`}
+                />
+              </>
+            )}
           </button>
 
           {menuOpen && (
@@ -121,7 +173,8 @@ export default function EditorTopBar({
               )}
               {EXPORT_OPTIONS.map((option) => {
                 const Icon = option.icon;
-                const disabled = (option.id === 'shopify' || option.id === 'zip') && !hasExportablePages;
+                const needsPages = ['shopify', 'zip', 'code', 'png'].includes(option.id);
+                const disabled = (needsPages && !hasExportablePages) || busy !== null;
                 return (
                   <button
                     key={option.id}
@@ -134,6 +187,12 @@ export default function EditorTopBar({
                   </button>
                 );
               })}
+            </div>
+          )}
+
+          {exportError && !menuOpen && (
+            <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-72 rounded-xl border border-[#f6d5cf] bg-[#fdeceb] px-3.5 py-2.5 text-[12px] text-[#c0432f] shadow-[0_16px_32px_rgba(31,41,55,0.12)]">
+              {exportError}
             </div>
           )}
         </div>
@@ -151,6 +210,7 @@ export default function EditorTopBar({
         projectName={projectName}
         pages={exportPages}
         themeCss={themeCss}
+        styleGuide={styleGuide}
       />
     </header>
   );

@@ -1,5 +1,5 @@
-import type { BuilderPage } from './events';
-import type { TurnPlan, PagePatch, ThemeSpec } from './schema';
+import type { BuilderPage, PageType } from './events';
+import type { TurnPlan, PagePatch, ThemeSpec, ShopifySectionSpec } from './schema';
 
 /**
  * Provider-independent AI contract (AGENTS.md §7). The app never talks to a
@@ -52,6 +52,21 @@ export interface EditPageInput {
   abortSignal?: AbortSignal;
 }
 
+export interface ShopifySectionInput {
+  /** Store brand name, so the section copy/settings stay on-brand. */
+  brandName: string;
+  /** The project's shared style guide for design consistency. */
+  styleGuide?: string | null;
+  /** The page the region came from, so the prompt can tailor the section. */
+  pageType: PageType;
+  pageLabel: string;
+  /** Where the region sits in the page. */
+  role: 'header' | 'footer' | 'content';
+  /** The static HTML region to convert into a Shopify section. */
+  html: string;
+  abortSignal?: AbortSignal;
+}
+
 export interface AIProvider {
   /**
    * Decide what to do with the latest user message: reply conversationally and,
@@ -71,4 +86,11 @@ export interface AIProvider {
    * so a change updates only the affected pieces instead of regenerating it.
    */
   editPage(input: EditPageInput): Promise<PagePatch>;
+  /**
+   * Convert ONE designed page region into a real, editable Shopify section:
+   * section markup plus structured settings/blocks (the caller assembles the
+   * `{% schema %}`). Used by the Shopify export to turn generated pages into
+   * reusable, Theme-Editor-friendly sections (AGENTS.md §10).
+   */
+  generateShopifySection(input: ShopifySectionInput): Promise<ShopifySectionSpec>;
 }

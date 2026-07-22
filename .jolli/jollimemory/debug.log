@@ -2546,3 +2546,251 @@
 [2026-07-21T02:27:52.494Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
 [2026-07-21T02:27:52.644Z] INFO  [SidebarWebviewProvider] pushCommits: 0 item(s), mode=empty
 [2026-07-21T02:27:52.684Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=15, summaries=12, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-21T02:28:02.144Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-07-21T02:28:02.171Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-07-21T02:28:02.308Z] INFO  [PostCommitHook] [trace=cf13c9cf111aee3751b708d909490080] Detected operation: commit
+[2026-07-21T02:28:02.322Z] INFO  [PostCommitHook] [trace=cf13c9cf111aee3751b708d909490080] Enqueued: type=commit hash=26a8c82f
+[2026-07-21T02:28:02.322Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Launching background worker
+[2026-07-21T02:28:02.323Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Background worker spawned (PID: 98312)
+[2026-07-21T02:28:02.432Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] === Queue worker started === node=20.18.0 kind=vscode-plugin source=vscode pkgVer=0.99.8 cliVer=0.99.8 dist=/Users/rahulsanap/.vscode/extensions/jolli.jollimemory-vscode-0.99.8/dist
+[2026-07-21T02:28:02.445Z] INFO  [StorageFactory] [trace=cf13c9cf111aee3751b708d909490080] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-21T02:28:02.477Z] INFO  [StorageFactory] [trace=cf13c9cf111aee3751b708d909490080] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-21T02:28:02.481Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Processing queue entry: type=commit hash=26a8c82f
+[2026-07-21T02:28:02.503Z] INFO  [GitOps] [trace=cf13c9cf111aee3751b708d909490080] Commit 26a8c82f: Refactor code structure for improved readability and maintai
+[2026-07-21T02:28:02.503Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Commit: 26a8c82f - Refactor code structure for improved readability and maintainability (20ms)
+[2026-07-21T02:28:02.518Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Discovered 4 Codex session(s)
+[2026-07-21T02:28:02.518Z] INFO  [OpenCodeDiscoverer] [trace=cf13c9cf111aee3751b708d909490080] OpenCode support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-21T02:28:02.518Z] INFO  [CursorDetector] [trace=cf13c9cf111aee3751b708d909490080] Cursor support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-21T02:28:02.519Z] INFO  [CopilotDetector] [trace=cf13c9cf111aee3751b708d909490080] Copilot CLI support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-21T02:28:02.784Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Transcript source: session=f1365878-0b40-41f6-a80c-609abe7cf6a9, lines=0→320, entries=4
+[2026-07-21T02:28:02.814Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Transcript source: session=019f827b-079e-7cd1-8421-dffc8f959e47, lines=0→102, entries=4
+[2026-07-21T02:28:02.856Z] WARN  [GitOps] [trace=cf13c9cf111aee3751b708d909490080] Diff exceeds 150000-char budget (3037292 chars) — prepending --stat file list and truncating body
+[2026-07-21T02:28:02.871Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Git diff: 22 files changed, +1804 -32 (55ms)
+[2026-07-21T02:28:02.942Z] WARN  [GitOps] [trace=cf13c9cf111aee3751b708d909490080] Diff exceeds 60000-char budget (3037292 chars) — prepending --stat file list and truncating body
+[2026-07-21T02:28:02.943Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=rank-context source=jolli-proxy
+[2026-07-21T02:28:02.944Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=rank-context url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:28:06.682Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM response: action=rank-context latency=3736ms
+[2026-07-21T02:28:06.694Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Prompt blocks: plans=1 notes=0 references=0 (AI soft-excluded 0)
+[2026-07-21T02:28:06.694Z] INFO  [Summarizer] [trace=cf13c9cf111aee3751b708d909490080] Generating summary for commit 26a8c82f
+[2026-07-21T02:28:06.694Z] INFO  [Summarizer] [trace=cf13c9cf111aee3751b708d909490080] Context: transcript=8, files=22, lines=1804+32
+[2026-07-21T02:28:06.694Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=summarize source=jolli-proxy
+[2026-07-21T02:28:06.695Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:28:08.191Z] INFO  [PrePushHook] [trace=7545bfb2a27b16ba34b27e2bf1996dce] pre-push hook: remote=origin budget=3000ms
+[2026-07-21T02:28:08.205Z] INFO  [PushPendingStore] [trace=7545bfb2a27b16ba34b27e2bf1996dce] Enqueued 1 new push-pending entries (branch=10.Export-to-Shopify-template)
+[2026-07-21T02:28:08.206Z] INFO  [PrePushHook] [trace=7545bfb2a27b16ba34b27e2bf1996dce] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-07-21T02:28:08.206Z] INFO  [PrePushHook] [trace=7545bfb2a27b16ba34b27e2bf1996dce] pre-push: starting inline sync — 2979ms of budget remaining
+[2026-07-21T02:28:08.207Z] INFO  [PushExecutor] [trace=7545bfb2a27b16ba34b27e2bf1996dce] processPrePushInline: 1 commit(s) in this push, 2 pending entr(ies) on disk
+[2026-07-21T02:28:08.211Z] INFO  [PushExecutor] [trace=7545bfb2a27b16ba34b27e2bf1996dce] processPrePushInline: claimed 1/1 candidate(s)
+[2026-07-21T02:28:08.213Z] INFO  [StorageFactory] [trace=7545bfb2a27b16ba34b27e2bf1996dce] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-21T02:28:08.278Z] INFO  [StorageFactory] [trace=7545bfb2a27b16ba34b27e2bf1996dce] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-21T02:28:08.308Z] INFO  [PushExecutor] [trace=7545bfb2a27b16ba34b27e2bf1996dce] processPrePushInline: triage — withMemory=0 generating=1 mergedChildren=0
+[2026-07-21T02:28:08.308Z] INFO  [PrePushHook] [trace=7545bfb2a27b16ba34b27e2bf1996dce] pre-push: inline sync done — pushed=0 failed=0 noMemory=1 notAttempted=0 children=0 (no candidates with memory)
+[2026-07-21T02:29:07.117Z] ERROR [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM error: status=504 body=<html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-21T02:29:07.118Z] WARN  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] First API attempt failed: LLM proxy request failed with status 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+. Retrying in 2000ms...
+[2026-07-21T02:29:09.119Z] INFO  [Summarizer] [trace=cf13c9cf111aee3751b708d909490080] Generating summary for commit 26a8c82f
+[2026-07-21T02:29:09.119Z] INFO  [Summarizer] [trace=cf13c9cf111aee3751b708d909490080] Context: transcript=8, files=22, lines=1804+32
+[2026-07-21T02:29:09.119Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=summarize source=jolli-proxy
+[2026-07-21T02:29:09.123Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:30:09.342Z] ERROR [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM error: status=504 body=<html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-21T02:30:09.342Z] ERROR [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] API call failed after retry: LLM proxy request failed with status 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-21T02:30:09.342Z] WARN  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Saving summary with empty topics + summaryError marker for commit 26a8c82f
+[2026-07-21T02:30:09.343Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] API summary generated (122.6s)
+[2026-07-21T02:30:09.344Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Plan registry scan: found 1 uncommitted slug(s) on 10.Export-to-Shopify-template: [shopify-export-setup]
+[2026-07-21T02:30:09.345Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Plan association: detected 1 slug(s) from transcripts: [shopify-export-setup]
+[2026-07-21T02:30:09.353Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Plan association: registry has 1 entries: [shopify-export-setup(commitHash=null)]
+[2026-07-21T02:30:09.358Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Plan archived: shopify-export-setup → shopify-export-setup-26a8c82f (hash=d72128522427)
+[2026-07-21T02:30:09.425Z] INFO  [GitOps] [trace=cf13c9cf111aee3751b708d909490080] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-21T02:30:09.427Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Branch mapping created: 10.Export-to-Shopify-template → 10.Export-to-Shopify-template
+[2026-07-21T02:30:09.428Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: 10.Export-to-Shopify-template/plan--shopify-export-setup-26a8c82f.md (plan)
+[2026-07-21T02:30:09.428Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Plan markdown generated: 10.Export-to-Shopify-template/plan--shopify-export-setup-26a8c82f.md
+[2026-07-21T02:30:09.428Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Wrote 1 files, deleted 0 (Archive 1 plan(s) for commit 26a8c82f)
+[2026-07-21T02:30:09.428Z] INFO  [SummaryStore] [trace=cf13c9cf111aee3751b708d909490080] Stored 1 plan file(s)
+[2026-07-21T02:30:09.429Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Associated 1 plan(s) with commit 26a8c82f
+[2026-07-21T02:30:09.429Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Note registry scan: found 0 uncommitted note(s) on 10.Export-to-Shopify-template: []
+[2026-07-21T02:30:09.429Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Note association: detected 0 note(s): []
+[2026-07-21T02:30:09.429Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Reference association: detected 0 ref(s) for branch 10.Export-to-Shopify-template
+[2026-07-21T02:30:09.430Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=plan-progress source=jolli-proxy
+[2026-07-21T02:30:09.430Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=plan-progress url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:30:10.086Z] INFO  [plans] detectPlans found 0 plans (1 in registry)
+[2026-07-21T02:30:10.089Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-21T02:30:10.089Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-21T02:30:24.580Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM response: action=plan-progress latency=15149ms
+[2026-07-21T02:30:24.582Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Plan progress: evaluated 1/1 plan(s)
+[2026-07-21T02:30:24.583Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Summary built for 26a8c82f: recap=no, topics=0, plans=1 ref(s): [shopify-export-setup-26a8c82f], notes=absent, references=absent
+[2026-07-21T02:30:24.678Z] INFO  [GitOps] [trace=cf13c9cf111aee3751b708d909490080] Updated branch 'jollimemory/summaries/v3': 5 written, 0 deleted (via fast-import)
+[2026-07-21T02:30:24.750Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: 10.Export-to-Shopify-template/refactor-code-structure-for-improved-readability-a-26a8c82f.md (commit)
+[2026-07-21T02:30:24.750Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Markdown generated: 10.Export-to-Shopify-template/refactor-code-structure-for-improved-readability-a-26a8c82f.md
+[2026-07-21T02:30:24.753Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Wrote 5 files, deleted 0 (Add summary for 26a8c82f: Refactor code structure for improved readability a)
+[2026-07-21T02:30:24.753Z] INFO  [SummaryStore] [trace=cf13c9cf111aee3751b708d909490080] Summary stored successfully for commit 26a8c82f
+[2026-07-21T02:30:24.753Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Summary stored successfully for commit 26a8c82f (170ms, 1 plans, 0 notes, 0 references)
+[2026-07-21T02:30:24.753Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] === Pipeline completed in 142.3s ===
+[2026-07-21T02:30:24.753Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] === Summary content (0 topics) ===
+[2026-07-21T02:30:24.761Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Processed 1 queue entries
+[2026-07-21T02:30:24.763Z] INFO  [SessionTracker] [trace=cf13c9cf111aee3751b708d909490080] Enqueued queue operation: type=ingest tag=ingest file=1784601024762-00000001-c378fe4b-ingest.json
+[2026-07-21T02:30:24.763Z] INFO  [PushExecutor] [trace=cf13c9cf111aee3751b708d909490080] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-07-21T02:30:24.764Z] INFO  [PushExecutor] [trace=cf13c9cf111aee3751b708d909490080] processPushPending(post-queue): 2 pending entr(ies) (filtered to 1 hash(es))
+[2026-07-21T02:30:24.765Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] === Queue worker finished ===
+[2026-07-21T02:30:24.766Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Processing queue entry: type=ingest triggeredBy=post-commit
+[2026-07-21T02:30:24.794Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=route source=jolli-proxy
+[2026-07-21T02:30:24.795Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=route url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:30:24.989Z] INFO  [plans] detectPlans found 0 plans (1 in registry)
+[2026-07-21T02:30:24.990Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-21T02:30:24.990Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-21T02:30:25.007Z] WARN  [SummaryStore] loadIndex: index.json unreadable from t (fresh repo or backend read failed)
+[2026-07-21T02:30:25.023Z] INFO  [SidebarWebviewProvider] pushMemories: 13 item(s)
+[2026-07-21T02:30:25.087Z] INFO  [CodexDiscovery] Codex discovery pass: 4 session(s) scanned, 1 advanced
+[2026-07-21T02:30:25.403Z] INFO  [SidebarWebviewProvider] pushCommits: 1 item(s), mode=single
+[2026-07-21T02:30:25.510Z] INFO  [PushExecutor] [trace=cf13c9cf111aee3751b708d909490080] processPushPending(post-queue): claimed 1/1 candidate(s)
+[2026-07-21T02:30:25.529Z] INFO  [PushExecutor] [trace=cf13c9cf111aee3751b708d909490080] processPushPending(post-queue): triage — withMemory=1 noMemory=0 mergedChildren=0
+[2026-07-21T02:30:25.618Z] INFO  [PushExecutor] [trace=cf13c9cf111aee3751b708d909490080] processPushPending(post-queue): pushing 1 commit(s)
+[2026-07-21T02:30:26.288Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM response: action=route latency=1492ms
+[2026-07-21T02:30:26.289Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=reconcile source=jolli-proxy
+[2026-07-21T02:30:26.289Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=reconcile url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:30:26.351Z] INFO  [GitOps] [trace=cf13c9cf111aee3751b708d909490080] Updated branch 'jollimemory/summaries/v3': 3 written, 0 deleted (via fast-import)
+[2026-07-21T02:30:26.353Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: 10.Export-to-Shopify-template/refactor-code-structure-for-improved-readability-a-26a8c82f.md (commit)
+[2026-07-21T02:30:26.353Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Markdown generated: 10.Export-to-Shopify-template/refactor-code-structure-for-improved-readability-a-26a8c82f.md
+[2026-07-21T02:30:26.354Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Wrote 3 files, deleted 0 (Overwrite summary for 26a8c82f: Refactor code structure for improved readability a)
+[2026-07-21T02:30:26.354Z] INFO  [SummaryStore] [trace=cf13c9cf111aee3751b708d909490080] Summary stored successfully for commit 26a8c82f
+[2026-07-21T02:30:26.354Z] INFO  [PushExecutor] [trace=cf13c9cf111aee3751b708d909490080] processPushPending(post-queue): write-back — writtenBack=1 childSkipped=0 cleanupPending=0 writeBackFailed=0
+[2026-07-21T02:30:26.360Z] INFO  [PushExecutor] [trace=cf13c9cf111aee3751b708d909490080] processPushPending(post-queue): pushed=1 failed=0
+[2026-07-21T02:30:39.811Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM response: action=reconcile latency=13515ms
+[2026-07-21T02:30:39.813Z] WARN  [ReconciledPage] [trace=cf13c9cf111aee3751b708d909490080] reconcile echoed slug export-to-shopify-template, keeping authoritative shopify-export
+[2026-07-21T02:30:39.882Z] INFO  [GitOps] [trace=cf13c9cf111aee3751b708d909490080] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-21T02:30:39.883Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Wrote 1 files, deleted 0 (Update topic page shopify-export)
+[2026-07-21T02:30:39.963Z] INFO  [GitOps] [trace=cf13c9cf111aee3751b708d909490080] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-21T02:30:39.964Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Wrote 1 files, deleted 0 (Update topic KB index (8 topics))
+[2026-07-21T02:30:40.029Z] INFO  [GitOps] [trace=cf13c9cf111aee3751b708d909490080] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-21T02:30:40.030Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Wrote 1 files, deleted 0 (Update topic KB processed-source set)
+[2026-07-21T02:30:40.032Z] INFO  [QueueWorker] [trace=cf13c9cf111aee3751b708d909490080] Ingest drained: 1 batches, 2 sources (post-commit)
+[2026-07-21T02:30:40.138Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest unregistered 8 entries of type=wiki
+[2026-07-21T02:30:40.140Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: _wiki/topic--jolli-memory-integration.md (wiki)
+[2026-07-21T02:30:40.140Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: _wiki/topic--design-system-tailwind.md (wiki)
+[2026-07-21T02:30:40.141Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: _wiki/topic--nextjs-app-init.md (wiki)
+[2026-07-21T02:30:40.141Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: _wiki/topic--agents-md-setup.md (wiki)
+[2026-07-21T02:30:40.142Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: _wiki/topic--auth-db-setup.md (wiki)
+[2026-07-21T02:30:40.143Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: _wiki/topic--editor-project-management.md (wiki)
+[2026-07-21T02:30:40.143Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: _wiki/topic--imagekit-file-upload.md (wiki)
+[2026-07-21T02:30:40.144Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: _wiki/topic--shopify-export.md (wiki)
+[2026-07-21T02:30:40.144Z] INFO  [MetadataManager] [trace=cf13c9cf111aee3751b708d909490080] Manifest updated: _wiki/_index.md (wiki)
+[2026-07-21T02:30:40.144Z] INFO  [FolderStorage] [trace=cf13c9cf111aee3751b708d909490080] Topic-KB wiki regenerated: 8 topics under /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2/_wiki
+[2026-07-21T02:30:40.149Z] INFO  [GraphBuilder] [trace=cf13c9cf111aee3751b708d909490080] Building knowledge graph incrementally for /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2: 0 dirty, 2 new, 0 deleted, 6 clean
+[2026-07-21T02:30:40.149Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=graph-units source=jolli-proxy
+[2026-07-21T02:30:40.149Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=graph-units url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:30:40.150Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=graph-units source=jolli-proxy
+[2026-07-21T02:30:40.150Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=graph-units url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:30:42.934Z] INFO  [StorageFactory] [trace=9f4396e669d52b823e574c4d5d027508] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-21T02:30:42.964Z] INFO  [StorageFactory] [trace=9f4396e669d52b823e574c4d5d027508] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-21T02:30:43.419Z] INFO  [McpServer] [trace=9f4396e669d52b823e574c4d5d027508] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-21T02:30:49.199Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM response: action=graph-units latency=9049ms
+[2026-07-21T02:30:50.793Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM response: action=graph-units latency=10642ms
+[2026-07-21T02:30:50.795Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=graph-categories-delta source=jolli-proxy
+[2026-07-21T02:30:50.795Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=graph-categories-delta url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:30:53.395Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM response: action=graph-categories-delta latency=2599ms
+[2026-07-21T02:30:53.395Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] LLM call: action=graph-edges source=jolli-proxy
+[2026-07-21T02:30:53.396Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM call: action=graph-edges url=https://jolli.ai/api/push/llm/complete
+[2026-07-21T02:31:47.484Z] INFO  [LlmClient] [trace=cf13c9cf111aee3751b708d909490080] Proxy LLM response: action=graph-edges latency=54084ms
+[2026-07-21T02:31:47.499Z] INFO  [GraphBuilder] [trace=cf13c9cf111aee3751b708d909490080] Knowledge graph built (incremental): 4 categories, 8 topics, 54 units, 43 edges in 67353ms -> /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2/.jolli/graph/graph.json
+[2026-07-21T02:32:08.036Z] INFO  [StorageFactory] [trace=f6e9b11438c8f2e208b855ed09fbebd9] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-21T02:32:08.115Z] INFO  [StorageFactory] [trace=f6e9b11438c8f2e208b855ed09fbebd9] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-21T02:32:08.746Z] INFO  [McpServer] [trace=f6e9b11438c8f2e208b855ed09fbebd9] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-21T02:46:46.990Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-21T02:46:47.024Z] WARN  [SummaryStore] resolveStorage fallback to OrphanBranchStorage — caller did not thread storage or call setActiveStorage. Folder-mode users will miss this write. cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-21T02:46:47.062Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-21T02:46:47.108Z] INFO  [StorageFactory] [trace=1ff1a74e9a29b757cbb2747b967b7d39] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-21T02:46:47.154Z] INFO  [StorageFactory] [trace=1ff1a74e9a29b757cbb2747b967b7d39] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-21T02:46:47.850Z] INFO  [McpServer] [trace=1ff1a74e9a29b757cbb2747b967b7d39] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-21T20:40:20.163Z] INFO  [StopHook] Stop hook triggered (session=13ded99b-7194-44eb-bdc0-5a590a9de5a1)
+[2026-07-21T20:40:20.168Z] INFO  [StopHook] Hook input — session_id=13ded99b-7194-44eb-bdc0-5a590a9de5a1, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/13ded99b-7194-44eb-bdc0-5a590a9de5a1.jsonl
+[2026-07-21T20:40:20.171Z] INFO  [SessionTracker] Pruning stale session d8bc9920-356f-4655-a26e-64a75b17e56b (age: 55h)
+[2026-07-21T20:40:20.171Z] INFO  [SessionTracker] Pruning stale session 5a389a91-baac-495f-853f-e5a815cf73b3 (age: 51h)
+[2026-07-21T20:40:20.176Z] INFO  [StopHook] Session saved successfully
+[2026-07-21T20:40:20.308Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-21T20:40:20.311Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-21T20:40:20.316Z] INFO  [plans] detectPlans found 0 plans (1 in registry)
+[2026-07-21T20:40:20.316Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-21T20:40:20.672Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=14, summaries=13, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-21T20:44:13.912Z] INFO  [StopHook] Stop hook triggered (session=13ded99b-7194-44eb-bdc0-5a590a9de5a1)
+[2026-07-21T20:44:13.921Z] INFO  [StopHook] Hook input — session_id=13ded99b-7194-44eb-bdc0-5a590a9de5a1, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/13ded99b-7194-44eb-bdc0-5a590a9de5a1.jsonl
+[2026-07-21T20:44:13.926Z] INFO  [StopHook] Session saved successfully
+[2026-07-21T20:44:14.052Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-21T20:44:14.054Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-21T20:44:14.055Z] INFO  [plans] detectPlans found 0 plans (1 in registry)
+[2026-07-21T20:44:14.055Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-21T20:44:14.272Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=14, summaries=13, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-21T21:07:22.235Z] INFO  [StopHook] Stop hook triggered (session=13ded99b-7194-44eb-bdc0-5a590a9de5a1)
+[2026-07-21T21:07:22.235Z] INFO  [StopHook] Hook input — session_id=13ded99b-7194-44eb-bdc0-5a590a9de5a1, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/13ded99b-7194-44eb-bdc0-5a590a9de5a1.jsonl
+[2026-07-21T21:07:22.237Z] INFO  [StopHook] Session saved successfully
+[2026-07-21T21:07:22.350Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-21T21:07:22.351Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-21T21:07:22.351Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-21T21:07:22.355Z] INFO  [plans] detectPlans found 0 plans (1 in registry)
+[2026-07-21T21:07:22.508Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=14, summaries=13, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-21T21:20:28.783Z] INFO  [StopHook] Stop hook triggered (session=13ded99b-7194-44eb-bdc0-5a590a9de5a1)
+[2026-07-21T21:20:28.784Z] INFO  [StopHook] Hook input — session_id=13ded99b-7194-44eb-bdc0-5a590a9de5a1, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/13ded99b-7194-44eb-bdc0-5a590a9de5a1.jsonl
+[2026-07-21T21:20:28.786Z] INFO  [StopHook] Session saved successfully
+[2026-07-21T21:20:28.894Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-21T21:20:28.896Z] INFO  [plans] detectPlans found 0 plans (1 in registry)
+[2026-07-21T21:20:28.896Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-21T21:20:28.896Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-21T21:20:29.107Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=14, summaries=13, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-22T02:35:14.653Z] INFO  [StopHook] Stop hook triggered (session=13ded99b-7194-44eb-bdc0-5a590a9de5a1)
+[2026-07-22T02:35:14.653Z] INFO  [StopHook] Hook input — session_id=13ded99b-7194-44eb-bdc0-5a590a9de5a1, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/13ded99b-7194-44eb-bdc0-5a590a9de5a1.jsonl
+[2026-07-22T02:35:14.655Z] INFO  [SessionTracker] Pruning stale session 66ce5928-6352-42d3-b1dd-66a42e9ec34c (age: 49h)
+[2026-07-22T02:35:14.655Z] INFO  [SessionTracker] Pruning stale session e2801083-5140-49f0-8898-45c8ea44d52b (age: 49h)
+[2026-07-22T02:35:14.655Z] INFO  [SessionTracker] Pruning stale session bc6faed6-7611-456b-a655-81e58434d04f (age: 48h)
+[2026-07-22T02:35:14.657Z] INFO  [StopHook] Session saved successfully
+[2026-07-22T02:35:14.767Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-22T02:35:14.781Z] INFO  [plans] detectPlans found 0 plans (1 in registry)
+[2026-07-22T02:35:14.781Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T02:35:14.781Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T02:35:15.042Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=11, summaries=13, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-22T02:45:26.323Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-22T02:45:26.350Z] WARN  [SummaryStore] resolveStorage fallback to OrphanBranchStorage — caller did not thread storage or call setActiveStorage. Folder-mode users will miss this write. cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T02:45:26.411Z] INFO  [SessionStartHook] Briefing generated (277 chars)
+[2026-07-22T02:45:26.680Z] INFO  [UpdateCheck] [trace=9faf7d8277f5ed30ecf903ff0a2dd6fd] Spawned detached update-check refresh (PID: 28060)
+[2026-07-22T02:45:26.682Z] INFO  [StorageFactory] [trace=9faf7d8277f5ed30ecf903ff0a2dd6fd] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T02:45:26.718Z] INFO  [StorageFactory] [trace=9faf7d8277f5ed30ecf903ff0a2dd6fd] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-22T02:45:27.422Z] INFO  [McpServer] [trace=9faf7d8277f5ed30ecf903ff0a2dd6fd] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-22T02:55:30.435Z] INFO  [StopHook] Stop hook triggered (session=a97a6dca-3a43-4c44-badf-bceab2c0f0d8)
+[2026-07-22T02:55:30.436Z] INFO  [StopHook] Hook input — session_id=a97a6dca-3a43-4c44-badf-bceab2c0f0d8, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/a97a6dca-3a43-4c44-badf-bceab2c0f0d8.jsonl
+[2026-07-22T02:55:30.438Z] INFO  [StopHook] Session saved successfully
+[2026-07-22T02:55:30.585Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-22T02:55:30.586Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T02:55:30.589Z] INFO  [plans] detectPlans found 0 plans (1 in registry)
+[2026-07-22T02:55:30.589Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T02:55:30.755Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=12, summaries=13, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-22T03:04:58.529Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-22T03:04:58.632Z] INFO  [SessionStartHook] Briefing generated (277 chars)
+[2026-07-22T03:04:58.706Z] INFO  [StorageFactory] [trace=54d998c2fa0d1f45437d0776fee18f57] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T03:04:58.749Z] INFO  [StorageFactory] [trace=54d998c2fa0d1f45437d0776fee18f57] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-22T03:04:59.598Z] INFO  [McpServer] [trace=54d998c2fa0d1f45437d0776fee18f57] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-22T03:05:41.379Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-22T03:05:41.380Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T03:05:41.380Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T03:05:41.380Z] INFO  [plans] detectPlans found 0 plans (1 in registry)
+[2026-07-22T03:05:41.516Z] INFO  [SidebarWebviewProvider] pushCommits: 0 item(s), mode=empty
+[2026-07-22T03:05:41.590Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=12, summaries=13, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true

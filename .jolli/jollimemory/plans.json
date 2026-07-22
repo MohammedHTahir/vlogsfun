@@ -6,9 +6,10 @@
 			"title": "Shopify Export — backend setup",
 			"sourcePath": "/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/docs/shopify-export-setup.md",
 			"addedAt": "2026-07-21T02:07:24.291Z",
-			"updatedAt": "2026-07-21T02:07:24.291Z",
-			"commitHash": null,
-			"branch": "9.Imagekit-Setup"
+			"updatedAt": "2026-07-21T02:30:09.354Z",
+			"commitHash": "26a8c82f43331e2edcb428503674fb386d32e769",
+			"branch": "9.Imagekit-Setup",
+			"contentHashAtCommit": "d721285224277e3030a7452f71f4f4721ec66e0bfd52fb69d3a085336f0f1e2b"
 		}
 	}
 }
