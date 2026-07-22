@@ -2,7 +2,7 @@ import { toPng } from 'html-to-image';
 import { createZip } from '@/lib/shopify/zip';
 import type { ExportPage, ThemeFile } from '@/lib/shopify/types';
 import { buildStandaloneHtml } from './document';
-import { downloadBlob, loadTailwindCss, slugify, uniqueFileBases } from './shared';
+import { downloadBlob, loadTailwindCss, slugify, uniqueFileBases, waitForImages } from './shared';
 
 /**
  * "Export to PNG" — rasterize every generated page to a full-page PNG. Each page
@@ -22,25 +22,6 @@ export interface PngProgress {
   processed: number;
   total: number;
   label: string;
-}
-
-function waitForImages(doc: Document, timeoutMs = 12000): Promise<void> {
-  const imgs = Array.from(doc.images);
-  const pending = imgs
-    .filter((img) => !(img.complete && img.naturalWidth > 0))
-    .map(
-      (img) =>
-        new Promise<void>((resolve) => {
-          const done = () => resolve();
-          img.addEventListener('load', done, { once: true });
-          img.addEventListener('error', done, { once: true });
-        })
-    );
-  if (pending.length === 0) return Promise.resolve();
-  return Promise.race([
-    Promise.all(pending).then(() => undefined),
-    new Promise<void>((resolve) => setTimeout(resolve, timeoutMs)),
-  ]);
 }
 
 /** Render a single page to a PNG Blob via an offscreen iframe. */

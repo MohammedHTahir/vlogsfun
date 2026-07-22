@@ -55,6 +55,30 @@ export function uniqueFileBases(pages: ExportPage[]): Map<string, string> {
   return map;
 }
 
+/**
+ * Wait until every <img> in a rendered document has loaded (or errored), so a
+ * rasterizer captures the images instead of blank spots. Resolves early after
+ * `timeoutMs` so a single slow asset can't stall the capture. Browser-only.
+ */
+export function waitForImages(doc: Document, timeoutMs = 12000): Promise<void> {
+  const imgs = Array.from(doc.images);
+  const pending = imgs
+    .filter((img) => !(img.complete && img.naturalWidth > 0))
+    .map(
+      (img) =>
+        new Promise<void>((resolve) => {
+          const done = () => resolve();
+          img.addEventListener('load', done, { once: true });
+          img.addEventListener('error', done, { once: true });
+        })
+    );
+  if (pending.length === 0) return Promise.resolve();
+  return Promise.race([
+    Promise.all(pending).then(() => undefined),
+    new Promise<void>((resolve) => setTimeout(resolve, timeoutMs)),
+  ]);
+}
+
 /** Trigger a browser download for a Blob, cleaning up the object URL after. */
 export function downloadBlob(blob: Blob, fileName: string): void {
   const url = URL.createObjectURL(blob);
