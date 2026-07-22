@@ -3,13 +3,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Home, FolderOpen, Lightbulb } from 'lucide-react';
+import { Home, FolderOpen, Lightbulb, CreditCard } from 'lucide-react';
 import SidebarUser from './SidebarUser';
+import SidebarBilling from './billing/SidebarBilling';
 
 const navigationItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/projects', label: 'Projects', icon: FolderOpen },
   { href: '/inspiration', label: 'Inspiration', icon: Lightbulb },
+  { href: '/billing', label: 'Billing', icon: CreditCard },
 ];
 
 export default function Sidebar() {
@@ -53,7 +55,10 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <SidebarUser />
+      <div className="mt-auto">
+        <SidebarBilling />
+        <SidebarUser />
+      </div>
     </aside>
   );
 }

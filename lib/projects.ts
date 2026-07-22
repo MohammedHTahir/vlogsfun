@@ -38,12 +38,22 @@ function deriveProjectName(prompt: string): string {
   return title.length > 60 ? `${title.slice(0, 57).trimEnd()}…` : title;
 }
 
+/** Raised when a Free user tries to create a project past their plan limit. */
+export class ProjectLimitError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ProjectLimitError';
+  }
+}
+
 /**
  * Create a project from a user prompt.
  *
- * The id is generated on the client so the caller can navigate to the editor
- * immediately without waiting for a round-trip value. `user_id` is filled in by
- * the column default (`auth.uid()`) and re-validated by the insert RLS policy.
+ * Creation goes through `POST /api/projects` (not the client SDK) so the Free
+ * plan project limit is enforced server-side — the browser can't bypass it
+ * (product spec). We attach the user's access token; the route verifies it,
+ * checks the entitlement, and inserts with the owner pinned. A 402 response maps
+ * to `ProjectLimitError` so the UI can show the upgrade dialog.
  */
 export async function createProject(prompt: string): Promise<Project> {
   const trimmed = prompt.trim();
@@ -51,29 +61,31 @@ export async function createProject(prompt: string): Promise<Project> {
     throw new Error('A prompt is required to create a project.');
   }
 
-  const id = crypto.randomUUID();
+  const token = await insforge.getHttpClient().getValidAccessToken();
+  const res = await fetch('/api/projects', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify({ name: deriveProjectName(trimmed), prompt: trimmed }),
+  });
 
-  const { data, error } = await insforge.database
-    .from('projects')
-    .insert([
-      {
-        id,
-        name: deriveProjectName(trimmed),
-        prompt: trimmed,
-        status: 'draft',
-      },
-    ])
-    .select();
+  const payload = await res.json().catch(() => null);
 
-  if (error) {
-    throw new Error(error.message ?? 'Failed to create project.');
+  if (res.status === 402) {
+    throw new ProjectLimitError(
+      payload?.message ?? 'You have reached your project limit. Upgrade to create more.'
+    );
+  }
+  if (!res.ok) {
+    throw new Error(payload?.error ?? 'Failed to create project.');
   }
 
-  const project = Array.isArray(data) ? data[0] : data;
+  const project = payload?.project;
   if (!project) {
     throw new Error('Project was not returned after creation.');
   }
-
   return project as Project;
 }
 

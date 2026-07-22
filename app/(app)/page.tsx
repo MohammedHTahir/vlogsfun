@@ -16,7 +16,9 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { AuthButtons, useAuth } from "@/components";
-import { createProject } from "@/lib/projects";
+import { createProject, ProjectLimitError } from "@/lib/projects";
+import { useSubscription } from "@/components/billing/SubscriptionProvider";
+import UpgradeDialog from "@/components/billing/UpgradeDialog";
 
 const templateCards = [
   {
@@ -60,9 +62,11 @@ const templateCards = [
 export default function Home() {
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
+  const { entitlement, refresh: refreshEntitlement } = useSubscription();
   const [prompt, setPrompt] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
   const promptRef = useRef<HTMLTextAreaElement | null>(null);
 
   async function startProject(rawPrompt: string) {
@@ -74,13 +78,26 @@ export default function Home() {
       return;
     }
 
+    // Fast-path: if we already know the Free limit is reached, show the upgrade
+    // dialog without a round-trip. The server still enforces this authoritatively.
+    if (entitlement && !entitlement.canCreateProject) {
+      setUpgradeOpen(true);
+      return;
+    }
+
     setSubmitting(true);
     setError(null);
     try {
       const project = await createProject(trimmed);
       router.push(`/editor/${project.id}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      if (err instanceof ProjectLimitError) {
+        // Server rejected creation — surface the upgrade dialog and resync usage.
+        setUpgradeOpen(true);
+        void refreshEntitlement();
+      } else {
+        setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      }
       setSubmitting(false);
     }
   }
@@ -225,6 +242,13 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      <UpgradeDialog
+        open={upgradeOpen}
+        onClose={() => setUpgradeOpen(false)}
+        title="You’ve reached your project limit"
+        description="The Free plan includes 2 projects. Upgrade to create unlimited projects and export Shopify themes."
+      />
     </div>
   );
 }

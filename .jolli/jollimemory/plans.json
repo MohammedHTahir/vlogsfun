@@ -16,9 +16,19 @@
 			"title": "Projects page & thumbnails — backend setup",
 			"sourcePath": "/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/docs/projects-thumbnails-setup.md",
 			"addedAt": "2026-07-22T03:17:10.968Z",
-			"updatedAt": "2026-07-22T03:17:10.968Z",
+			"updatedAt": "2026-07-22T03:27:57.336Z",
+			"commitHash": "022cc3cc18ba21eaaeb1634f371bdd4fd2897a81",
+			"branch": "11.-Export-to-Code-and-Image",
+			"contentHashAtCommit": "87afcac6eefd97a82556abf0d4690b936ea2372805fe65470016e80e783a80f4"
+		},
+		"billing-setup": {
+			"slug": "billing-setup",
+			"title": "Billing & subscriptions setup (Stripe + InsForge)",
+			"sourcePath": "/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/docs/billing-setup.md",
+			"addedAt": "2026-07-22T12:57:03.584Z",
+			"updatedAt": "2026-07-22T12:57:03.584Z",
 			"commitHash": null,
-			"branch": "11.-Export-to-Code-and-Image"
+			"branch": "12.-AI-Shopify-template-builder"
 		}
 	}
 }

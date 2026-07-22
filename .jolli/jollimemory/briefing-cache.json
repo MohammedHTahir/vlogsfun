@@ -1,6 +1,6 @@
 {
-	"branch": "10.Export-to-Shopify-template",
-	"lastCommitHash": "26a8c82f43331e2edcb428503674fb386d32e769",
-	"briefingText": "[Jolli Memory — 10.Export-to-Shopify-template]\n1 commits (2026-07-21 ~ 2026-07-21) | 22 files, +1804 -32\nLast: Refactor code structure for improved readability and maintainability (2026-07-21)\nTip: run the jolli-recall skill (e.g. /jolli-recall in Claude Code) for full context",
-	"generatedAt": "2026-07-22T02:45:26.411Z"
+	"branch": "12.-AI-Shopify-template-builder",
+	"lastCommitHash": "022cc3cc18ba21eaaeb1634f371bdd4fd2897a81",
+	"briefingText": "[Jolli Memory — 12.-AI-Shopify-template-builder]\n1 commits (2026-07-22 ~ 2026-07-22) | 15 files, +735 -36\nLast: Fix silent thumbnail failures and backfill missing previews for older projects (2026-07-22)\nDecisions: - **Client-side, best-effort capture over a server-side screenshot service**: thumbnails are rasterized in the browser by reusing the existing \"Export to PNG\" offscreen-iframe technique rather than s…",
+	"generatedAt": "2026-07-22T12:35:16.267Z"
 }
