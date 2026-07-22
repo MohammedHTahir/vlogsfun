@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { AuthShell, GoogleButton, Input, Button, useAuth } from '@/components';
 import { insforge } from '@/lib/insforge';
 
-export default function SignInPage() {
+function SignInForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { refresh } = useAuth();
@@ -86,5 +86,25 @@ export default function SignInPage() {
         </Button>
       </form>
     </AuthShell>
+  );
+}
+
+// `useSearchParams` opts the page out of static prerendering unless it sits
+// behind a Suspense boundary, so keep the form in its own subtree.
+export default function SignInPage() {
+  return (
+    <Suspense
+      fallback={
+        <AuthShell
+          title="Welcome back"
+          subtitle="Sign in to keep building your Shopify themes."
+          footer={null}
+        >
+          <div className="h-64 animate-pulse rounded-base bg-neutral-100" />
+        </AuthShell>
+      }
+    >
+      <SignInForm />
+    </Suspense>
   );
 }

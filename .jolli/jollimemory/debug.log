@@ -3418,3 +3418,152 @@
 [2026-07-22T13:38:10.119Z] INFO  [SidebarWebviewProvider] pushCommits: 1 item(s), mode=single
 [2026-07-22T13:38:10.246Z] INFO  [CodexDiscovery] Codex discovery pass: 5 session(s) scanned, 1 advanced
 [2026-07-22T13:38:41.714Z] INFO  [CodexDiscovery] Codex discovery pass: 5 session(s) scanned, 0 advanced
+[2026-07-22T13:50:50.653Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-07-22T13:50:50.677Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-07-22T13:50:50.791Z] INFO  [PostCommitHook] [trace=c2f53ed61d3bc230f0643edd718cc553] Detected operation: commit
+[2026-07-22T13:50:50.803Z] INFO  [PostCommitHook] [trace=c2f53ed61d3bc230f0643edd718cc553] Enqueued: type=commit hash=56e841af
+[2026-07-22T13:50:50.803Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Launching background worker
+[2026-07-22T13:50:50.804Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Background worker spawned (PID: 46640)
+[2026-07-22T13:50:50.890Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] === Queue worker started === node=20.18.0 kind=vscode-plugin source=vscode pkgVer=0.99.8 cliVer=0.99.8 dist=/Users/rahulsanap/.vscode/extensions/jolli.jollimemory-vscode-0.99.8/dist
+[2026-07-22T13:50:50.895Z] INFO  [StorageFactory] [trace=c2f53ed61d3bc230f0643edd718cc553] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T13:50:50.921Z] INFO  [StorageFactory] [trace=c2f53ed61d3bc230f0643edd718cc553] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-22T13:50:50.927Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Processing queue entry: type=commit hash=56e841af
+[2026-07-22T13:50:50.954Z] INFO  [GitOps] [trace=c2f53ed61d3bc230f0643edd718cc553] Commit 56e841af: feat: update billing and project pages with auth gate and im
+[2026-07-22T13:50:50.954Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Commit: 56e841af - feat: update billing and project pages with auth gate and improve routing (21ms)
+[2026-07-22T13:50:50.976Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Discovered 5 Codex session(s)
+[2026-07-22T13:50:50.976Z] INFO  [OpenCodeDiscoverer] [trace=c2f53ed61d3bc230f0643edd718cc553] OpenCode support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-22T13:50:50.976Z] INFO  [CursorDetector] [trace=c2f53ed61d3bc230f0643edd718cc553] Cursor support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-22T13:50:50.976Z] INFO  [CopilotDetector] [trace=c2f53ed61d3bc230f0643edd718cc553] Copilot CLI support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-22T13:50:51.071Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Discovered 1 Copilot Chat session(s)
+[2026-07-22T13:50:51.179Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Transcript source: session=019f89fa-d969-7c20-bc4e-90648feef886, lines=0→127, entries=4
+[2026-07-22T13:50:51.183Z] INFO  [SessionTracker] [trace=c2f53ed61d3bc230f0643edd718cc553] Config saved to /Users/rahulsanap/.jolli/jollimemory
+[2026-07-22T13:50:51.207Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Git diff: 13 files changed, +307 -44 (23ms)
+[2026-07-22T13:50:51.243Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Prompt blocks: plans=0 notes=0 references=0 (AI soft-excluded 0)
+[2026-07-22T13:50:51.243Z] INFO  [Summarizer] [trace=c2f53ed61d3bc230f0643edd718cc553] Generating summary for commit 56e841af
+[2026-07-22T13:50:51.243Z] INFO  [Summarizer] [trace=c2f53ed61d3bc230f0643edd718cc553] Context: transcript=4, files=13, lines=307+44
+[2026-07-22T13:50:51.243Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] LLM call: action=summarize source=jolli-proxy
+[2026-07-22T13:50:51.244Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T13:50:54.513Z] INFO  [PrePushHook] [trace=79d3681061a25357ee21ab4a3cdd67f7] pre-push hook: remote=origin budget=3000ms
+[2026-07-22T13:50:54.524Z] INFO  [PushPendingStore] [trace=79d3681061a25357ee21ab4a3cdd67f7] Enqueued 1 new push-pending entries (branch=13.-Subscription-Billing-Payment-Integrration)
+[2026-07-22T13:50:54.524Z] INFO  [PrePushHook] [trace=79d3681061a25357ee21ab4a3cdd67f7] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-07-22T13:50:54.524Z] INFO  [PrePushHook] [trace=79d3681061a25357ee21ab4a3cdd67f7] pre-push: starting inline sync — 2987ms of budget remaining
+[2026-07-22T13:50:54.525Z] INFO  [PushExecutor] [trace=79d3681061a25357ee21ab4a3cdd67f7] processPrePushInline: 1 commit(s) in this push, 2 pending entr(ies) on disk
+[2026-07-22T13:50:54.526Z] INFO  [PushExecutor] [trace=79d3681061a25357ee21ab4a3cdd67f7] processPrePushInline: claimed 1/1 candidate(s)
+[2026-07-22T13:50:54.526Z] INFO  [StorageFactory] [trace=79d3681061a25357ee21ab4a3cdd67f7] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T13:50:54.537Z] INFO  [StorageFactory] [trace=79d3681061a25357ee21ab4a3cdd67f7] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-22T13:50:54.564Z] INFO  [PushExecutor] [trace=79d3681061a25357ee21ab4a3cdd67f7] processPrePushInline: triage — withMemory=0 generating=1 mergedChildren=0
+[2026-07-22T13:50:54.564Z] INFO  [PrePushHook] [trace=79d3681061a25357ee21ab4a3cdd67f7] pre-push: inline sync done — pushed=0 failed=0 noMemory=1 notAttempted=0 children=0 (no candidates with memory)
+[2026-07-22T13:51:12.916Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM response: action=summarize latency=21668ms
+[2026-07-22T13:51:12.926Z] INFO  [Summarizer] [trace=c2f53ed61d3bc230f0643edd718cc553] Parsed 1 topic(s) from delimited text format
+[2026-07-22T13:51:12.926Z] INFO  [Summarizer] [trace=c2f53ed61d3bc230f0643edd718cc553] Summary parsed: 1 topic(s), response length: 2872 chars
+[2026-07-22T13:51:12.927Z] INFO  [Summarizer] [trace=c2f53ed61d3bc230f0643edd718cc553]   Topic 1: Require sign-in before opening Projects or Billing, but keep Home public
+[2026-07-22T13:51:12.927Z] INFO  [Summarizer] [trace=c2f53ed61d3bc230f0643edd718cc553] Recap (739 chars): The developer added a shared sign-in check that now protects the Projects and Billing pages: anyone who is not signed in
+[2026-07-22T13:51:12.927Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] API summary generated (21.7s)
+[2026-07-22T13:51:12.932Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Plan registry scan: found 0 uncommitted slug(s) on 13.-Subscription-Billing-Payment-Integrration: []
+[2026-07-22T13:51:12.932Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Plan association: detected 0 slug(s) from transcripts: []
+[2026-07-22T13:51:12.932Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Note registry scan: found 0 uncommitted note(s) on 13.-Subscription-Billing-Payment-Integrration: []
+[2026-07-22T13:51:12.933Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Note association: detected 0 note(s): []
+[2026-07-22T13:51:12.933Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Reference association: detected 0 ref(s) for branch 13.-Subscription-Billing-Payment-Integrration
+[2026-07-22T13:51:12.933Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Summary built for 56e841af: recap=yes, topics=1, plans=absent, notes=absent, references=absent
+[2026-07-22T13:51:13.119Z] INFO  [GitOps] [trace=c2f53ed61d3bc230f0643edd718cc553] Updated branch 'jollimemory/summaries/v3': 4 written, 0 deleted (via fast-import)
+[2026-07-22T13:51:13.155Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: 13.-Subscription-Billing-Payment-Integrration/feat-update-billing-and-project-pages-with-auth-ga-56e841af.md (commit)
+[2026-07-22T13:51:13.155Z] INFO  [FolderStorage] [trace=c2f53ed61d3bc230f0643edd718cc553] Markdown generated: 13.-Subscription-Billing-Payment-Integrration/feat-update-billing-and-project-pages-with-auth-ga-56e841af.md
+[2026-07-22T13:51:13.156Z] INFO  [FolderStorage] [trace=c2f53ed61d3bc230f0643edd718cc553] Wrote 4 files, deleted 0 (Add summary for 56e841af: feat: update billing and project pages with auth g)
+[2026-07-22T13:51:13.156Z] INFO  [SummaryStore] [trace=c2f53ed61d3bc230f0643edd718cc553] Summary stored successfully for commit 56e841af
+[2026-07-22T13:51:13.157Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Summary stored successfully for commit 56e841af (224ms, 0 plans, 0 notes, 0 references)
+[2026-07-22T13:51:13.157Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] === Pipeline completed in 22.2s ===
+[2026-07-22T13:51:13.157Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] === Summary content (1 topics) ===
+[2026-07-22T13:51:13.157Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Topic: Require sign-in before opening Projects or Billing, but keep Home public
+[2026-07-22T13:51:13.157Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553]   Trigger:   The user asked that anyone who is not signed in and tries to open the Projects or Billing page be sent to the sign-in page first, then quickly followed up to make sure the Home page stays reachable without signing in.
+[2026-07-22T13:51:13.157Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553]   Response:  - Added a shared authentication check (`components/AppAuthGate.tsx`) wrapped around the authenticated app layout (`app/(app)/layout.tsx`), so it runs once for every page inside that section instead of being duplicated per page.
+- The gate treats the root path as public and lets it render immediately, while any other path under the authenticated section blocks rendering and redirects unauthenticated visitors to `/sign-in` with the originally-requested path attached as a `next` parameter.
+- Removed the now-redundant client-side redirect logic from `app/(app)/billing/page.tsx` and `app/(app)/projects/page.tsx`, and updated `app/(auth)/sign-in/page.tsx` to read the `next` parameter and send the user back to the page they originally tried to open after a successful login.
+[2026-07-22T13:51:13.157Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553]   Decisions: - **Centralized gate over per-page checks**: instead of repeating the sign-in redirect logic on each protected page, the check was moved into the shared layout so Projects, Billing, and any future protected page behave consistently and content never briefly flashes before the redirect happens.
+- **Explicit public-route exception**: rather than removing the gate or scoping it more narrowly by route group, the Home page was explicitly excluded from the check so it stays open while everything else in the same layout remains protected.
+- **Return-to-original-page after login**: the sign-in flow was extended to honor a return path so users who get redirected are dropped back on the page they wanted, rather than always landing on the homepage after signing in.
+[2026-07-22T13:51:13.163Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Processed 1 queue entries
+[2026-07-22T13:51:13.164Z] INFO  [SessionTracker] [trace=c2f53ed61d3bc230f0643edd718cc553] Enqueued queue operation: type=ingest tag=ingest file=1784728273164-00000001-78a48c50-ingest.json
+[2026-07-22T13:51:13.164Z] INFO  [PushExecutor] [trace=c2f53ed61d3bc230f0643edd718cc553] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-07-22T13:51:13.165Z] INFO  [PushExecutor] [trace=c2f53ed61d3bc230f0643edd718cc553] processPushPending(post-queue): 2 pending entr(ies) (filtered to 1 hash(es))
+[2026-07-22T13:51:13.166Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] === Queue worker finished ===
+[2026-07-22T13:51:13.167Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Processing queue entry: type=ingest triggeredBy=post-commit
+[2026-07-22T13:51:13.182Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] LLM call: action=route source=jolli-proxy
+[2026-07-22T13:51:13.185Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM call: action=route url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T13:51:13.387Z] INFO  [plans] detectPlans found 0 plans (3 in registry)
+[2026-07-22T13:51:13.388Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T13:51:13.388Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T13:51:13.409Z] WARN  [SummaryStore] loadIndex: index.json unreadable from t (fresh repo or backend read failed)
+[2026-07-22T13:51:13.417Z] INFO  [SidebarWebviewProvider] pushMemories: 17 item(s)
+[2026-07-22T13:51:13.513Z] INFO  [CodexDiscovery] Codex discovery pass: 5 session(s) scanned, 0 advanced
+[2026-07-22T13:51:13.611Z] INFO  [PushExecutor] [trace=c2f53ed61d3bc230f0643edd718cc553] processPushPending(post-queue): claimed 1/1 candidate(s)
+[2026-07-22T13:51:13.629Z] INFO  [PushExecutor] [trace=c2f53ed61d3bc230f0643edd718cc553] processPushPending(post-queue): triage — withMemory=1 noMemory=0 mergedChildren=0
+[2026-07-22T13:51:13.733Z] INFO  [PushExecutor] [trace=c2f53ed61d3bc230f0643edd718cc553] processPushPending(post-queue): pushing 1 commit(s)
+[2026-07-22T13:51:13.770Z] INFO  [SidebarWebviewProvider] pushCommits: 2 item(s), mode=multi
+[2026-07-22T13:51:14.560Z] INFO  [GitOps] [trace=c2f53ed61d3bc230f0643edd718cc553] Updated branch 'jollimemory/summaries/v3': 3 written, 0 deleted (via fast-import)
+[2026-07-22T13:51:14.561Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: 13.-Subscription-Billing-Payment-Integrration/feat-update-billing-and-project-pages-with-auth-ga-56e841af.md (commit)
+[2026-07-22T13:51:14.561Z] INFO  [FolderStorage] [trace=c2f53ed61d3bc230f0643edd718cc553] Markdown generated: 13.-Subscription-Billing-Payment-Integrration/feat-update-billing-and-project-pages-with-auth-ga-56e841af.md
+[2026-07-22T13:51:14.562Z] INFO  [FolderStorage] [trace=c2f53ed61d3bc230f0643edd718cc553] Wrote 3 files, deleted 0 (Overwrite summary for 56e841af: feat: update billing and project pages with auth g)
+[2026-07-22T13:51:14.562Z] INFO  [SummaryStore] [trace=c2f53ed61d3bc230f0643edd718cc553] Summary stored successfully for commit 56e841af
+[2026-07-22T13:51:14.562Z] INFO  [PushExecutor] [trace=c2f53ed61d3bc230f0643edd718cc553] processPushPending(post-queue): write-back — writtenBack=1 childSkipped=0 cleanupPending=0 writeBackFailed=0
+[2026-07-22T13:51:14.567Z] INFO  [PushExecutor] [trace=c2f53ed61d3bc230f0643edd718cc553] processPushPending(post-queue): pushed=1 failed=0
+[2026-07-22T13:51:16.968Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM response: action=route latency=3782ms
+[2026-07-22T13:51:16.970Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] LLM call: action=reconcile source=jolli-proxy
+[2026-07-22T13:51:16.971Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM call: action=reconcile url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T13:51:37.532Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM response: action=reconcile latency=20561ms
+[2026-07-22T13:51:37.534Z] WARN  [ReconciledPage] [trace=c2f53ed61d3bc230f0643edd718cc553] reconcile echoed slug subscription-billing-payment-integration, keeping authoritative subscription-billing-payments
+[2026-07-22T13:51:37.603Z] INFO  [GitOps] [trace=c2f53ed61d3bc230f0643edd718cc553] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-22T13:51:37.604Z] INFO  [FolderStorage] [trace=c2f53ed61d3bc230f0643edd718cc553] Wrote 1 files, deleted 0 (Update topic page subscription-billing-payments)
+[2026-07-22T13:51:37.638Z] INFO  [GitOps] [trace=c2f53ed61d3bc230f0643edd718cc553] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-22T13:51:37.639Z] INFO  [FolderStorage] [trace=c2f53ed61d3bc230f0643edd718cc553] Wrote 1 files, deleted 0 (Update topic KB index (10 topics))
+[2026-07-22T13:51:37.673Z] INFO  [GitOps] [trace=c2f53ed61d3bc230f0643edd718cc553] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-22T13:51:37.674Z] INFO  [FolderStorage] [trace=c2f53ed61d3bc230f0643edd718cc553] Wrote 1 files, deleted 0 (Update topic KB processed-source set)
+[2026-07-22T13:51:37.676Z] INFO  [QueueWorker] [trace=c2f53ed61d3bc230f0643edd718cc553] Ingest drained: 1 batches, 1 sources (post-commit)
+[2026-07-22T13:51:37.731Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest unregistered 11 entries of type=wiki
+[2026-07-22T13:51:37.734Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--jolli-memory-integration.md (wiki)
+[2026-07-22T13:51:37.735Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--design-system-tailwind.md (wiki)
+[2026-07-22T13:51:37.736Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--nextjs-app-init.md (wiki)
+[2026-07-22T13:51:37.736Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--agents-md-setup.md (wiki)
+[2026-07-22T13:51:37.736Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--auth-db-setup.md (wiki)
+[2026-07-22T13:51:37.737Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--editor-project-management.md (wiki)
+[2026-07-22T13:51:37.737Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--imagekit-file-upload.md (wiki)
+[2026-07-22T13:51:37.738Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--shopify-export.md (wiki)
+[2026-07-22T13:51:37.738Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--projects-page-thumbnails.md (wiki)
+[2026-07-22T13:51:37.739Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/topic--subscription-billing-payments.md (wiki)
+[2026-07-22T13:51:37.739Z] INFO  [MetadataManager] [trace=c2f53ed61d3bc230f0643edd718cc553] Manifest updated: _wiki/_index.md (wiki)
+[2026-07-22T13:51:37.739Z] INFO  [FolderStorage] [trace=c2f53ed61d3bc230f0643edd718cc553] Topic-KB wiki regenerated: 10 topics under /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2/_wiki
+[2026-07-22T13:51:37.744Z] INFO  [GraphBuilder] [trace=c2f53ed61d3bc230f0643edd718cc553] Building knowledge graph incrementally for /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2: 0 dirty, 2 new, 0 deleted, 8 clean
+[2026-07-22T13:51:37.744Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] LLM call: action=graph-units source=jolli-proxy
+[2026-07-22T13:51:37.744Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM call: action=graph-units url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T13:51:37.745Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] LLM call: action=graph-units source=jolli-proxy
+[2026-07-22T13:51:37.745Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM call: action=graph-units url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T13:51:49.051Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM response: action=graph-units latency=11306ms
+[2026-07-22T13:51:49.950Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM response: action=graph-units latency=12206ms
+[2026-07-22T13:51:49.951Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] LLM call: action=graph-categories-delta source=jolli-proxy
+[2026-07-22T13:51:49.951Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM call: action=graph-categories-delta url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T13:51:55.127Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM response: action=graph-categories-delta latency=5175ms
+[2026-07-22T13:51:55.128Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] LLM call: action=graph-edges source=jolli-proxy
+[2026-07-22T13:51:55.128Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM call: action=graph-edges url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T13:52:55.516Z] INFO  [LlmClient] [trace=c2f53ed61d3bc230f0643edd718cc553] Proxy LLM response: action=graph-edges latency=60387ms
+[2026-07-22T13:52:55.530Z] INFO  [GraphBuilder] [trace=c2f53ed61d3bc230f0643edd718cc553] Knowledge graph built (incremental): 4 categories, 10 topics, 69 units, 43 edges in 77789ms -> /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2/.jolli/graph/graph.json
+[2026-07-22T13:55:21.309Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-22T13:55:21.332Z] WARN  [SummaryStore] resolveStorage fallback to OrphanBranchStorage — caller did not thread storage or call setActiveStorage. Folder-mode users will miss this write. cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T13:55:21.389Z] INFO  [SessionStartHook] Briefing generated (424 chars)
+[2026-07-22T13:55:21.402Z] INFO  [StorageFactory] [trace=e6f108967b07b44a56442d350640d97b] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T13:55:21.444Z] INFO  [StorageFactory] [trace=e6f108967b07b44a56442d350640d97b] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-22T13:55:22.075Z] INFO  [McpServer] [trace=e6f108967b07b44a56442d350640d97b] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-22T13:56:14.791Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-22T13:56:14.793Z] INFO  [plans] detectPlans found 0 plans (3 in registry)
+[2026-07-22T13:56:14.793Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T13:56:14.793Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T13:56:14.798Z] INFO  [SessionTracker] Pruning stale session 5effd00f-6a82-42a0-9dd5-3e01b6594211 (age: 48h)
+[2026-07-22T13:56:14.926Z] INFO  [SidebarWebviewProvider] pushCommits: 0 item(s), mode=empty
+[2026-07-22T13:56:14.959Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=15, summaries=17, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-22T13:56:43.168Z] INFO  [StopHook] Stop hook triggered (session=6f8de4af-2d5e-454e-8033-8f255605ba09)
+[2026-07-22T13:56:43.169Z] INFO  [StopHook] Hook input — session_id=6f8de4af-2d5e-454e-8033-8f255605ba09, transcript_path=/Users/rahulsanap/.claude/projects/-Users-rahulsanap-Documents-Projects-Nextjs-2026-ai-shopify-template-builder/6f8de4af-2d5e-454e-8033-8f255605ba09.jsonl
+[2026-07-22T13:56:43.170Z] INFO  [SessionTracker] Pruning stale session 5effd00f-6a82-42a0-9dd5-3e01b6594211 (age: 48h)
+[2026-07-22T13:56:43.172Z] INFO  [StopHook] Session saved successfully
+[2026-07-22T13:56:43.259Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-22T13:56:43.260Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T13:56:43.261Z] INFO  [plans] detectPlans found 0 plans (3 in registry)
+[2026-07-22T13:56:43.261Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T13:56:43.360Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=16, summaries=17, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
