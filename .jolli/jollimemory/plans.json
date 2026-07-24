@@ -30,6 +30,15 @@
 			"commitHash": "c8701962383353ba3911711c6766e8ea37d4336d",
 			"branch": "12.-AI-Shopify-template-builder",
 			"contentHashAtCommit": "260bdd053c01c7608ffffd1091785e6c270ac881183b701ba2e157697c5f2a2f"
+		},
+		"projectsetup": {
+			"slug": "projectsetup",
+			"title": "Project Setup",
+			"sourcePath": "/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder/projectsetup.md",
+			"addedAt": "2026-07-22T18:47:04.160Z",
+			"updatedAt": "2026-07-22T18:47:04.160Z",
+			"commitHash": null,
+			"branch": "main"
 		}
 	}
 }

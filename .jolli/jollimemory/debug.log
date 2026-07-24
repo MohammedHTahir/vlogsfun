@@ -3567,3 +3567,417 @@
 [2026-07-22T13:56:43.261Z] INFO  [plans] detectPlans found 0 plans (3 in registry)
 [2026-07-22T13:56:43.261Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
 [2026-07-22T13:56:43.360Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=16, summaries=17, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-22T18:41:43.264Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-22T18:41:43.264Z] INFO  [Installer] Checking Jolli Memory status
+[2026-07-22T18:41:43.274Z] INFO  [plans] detectPlans found 0 plans (3 in registry)
+[2026-07-22T18:41:43.274Z] INFO  [plans] detectPlans found 0 plans (3 in registry)
+[2026-07-22T18:41:43.274Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T18:41:43.274Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T18:41:43.274Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T18:41:43.274Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T18:41:43.325Z] INFO  [SessionTracker] Pruning stale session ba84ff81-7558-4714-9cf9-c314d4e34493 (age: 51h)
+[2026-07-22T18:41:43.325Z] INFO  [SessionTracker] Pruning stale session b67b474f-a30f-4209-8f5b-d67bdfcaa23f (age: 49h)
+[2026-07-22T18:41:43.330Z] INFO  [SessionTracker] Pruning stale session ba84ff81-7558-4714-9cf9-c314d4e34493 (age: 51h)
+[2026-07-22T18:41:43.330Z] INFO  [SessionTracker] Pruning stale session b67b474f-a30f-4209-8f5b-d67bdfcaa23f (age: 49h)
+[2026-07-22T18:41:43.416Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-07-22T18:41:43.433Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-07-22T18:41:43.474Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"1b05f9ed","author":"rrs301"}
+[2026-07-22T18:41:43.624Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=14, summaries=19, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-22T18:41:43.628Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=14, summaries=19, codex=true/true, gemini=true/true, enabledWorktrees=1, opencode=true/true, cursor=true/true, copilot=false/true, copilotChat=true
+[2026-07-22T18:41:43.581Z] INFO  [PostCommitHook] [trace=186145e16fdcb95d01bb48e8326835d6] Detected operation: commit
+[2026-07-22T18:41:43.628Z] INFO  [PostCommitHook] [trace=186145e16fdcb95d01bb48e8326835d6] Enqueued: type=commit hash=b6df6505
+[2026-07-22T18:41:43.628Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Launching background worker
+[2026-07-22T18:41:43.630Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Background worker spawned (PID: 32584)
+[2026-07-22T18:41:43.744Z] INFO  [plans] detectPlans found 0 plans (3 in registry)
+[2026-07-22T18:41:43.744Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T18:41:43.744Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T18:41:43.752Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] === Queue worker started === node=20.18.0 kind=vscode-plugin source=vscode pkgVer=0.99.8 cliVer=0.99.8 dist=/Users/rahulsanap/.vscode/extensions/jolli.jollimemory-vscode-0.99.8/dist
+[2026-07-22T18:41:44.375Z] INFO  [SummaryStore] Tree hash match: bc5bb0fd → dfae5311 (treeHash: 8cbed334)
+[2026-07-22T18:41:44.377Z] INFO  [SidebarWebviewProvider] pushCommits: 31 item(s), mode=merged
+[2026-07-22T18:41:44.396Z] INFO  [SummaryStore] Tree hash match: 28416895 → 56e841af (treeHash: 6a18774e)
+[2026-07-22T18:41:44.427Z] INFO  [PrePushHook] [trace=8772b96479a008a8d58544cb9e74a72e] pre-push hook: remote=origin budget=3000ms
+[2026-07-22T18:41:44.426Z] INFO  [SummaryStore] Tree hash match: 76f45c81 → c8701962 (treeHash: b63d613e)
+[2026-07-22T18:41:44.459Z] INFO  [SummaryStore] Tree hash match: 56819356 → 022cc3cc (treeHash: d87e6a63)
+[2026-07-22T18:41:44.463Z] INFO  [PushPendingStore] [trace=8772b96479a008a8d58544cb9e74a72e] Enqueued 1 new push-pending entries (branch=main)
+[2026-07-22T18:41:44.474Z] INFO  [PrePushHook] [trace=8772b96479a008a8d58544cb9e74a72e] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-07-22T18:41:44.474Z] INFO  [PrePushHook] [trace=8772b96479a008a8d58544cb9e74a72e] pre-push: starting inline sync — 2947ms of budget remaining
+[2026-07-22T18:41:44.476Z] INFO  [PushExecutor] [trace=8772b96479a008a8d58544cb9e74a72e] processPrePushInline: 1 commit(s) in this push, 2 pending entr(ies) on disk
+[2026-07-22T18:41:44.490Z] INFO  [PushExecutor] [trace=8772b96479a008a8d58544cb9e74a72e] processPrePushInline: claimed 1/1 candidate(s)
+[2026-07-22T18:41:44.489Z] INFO  [SummaryStore] Tree hash match: 0d9a4468 → 1e57d9b3 (treeHash: ddb6dd0c)
+[2026-07-22T18:41:44.491Z] INFO  [StorageFactory] [trace=8772b96479a008a8d58544cb9e74a72e] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T18:41:44.517Z] INFO  [StorageFactory] [trace=8772b96479a008a8d58544cb9e74a72e] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-22T18:41:44.521Z] INFO  [SummaryStore] Tree hash match: c0a2376b → 26a8c82f (treeHash: 600917d4)
+[2026-07-22T18:41:44.552Z] INFO  [SummaryStore] Tree hash match: 4f7c37cc → 44bc04c7 (treeHash: b5441a7a)
+[2026-07-22T18:41:44.563Z] INFO  [PushExecutor] [trace=8772b96479a008a8d58544cb9e74a72e] processPrePushInline: triage — withMemory=0 generating=1 mergedChildren=0
+[2026-07-22T18:41:44.564Z] INFO  [PrePushHook] [trace=8772b96479a008a8d58544cb9e74a72e] pre-push: inline sync done — pushed=0 failed=0 noMemory=1 notAttempted=0 children=0 (no candidates with memory)
+[2026-07-22T18:41:44.575Z] INFO  [SummaryStore] Tree hash match: 47c07370 → fb1ad39a (treeHash: 3a7f0193)
+[2026-07-22T18:41:44.602Z] INFO  [SummaryStore] Tree hash match: 5355b140 → f6ec7e18 (treeHash: 6ebc9ffe)
+[2026-07-22T18:41:44.623Z] INFO  [SummaryStore] Tree hash match: f9b96b37 → 7e2877a6 (treeHash: ddc104b3)
+[2026-07-22T18:41:44.643Z] INFO  [SummaryStore] Tree hash match: f55ab917 → 270d1b8e (treeHash: 89082008)
+[2026-07-22T18:41:44.690Z] INFO  [SummaryStore] Tree hash match: 06c7361d → cb7d5cd6 (treeHash: 3a0348d3)
+[2026-07-22T18:41:44.749Z] INFO  [SummaryStore] Tree hash match: b661917f → 304afa6f (treeHash: ae514f92)
+[2026-07-22T18:41:44.953Z] INFO  [GitOps] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-22T18:41:44.955Z] INFO  [FolderStorage] Wrote 1 files, deleted 0 (Add 13 tree hash alias(es))
+[2026-07-22T18:41:44.956Z] INFO  [commits] Tree hash aliases found — panel refresh recommended
+[2026-07-22T18:42:16.045Z] ERROR [LlmClient] [trace=134a0e2f28e3544e8bb4498da45874a0] Proxy LLM error: status=504 body=<html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:42:16.049Z] WARN  [QueueWorker] [trace=134a0e2f28e3544e8bb4498da45874a0] Knowledge graph build failed (non-fatal): LLM proxy request failed with status 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:42:19.211Z] ERROR [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM error: status=504 body=<html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:42:19.212Z] WARN  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] First API attempt failed: LLM proxy request failed with status 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+. Retrying in 2000ms...
+[2026-07-22T18:42:21.214Z] INFO  [Summarizer] [trace=46721e3b868f0253169deb5ebd056661] Generating summary for commit e3eaecf6
+[2026-07-22T18:42:21.214Z] INFO  [Summarizer] [trace=46721e3b868f0253169deb5ebd056661] Context: transcript=6, files=18, lines=1748+0
+[2026-07-22T18:42:21.214Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] LLM call: action=summarize source=jolli-proxy
+[2026-07-22T18:42:21.219Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:42:43.838Z] INFO  [Sync:PendingWorkers] [trace=186145e16fdcb95d01bb48e8326835d6] Recorded pending worker for cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T18:42:43.839Z] WARN  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Could not acquire vault-write.lock within 60000 ms; another writer is busy. Exiting — recorded pending-worker entry so the next lock release re-spawns us.
+[2026-07-22T18:43:21.444Z] ERROR [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM error: status=504 body=<html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:43:21.444Z] ERROR [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] API call failed after retry: LLM proxy request failed with status 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:43:21.444Z] WARN  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Saving summary with empty topics + summaryError marker for commit e3eaecf6
+[2026-07-22T18:43:21.448Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] API summary generated (123.0s)
+[2026-07-22T18:43:21.452Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Plan registry scan: found 0 uncommitted slug(s) on clean-main-push: []
+[2026-07-22T18:43:21.453Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Plan association: detected 0 slug(s) from transcripts: []
+[2026-07-22T18:43:21.454Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Note registry scan: found 0 uncommitted note(s) on clean-main-push: []
+[2026-07-22T18:43:21.454Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Note association: detected 0 note(s): []
+[2026-07-22T18:43:21.455Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Reference association: detected 0 ref(s) for branch clean-main-push
+[2026-07-22T18:43:21.455Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Summary built for e3eaecf6: recap=no, topics=0, plans=absent, notes=absent, references=absent
+[2026-07-22T18:43:21.548Z] INFO  [GitOps] [trace=46721e3b868f0253169deb5ebd056661] Updated branch 'jollimemory/summaries/v3': 4 written, 0 deleted (via fast-import)
+[2026-07-22T18:43:21.550Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Branch mapping created: clean-main-push → clean-main-push
+[2026-07-22T18:43:21.593Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: clean-main-push/add-imagekit-helper-skills-and-project-setup-docum-e3eaecf6.md (commit)
+[2026-07-22T18:43:21.593Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Markdown generated: clean-main-push/add-imagekit-helper-skills-and-project-setup-docum-e3eaecf6.md
+[2026-07-22T18:43:21.594Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Wrote 4 files, deleted 0 (Add summary for e3eaecf6: Add ImageKit helper skills and project setup docum)
+[2026-07-22T18:43:21.594Z] INFO  [SummaryStore] [trace=46721e3b868f0253169deb5ebd056661] Summary stored successfully for commit e3eaecf6
+[2026-07-22T18:43:21.594Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Summary stored successfully for commit e3eaecf6 (139ms, 0 plans, 0 notes, 0 references)
+[2026-07-22T18:43:21.594Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] === Pipeline completed in 123.3s ===
+[2026-07-22T18:43:21.594Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] === Summary content (0 topics) ===
+[2026-07-22T18:43:21.603Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Processing queue entry: type=commit hash=b6df6505
+[2026-07-22T18:43:21.610Z] INFO  [GitOps] [trace=186145e16fdcb95d01bb48e8326835d6] Commit b6df6505: Add ImageKit helper skills and project setup documentation
+[2026-07-22T18:43:21.610Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Commit: b6df6505 - Add ImageKit helper skills and project setup documentation (6ms)
+[2026-07-22T18:43:21.611Z] INFO  [SessionTracker] [trace=186145e16fdcb95d01bb48e8326835d6] Pruning stale session ba84ff81-7558-4714-9cf9-c314d4e34493 (age: 51h)
+[2026-07-22T18:43:21.611Z] INFO  [SessionTracker] [trace=186145e16fdcb95d01bb48e8326835d6] Pruning stale session b67b474f-a30f-4209-8f5b-d67bdfcaa23f (age: 49h)
+[2026-07-22T18:43:21.615Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Discovered 5 Codex session(s)
+[2026-07-22T18:43:21.615Z] INFO  [OpenCodeDiscoverer] [trace=186145e16fdcb95d01bb48e8326835d6] OpenCode support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-22T18:43:21.615Z] INFO  [CursorDetector] [trace=186145e16fdcb95d01bb48e8326835d6] Cursor support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-22T18:43:21.615Z] INFO  [CopilotDetector] [trace=186145e16fdcb95d01bb48e8326835d6] Copilot CLI support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-22T18:43:21.658Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Discovered 1 Copilot Chat session(s)
+[2026-07-22T18:43:21.704Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Transcript source: session=6f8de4af-2d5e-454e-8033-8f255605ba09, lines=0→46, entries=2
+[2026-07-22T18:43:21.739Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Transcript source: session=019f8b02-6e12-79c1-a213-6f47b8b5d1b3, lines=0→267, entries=4
+[2026-07-22T18:43:21.764Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Git diff: 18 files changed, +1748 -0 (23ms)
+[2026-07-22T18:43:21.781Z] WARN  [GitOps] [trace=186145e16fdcb95d01bb48e8326835d6] Diff exceeds 60000-char budget (86436 chars) — prepending --stat file list and truncating body
+[2026-07-22T18:43:21.783Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Prompt blocks: plans=0 notes=0 references=0 (AI soft-excluded 0)
+[2026-07-22T18:43:21.783Z] INFO  [Summarizer] [trace=186145e16fdcb95d01bb48e8326835d6] Generating summary for commit b6df6505
+[2026-07-22T18:43:21.783Z] INFO  [Summarizer] [trace=186145e16fdcb95d01bb48e8326835d6] Context: transcript=6, files=18, lines=1748+0
+[2026-07-22T18:43:21.783Z] INFO  [LlmClient] [trace=186145e16fdcb95d01bb48e8326835d6] LLM call: action=summarize source=jolli-proxy
+[2026-07-22T18:43:21.784Z] INFO  [LlmClient] [trace=186145e16fdcb95d01bb48e8326835d6] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:44:22.123Z] ERROR [LlmClient] [trace=186145e16fdcb95d01bb48e8326835d6] Proxy LLM error: status=504 body=<html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:44:22.129Z] WARN  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] First API attempt failed: LLM proxy request failed with status 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+. Retrying in 2000ms...
+[2026-07-22T18:44:24.131Z] INFO  [Summarizer] [trace=186145e16fdcb95d01bb48e8326835d6] Generating summary for commit b6df6505
+[2026-07-22T18:44:24.131Z] INFO  [Summarizer] [trace=186145e16fdcb95d01bb48e8326835d6] Context: transcript=6, files=18, lines=1748+0
+[2026-07-22T18:44:24.132Z] INFO  [LlmClient] [trace=186145e16fdcb95d01bb48e8326835d6] LLM call: action=summarize source=jolli-proxy
+[2026-07-22T18:44:24.137Z] INFO  [LlmClient] [trace=186145e16fdcb95d01bb48e8326835d6] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:45:24.380Z] ERROR [LlmClient] [trace=186145e16fdcb95d01bb48e8326835d6] Proxy LLM error: status=504 body=<html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:45:24.381Z] ERROR [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] API call failed after retry: LLM proxy request failed with status 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:45:24.381Z] WARN  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Saving summary with empty topics + summaryError marker for commit b6df6505
+[2026-07-22T18:45:24.383Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] API summary generated (122.6s)
+[2026-07-22T18:45:24.388Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Plan registry scan: found 0 uncommitted slug(s) on main: []
+[2026-07-22T18:45:24.388Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Plan association: detected 0 slug(s) from transcripts: []
+[2026-07-22T18:45:24.389Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Note registry scan: found 0 uncommitted note(s) on main: []
+[2026-07-22T18:45:24.389Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Note association: detected 0 note(s): []
+[2026-07-22T18:45:24.389Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Reference association: detected 0 ref(s) for branch main
+[2026-07-22T18:45:24.389Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Summary built for b6df6505: recap=no, topics=0, plans=absent, notes=absent, references=absent
+[2026-07-22T18:45:24.480Z] INFO  [GitOps] [trace=186145e16fdcb95d01bb48e8326835d6] Updated branch 'jollimemory/summaries/v3': 4 written, 0 deleted (via fast-import)
+[2026-07-22T18:45:24.493Z] INFO  [MetadataManager] [trace=186145e16fdcb95d01bb48e8326835d6] Manifest updated: main/add-imagekit-helper-skills-and-project-setup-docum-b6df6505.md (commit)
+[2026-07-22T18:45:24.493Z] INFO  [FolderStorage] [trace=186145e16fdcb95d01bb48e8326835d6] Markdown generated: main/add-imagekit-helper-skills-and-project-setup-docum-b6df6505.md
+[2026-07-22T18:45:24.494Z] INFO  [FolderStorage] [trace=186145e16fdcb95d01bb48e8326835d6] Wrote 4 files, deleted 0 (Add summary for b6df6505: Add ImageKit helper skills and project setup docum)
+[2026-07-22T18:45:24.494Z] INFO  [SummaryStore] [trace=186145e16fdcb95d01bb48e8326835d6] Summary stored successfully for commit b6df6505
+[2026-07-22T18:45:24.495Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] Summary stored successfully for commit b6df6505 (105ms, 0 plans, 0 notes, 0 references)
+[2026-07-22T18:45:24.495Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] === Pipeline completed in 122.9s ===
+[2026-07-22T18:45:24.495Z] INFO  [QueueWorker] [trace=186145e16fdcb95d01bb48e8326835d6] === Summary content (0 topics) ===
+[2026-07-22T18:45:24.500Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Processed 2 queue entries
+[2026-07-22T18:45:24.505Z] INFO  [SessionTracker] [trace=46721e3b868f0253169deb5ebd056661] Enqueued queue operation: type=ingest tag=ingest file=1784745924505-00000001-8dec8d69-ingest.json
+[2026-07-22T18:45:24.506Z] INFO  [PushExecutor] [trace=46721e3b868f0253169deb5ebd056661] Post-queue push trigger: scheduling drain for 2 newly generated summar(ies)
+[2026-07-22T18:45:24.507Z] INFO  [PushExecutor] [trace=46721e3b868f0253169deb5ebd056661] processPushPending(post-queue): 2 pending entr(ies) (filtered to 2 hash(es))
+[2026-07-22T18:45:24.508Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] === Queue worker finished ===
+[2026-07-22T18:45:24.510Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Processing queue entry: type=ingest triggeredBy=post-commit
+[2026-07-22T18:45:24.526Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] LLM call: action=route source=jolli-proxy
+[2026-07-22T18:45:24.527Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM call: action=route url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:45:25.127Z] INFO  [PushExecutor] [trace=46721e3b868f0253169deb5ebd056661] processPushPending(post-queue): claimed 1/1 candidate(s)
+[2026-07-22T18:45:25.139Z] INFO  [PushExecutor] [trace=46721e3b868f0253169deb5ebd056661] processPushPending(post-queue): triage — withMemory=1 noMemory=0 mergedChildren=0
+[2026-07-22T18:45:25.277Z] INFO  [PushExecutor] [trace=46721e3b868f0253169deb5ebd056661] processPushPending(post-queue): pushing 1 commit(s)
+[2026-07-22T18:45:26.069Z] INFO  [GitOps] [trace=46721e3b868f0253169deb5ebd056661] Updated branch 'jollimemory/summaries/v3': 3 written, 0 deleted (via fast-import)
+[2026-07-22T18:45:26.070Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: main/add-imagekit-helper-skills-and-project-setup-docum-b6df6505.md (commit)
+[2026-07-22T18:45:26.070Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Markdown generated: main/add-imagekit-helper-skills-and-project-setup-docum-b6df6505.md
+[2026-07-22T18:45:26.071Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Wrote 3 files, deleted 0 (Overwrite summary for b6df6505: Add ImageKit helper skills and project setup docum)
+[2026-07-22T18:45:26.071Z] INFO  [SummaryStore] [trace=46721e3b868f0253169deb5ebd056661] Summary stored successfully for commit b6df6505
+[2026-07-22T18:45:26.071Z] INFO  [PushExecutor] [trace=46721e3b868f0253169deb5ebd056661] processPushPending(post-queue): write-back — writtenBack=1 childSkipped=0 cleanupPending=0 writeBackFailed=0
+[2026-07-22T18:45:26.077Z] INFO  [PushExecutor] [trace=46721e3b868f0253169deb5ebd056661] processPushPending(post-queue): pushed=1 failed=0
+[2026-07-22T18:45:26.715Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM response: action=route latency=2187ms
+[2026-07-22T18:45:26.717Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] LLM call: action=reconcile source=jolli-proxy
+[2026-07-22T18:45:26.717Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM call: action=reconcile url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:45:26.717Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] LLM call: action=reconcile source=jolli-proxy
+[2026-07-22T18:45:26.717Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM call: action=reconcile url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:45:41.968Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM response: action=reconcile latency=15251ms
+[2026-07-22T18:45:41.971Z] WARN  [ReconciledPage] [trace=46721e3b868f0253169deb5ebd056661] reconcile echoed slug imagekit-file-upload-integration, keeping authoritative imagekit-file-upload
+[2026-07-22T18:45:46.622Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM response: action=reconcile latency=19904ms
+[2026-07-22T18:45:46.623Z] WARN  [ReconciledPage] [trace=46721e3b868f0253169deb5ebd056661] reconcile echoed slug agents-md-setup-and-documentation, keeping authoritative agents-md-setup
+[2026-07-22T18:45:46.688Z] INFO  [GitOps] [trace=46721e3b868f0253169deb5ebd056661] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-22T18:45:46.689Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Wrote 1 files, deleted 0 (Update topic page imagekit-file-upload)
+[2026-07-22T18:45:46.722Z] INFO  [GitOps] [trace=46721e3b868f0253169deb5ebd056661] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-22T18:45:46.723Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Wrote 1 files, deleted 0 (Update topic KB index (10 topics))
+[2026-07-22T18:45:46.754Z] INFO  [GitOps] [trace=46721e3b868f0253169deb5ebd056661] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-22T18:45:46.754Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Wrote 1 files, deleted 0 (Update topic page agents-md-setup)
+[2026-07-22T18:45:46.784Z] INFO  [GitOps] [trace=46721e3b868f0253169deb5ebd056661] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-22T18:45:46.784Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Wrote 1 files, deleted 0 (Update topic KB index (10 topics))
+[2026-07-22T18:45:46.814Z] INFO  [GitOps] [trace=46721e3b868f0253169deb5ebd056661] Updated branch 'jollimemory/summaries/v3': 1 written, 0 deleted (via fast-import)
+[2026-07-22T18:45:46.815Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Wrote 1 files, deleted 0 (Update topic KB processed-source set)
+[2026-07-22T18:45:46.816Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Ingest drained: 1 batches, 2 sources (post-commit)
+[2026-07-22T18:45:46.867Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest unregistered 11 entries of type=wiki
+[2026-07-22T18:45:46.870Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--jolli-memory-integration.md (wiki)
+[2026-07-22T18:45:46.870Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--design-system-tailwind.md (wiki)
+[2026-07-22T18:45:46.870Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--nextjs-app-init.md (wiki)
+[2026-07-22T18:45:46.871Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--agents-md-setup.md (wiki)
+[2026-07-22T18:45:46.871Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--auth-db-setup.md (wiki)
+[2026-07-22T18:45:46.872Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--editor-project-management.md (wiki)
+[2026-07-22T18:45:46.872Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--imagekit-file-upload.md (wiki)
+[2026-07-22T18:45:46.873Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--shopify-export.md (wiki)
+[2026-07-22T18:45:46.873Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--projects-page-thumbnails.md (wiki)
+[2026-07-22T18:45:46.874Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/topic--subscription-billing-payments.md (wiki)
+[2026-07-22T18:45:46.874Z] INFO  [MetadataManager] [trace=46721e3b868f0253169deb5ebd056661] Manifest updated: _wiki/_index.md (wiki)
+[2026-07-22T18:45:46.874Z] INFO  [FolderStorage] [trace=46721e3b868f0253169deb5ebd056661] Topic-KB wiki regenerated: 10 topics under /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2/_wiki
+[2026-07-22T18:45:46.879Z] INFO  [GraphBuilder] [trace=46721e3b868f0253169deb5ebd056661] Building knowledge graph incrementally for /Users/rahulsanap/Documents/jolli/ai-shopify-template-builder-2: 2 dirty, 0 new, 0 deleted, 8 clean
+[2026-07-22T18:45:46.879Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] LLM call: action=graph-units source=jolli-proxy
+[2026-07-22T18:45:46.879Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM call: action=graph-units url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:45:46.880Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] LLM call: action=graph-units source=jolli-proxy
+[2026-07-22T18:45:46.880Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM call: action=graph-units url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:45:56.302Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM response: action=graph-units latency=9422ms
+[2026-07-22T18:45:59.640Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM response: action=graph-units latency=12758ms
+[2026-07-22T18:45:59.641Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] LLM call: action=graph-categories-delta source=jolli-proxy
+[2026-07-22T18:45:59.642Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM call: action=graph-categories-delta url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:46:04.289Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM response: action=graph-categories-delta latency=4646ms
+[2026-07-22T18:46:04.291Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] LLM call: action=graph-edges source=jolli-proxy
+[2026-07-22T18:46:04.292Z] INFO  [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM call: action=graph-edges url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:46:54.011Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-07-22T18:46:54.024Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-07-22T18:46:54.137Z] INFO  [PostCommitHook] [trace=a9004340612de23861e7fbe344533174] Detected operation: commit
+[2026-07-22T18:46:54.146Z] INFO  [PostCommitHook] [trace=a9004340612de23861e7fbe344533174] Enqueued: type=commit hash=71cdb2a4
+[2026-07-22T18:46:54.146Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Launching background worker
+[2026-07-22T18:46:54.148Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Background worker spawned (PID: 42003)
+[2026-07-22T18:46:54.213Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] === Queue worker started === node=20.18.0 kind=vscode-plugin source=vscode pkgVer=0.99.8 cliVer=0.99.8 dist=/Users/rahulsanap/.vscode/extensions/jolli.jollimemory-vscode-0.99.8/dist
+[2026-07-22T18:46:54.215Z] INFO  [StorageFactory] [trace=a9004340612de23861e7fbe344533174] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T18:46:54.231Z] INFO  [StorageFactory] [trace=a9004340612de23861e7fbe344533174] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-22T18:46:54.234Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Processing queue entry: type=commit hash=71cdb2a4
+[2026-07-22T18:46:54.251Z] INFO  [GitOps] [trace=a9004340612de23861e7fbe344533174] Commit 71cdb2a4: docs: update README with detailed setup instructions and req
+[2026-07-22T18:46:54.251Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Commit: 71cdb2a4 - docs: update README with detailed setup instructions and requirements (14ms)
+[2026-07-22T18:46:54.255Z] INFO  [SessionTracker] [trace=a9004340612de23861e7fbe344533174] Pruning stale session ba84ff81-7558-4714-9cf9-c314d4e34493 (age: 51h)
+[2026-07-22T18:46:54.255Z] INFO  [SessionTracker] [trace=a9004340612de23861e7fbe344533174] Pruning stale session b67b474f-a30f-4209-8f5b-d67bdfcaa23f (age: 49h)
+[2026-07-22T18:46:54.265Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Discovered 5 Codex session(s)
+[2026-07-22T18:46:54.265Z] INFO  [OpenCodeDiscoverer] [trace=a9004340612de23861e7fbe344533174] OpenCode support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-22T18:46:54.265Z] INFO  [CursorDetector] [trace=a9004340612de23861e7fbe344533174] Cursor support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-22T18:46:54.265Z] INFO  [CopilotDetector] [trace=a9004340612de23861e7fbe344533174] Copilot CLI support disabled: this runtime is Node 20.18.0, requires 22.5+ for built-in SQLite
+[2026-07-22T18:46:54.334Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Discovered 1 Copilot Chat session(s)
+[2026-07-22T18:46:54.417Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Transcript source: session=019f8b02-6e12-79c1-a213-6f47b8b5d1b3, lines=267→309, entries=3
+[2026-07-22T18:46:54.432Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Git diff: 1 files changed, +130 -21 (12ms)
+[2026-07-22T18:46:54.459Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Prompt blocks: plans=0 notes=0 references=0 (AI soft-excluded 0)
+[2026-07-22T18:46:54.459Z] INFO  [Summarizer] [trace=a9004340612de23861e7fbe344533174] Generating summary for commit 71cdb2a4
+[2026-07-22T18:46:54.459Z] INFO  [Summarizer] [trace=a9004340612de23861e7fbe344533174] Context: transcript=3, files=1, lines=130+21
+[2026-07-22T18:46:54.459Z] INFO  [LlmClient] [trace=a9004340612de23861e7fbe344533174] LLM call: action=summarize source=jolli-proxy
+[2026-07-22T18:46:54.460Z] INFO  [LlmClient] [trace=a9004340612de23861e7fbe344533174] Proxy LLM call: action=summarize url=https://jolli.ai/api/push/llm/complete
+[2026-07-22T18:46:57.089Z] INFO  [PrePushHook] [trace=61752b4b2c4d98854235a2f9d4e25d64] pre-push hook: remote=origin budget=3000ms
+[2026-07-22T18:46:57.100Z] INFO  [PushPendingStore] [trace=61752b4b2c4d98854235a2f9d4e25d64] Enqueued 1 new push-pending entries (branch=main)
+[2026-07-22T18:46:57.101Z] INFO  [PrePushHook] [trace=61752b4b2c4d98854235a2f9d4e25d64] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-07-22T18:46:57.101Z] INFO  [PrePushHook] [trace=61752b4b2c4d98854235a2f9d4e25d64] pre-push: starting inline sync — 2985ms of budget remaining
+[2026-07-22T18:46:57.101Z] INFO  [PushExecutor] [trace=61752b4b2c4d98854235a2f9d4e25d64] processPrePushInline: 1 commit(s) in this push, 2 pending entr(ies) on disk
+[2026-07-22T18:46:57.103Z] INFO  [PushExecutor] [trace=61752b4b2c4d98854235a2f9d4e25d64] processPrePushInline: claimed 1/1 candidate(s)
+[2026-07-22T18:46:57.103Z] INFO  [StorageFactory] [trace=61752b4b2c4d98854235a2f9d4e25d64] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T18:46:57.112Z] INFO  [StorageFactory] [trace=61752b4b2c4d98854235a2f9d4e25d64] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-22T18:46:57.134Z] INFO  [PushExecutor] [trace=61752b4b2c4d98854235a2f9d4e25d64] processPrePushInline: triage — withMemory=0 generating=1 mergedChildren=0
+[2026-07-22T18:46:57.135Z] INFO  [PrePushHook] [trace=61752b4b2c4d98854235a2f9d4e25d64] pre-push: inline sync done — pushed=0 failed=0 noMemory=1 notAttempted=0 children=0 (no candidates with memory)
+[2026-07-22T18:47:03.286Z] INFO  [LlmClient] [trace=a9004340612de23861e7fbe344533174] Proxy LLM response: action=summarize latency=8824ms
+[2026-07-22T18:47:03.287Z] INFO  [Summarizer] [trace=a9004340612de23861e7fbe344533174] Parsed 1 topic(s) from delimited text format
+[2026-07-22T18:47:03.287Z] INFO  [Summarizer] [trace=a9004340612de23861e7fbe344533174] Summary parsed: 1 topic(s), response length: 1435 chars
+[2026-07-22T18:47:03.287Z] INFO  [Summarizer] [trace=a9004340612de23861e7fbe344533174]   Topic 1: Rewrite README with local setup steps and env key sourcing guide
+[2026-07-22T18:47:03.288Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] API summary generated (8.8s)
+[2026-07-22T18:47:03.292Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Plan registry scan: found 0 uncommitted slug(s) on main: []
+[2026-07-22T18:47:03.293Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Plan association: detected 0 slug(s) from transcripts: []
+[2026-07-22T18:47:03.293Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Note registry scan: found 0 uncommitted note(s) on main: []
+[2026-07-22T18:47:03.293Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Note association: detected 0 note(s): []
+[2026-07-22T18:47:03.295Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Reference association: detected 0 ref(s) for branch main
+[2026-07-22T18:47:03.295Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Summary built for 71cdb2a4: recap=no, topics=1, plans=absent, notes=absent, references=absent
+[2026-07-22T18:47:03.380Z] INFO  [GitOps] [trace=a9004340612de23861e7fbe344533174] Updated branch 'jollimemory/summaries/v3': 4 written, 0 deleted (via fast-import)
+[2026-07-22T18:47:03.411Z] INFO  [MetadataManager] [trace=a9004340612de23861e7fbe344533174] Manifest updated: main/docs-update-readme-with-detailed-setup-instruction-71cdb2a4.md (commit)
+[2026-07-22T18:47:03.411Z] INFO  [FolderStorage] [trace=a9004340612de23861e7fbe344533174] Markdown generated: main/docs-update-readme-with-detailed-setup-instruction-71cdb2a4.md
+[2026-07-22T18:47:03.412Z] INFO  [FolderStorage] [trace=a9004340612de23861e7fbe344533174] Wrote 4 files, deleted 0 (Add summary for 71cdb2a4: docs: update README with detailed setup instructio)
+[2026-07-22T18:47:03.412Z] INFO  [SummaryStore] [trace=a9004340612de23861e7fbe344533174] Summary stored successfully for commit 71cdb2a4
+[2026-07-22T18:47:03.413Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Summary stored successfully for commit 71cdb2a4 (118ms, 0 plans, 0 notes, 0 references)
+[2026-07-22T18:47:03.413Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] === Pipeline completed in 9.2s ===
+[2026-07-22T18:47:03.413Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] === Summary content (1 topics) ===
+[2026-07-22T18:47:03.413Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Topic: Rewrite README with local setup steps and env key sourcing guide
+[2026-07-22T18:47:03.413Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174]   Trigger:   The user asked for proper steps to run the project locally and clear instructions on how to generate the API keys needed for the local environment file, since the existing README was still the generic starter template.
+[2026-07-22T18:47:03.413Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174]   Response:  - Replaced the default Next.js starter README with a project-specific guide describing the AI Shopify Theme Builder app, its requirements (Node version, npm, InsForge project, Gemini key, optional ImageKit and Stripe accounts), and installation steps.
+- Added a dedicated environment configuration section splitting required keys (InsForge URL/anon key, AI provider/model, Gemini key, app URL) from optional keys (ImageKit endpoint, Stripe keys, InsForge admin key, storage bucket names).
+- Added a "How To Get Each API Key" section explaining exactly where to obtain InsForge public/admin keys, the Gemini key, ImageKit endpoint, and Stripe keys, plus a numbered local run walkthrough and links to deeper setup docs (projectsetup.md, billing/export/thumbnail setup guides).
+[2026-07-22T18:47:03.413Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174]   Decisions: The README was fully rewritten rather than incrementally patched, since it still contained only the generic create-next-app template content and needed a complete project-specific onboarding flow instead of small edits.
+[2026-07-22T18:47:03.420Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] Processed 1 queue entries
+[2026-07-22T18:47:03.421Z] INFO  [PushExecutor] [trace=a9004340612de23861e7fbe344533174] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-07-22T18:47:03.422Z] INFO  [PushExecutor] [trace=a9004340612de23861e7fbe344533174] processPushPending(post-queue): 2 pending entr(ies) (filtered to 1 hash(es))
+[2026-07-22T18:47:03.423Z] INFO  [QueueWorker] [trace=a9004340612de23861e7fbe344533174] === Queue worker finished ===
+[2026-07-22T18:47:03.424Z] INFO  [Sync:PendingIngest] [trace=a9004340612de23861e7fbe344533174] Recorded pending ingest for this worktree
+[2026-07-22T18:47:03.607Z] INFO  [plans] detectPlans found 0 plans (3 in registry)
+[2026-07-22T18:47:03.608Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T18:47:03.608Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T18:47:03.608Z] INFO  [SessionTracker] Pruning stale session ba84ff81-7558-4714-9cf9-c314d4e34493 (age: 51h)
+[2026-07-22T18:47:03.608Z] INFO  [SessionTracker] Pruning stale session b67b474f-a30f-4209-8f5b-d67bdfcaa23f (age: 49h)
+[2026-07-22T18:47:03.627Z] WARN  [SummaryStore] loadIndex: index.json unreadable from t (fresh repo or backend read failed)
+[2026-07-22T18:47:03.630Z] INFO  [SidebarWebviewProvider] pushMemories: 18 item(s)
+[2026-07-22T18:47:03.766Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"1b05f9ed","author":"rrs301"}
+[2026-07-22T18:47:03.850Z] INFO  [PushExecutor] [trace=a9004340612de23861e7fbe344533174] processPushPending(post-queue): claimed 1/1 candidate(s)
+[2026-07-22T18:47:03.878Z] INFO  [PushExecutor] [trace=a9004340612de23861e7fbe344533174] processPushPending(post-queue): triage — withMemory=1 noMemory=0 mergedChildren=0
+[2026-07-22T18:47:03.985Z] INFO  [SidebarWebviewProvider] pushCommits: 32 item(s), mode=merged
+[2026-07-22T18:47:04.056Z] INFO  [PushExecutor] [trace=a9004340612de23861e7fbe344533174] processPushPending(post-queue): pushing 1 commit(s)
+[2026-07-22T18:47:04.176Z] INFO  [PlanDiscovery] Plan discovery: upserted 0 slug(s) + 1 external path(s) into plans.json
+[2026-07-22T18:47:04.177Z] INFO  [CodexDiscovery] Codex discovery pass: 5 session(s) scanned, 1 advanced
+[2026-07-22T18:47:04.218Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"1b05f9ed","author":"rrs301"}
+[2026-07-22T18:47:04.384Z] INFO  [GitOps] [trace=a9004340612de23861e7fbe344533174] Updated branch 'jollimemory/summaries/v3': 3 written, 0 deleted (via fast-import)
+[2026-07-22T18:47:04.385Z] INFO  [MetadataManager] [trace=a9004340612de23861e7fbe344533174] Manifest updated: main/docs-update-readme-with-detailed-setup-instruction-71cdb2a4.md (commit)
+[2026-07-22T18:47:04.385Z] INFO  [FolderStorage] [trace=a9004340612de23861e7fbe344533174] Markdown generated: main/docs-update-readme-with-detailed-setup-instruction-71cdb2a4.md
+[2026-07-22T18:47:04.386Z] INFO  [FolderStorage] [trace=a9004340612de23861e7fbe344533174] Wrote 3 files, deleted 0 (Overwrite summary for 71cdb2a4: docs: update README with detailed setup instructio)
+[2026-07-22T18:47:04.386Z] INFO  [SummaryStore] [trace=a9004340612de23861e7fbe344533174] Summary stored successfully for commit 71cdb2a4
+[2026-07-22T18:47:04.386Z] INFO  [PushExecutor] [trace=a9004340612de23861e7fbe344533174] processPushPending(post-queue): write-back — writtenBack=1 childSkipped=0 cleanupPending=0 writeBackFailed=0
+[2026-07-22T18:47:04.392Z] INFO  [PushExecutor] [trace=a9004340612de23861e7fbe344533174] processPushPending(post-queue): pushed=1 failed=0
+[2026-07-22T18:47:04.747Z] ERROR [LlmClient] [trace=46721e3b868f0253169deb5ebd056661] Proxy LLM error: status=504 body=<html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:47:04.749Z] WARN  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Knowledge graph build failed (non-fatal): LLM proxy request failed with status 504: <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+
+[2026-07-22T18:47:04.754Z] INFO  [Sync:PendingIngest] [trace=46721e3b868f0253169deb5ebd056661] Waking pending ingest worker for this worktree
+[2026-07-22T18:47:04.754Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Launching background worker
+[2026-07-22T18:47:04.757Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] Background worker spawned (PID: 43857)
+[2026-07-22T18:47:04.826Z] INFO  [plans] detectPlans found 1 plans (4 in registry)
+[2026-07-22T18:47:04.826Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T18:47:04.826Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T18:47:04.835Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] === Queue worker started === node=20.18.0 kind=vscode-plugin source=vscode pkgVer=0.99.8 cliVer=0.99.8 dist=/Users/rahulsanap/.vscode/extensions/jolli.jollimemory-vscode-0.99.8/dist
+[2026-07-22T18:47:04.838Z] INFO  [StorageFactory] [trace=46721e3b868f0253169deb5ebd056661] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-22T18:47:04.848Z] INFO  [StorageFactory] [trace=46721e3b868f0253169deb5ebd056661] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-22T18:47:04.850Z] INFO  [QueueWorker] [trace=46721e3b868f0253169deb5ebd056661] === Queue worker finished ===
+[2026-07-22T18:47:05.046Z] INFO  [plans] detectPlans found 1 plans (4 in registry)
+[2026-07-22T18:47:05.046Z] INFO  [notes] detectNotes found 0 notes (0 in registry)
+[2026-07-22T18:47:05.046Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-07-22T18:47:05.047Z] INFO  [SessionTracker] Pruning stale session ba84ff81-7558-4714-9cf9-c314d4e34493 (age: 51h)
+[2026-07-22T18:47:05.047Z] INFO  [SessionTracker] Pruning stale session b67b474f-a30f-4209-8f5b-d67bdfcaa23f (age: 49h)
+[2026-07-22T18:47:05.063Z] WARN  [SummaryStore] loadIndex: index.json unreadable from t (fresh repo or backend read failed)
+[2026-07-22T18:47:05.064Z] INFO  [SidebarWebviewProvider] pushMemories: 18 item(s)
+[2026-07-22T18:47:05.162Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"1b05f9ed","author":"rrs301"}
+[2026-07-22T18:47:05.189Z] INFO  [SidebarWebviewProvider] pushCommits: 32 item(s), mode=merged
+[2026-07-22T18:47:05.422Z] INFO  [CodexDiscovery] Codex discovery pass: 5 session(s) scanned, 0 advanced
+[2026-07-22T18:47:05.761Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"1b05f9ed","author":"rrs301"}
+[2026-07-24T02:51:45.221Z] INFO  [UpdateCheck] [trace=5078e6a3c46eb4823cb71baa94e98d72] Spawned detached update-check refresh (PID: 47802)
+[2026-07-24T02:51:45.222Z] INFO  [StorageFactory] [trace=5078e6a3c46eb4823cb71baa94e98d72] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-24T02:51:45.255Z] INFO  [StorageFactory] [trace=5078e6a3c46eb4823cb71baa94e98d72] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-24T02:51:46.292Z] INFO  [McpServer] [trace=5078e6a3c46eb4823cb71baa94e98d72] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T02:52:23.407Z] INFO  [StorageFactory] [trace=01f1674dbb6d564941e210f313f76566] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-24T02:52:23.440Z] INFO  [StorageFactory] [trace=01f1674dbb6d564941e210f313f76566] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-24T02:52:24.034Z] INFO  [McpServer] [trace=01f1674dbb6d564941e210f313f76566] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T11:54:58.286Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T11:54:58.312Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-24T11:54:58.559Z] INFO  [StorageFactory] [trace=ff83666c58d17aaa27476e6f41c44e9c] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-24T11:54:58.595Z] INFO  [StorageFactory] [trace=ff83666c58d17aaa27476e6f41c44e9c] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-24T11:54:59.439Z] INFO  [McpServer] [trace=ff83666c58d17aaa27476e6f41c44e9c] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T11:55:02.662Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T11:55:02.681Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-24T11:55:02.740Z] INFO  [StorageFactory] [trace=9bfab0236cd30a641bfe7955caf96475] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-24T11:55:02.781Z] INFO  [StorageFactory] [trace=9bfab0236cd30a641bfe7955caf96475] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-24T11:55:03.617Z] INFO  [McpServer] [trace=9bfab0236cd30a641bfe7955caf96475] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T11:55:16.266Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T11:55:16.293Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-24T11:55:16.308Z] INFO  [StorageFactory] [trace=e796f44e9bc2a309596eefaf73332935] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-24T11:55:16.338Z] INFO  [StorageFactory] [trace=e796f44e9bc2a309596eefaf73332935] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-24T11:55:17.033Z] INFO  [McpServer] [trace=e796f44e9bc2a309596eefaf73332935] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T11:59:41.244Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T11:59:41.271Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-24T11:59:41.349Z] INFO  [StorageFactory] [trace=0b83ca0a1915cd1a65b5d30ad15e5cda] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-24T11:59:41.391Z] INFO  [StorageFactory] [trace=0b83ca0a1915cd1a65b5d30ad15e5cda] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-24T11:59:42.281Z] INFO  [McpServer] [trace=0b83ca0a1915cd1a65b5d30ad15e5cda] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T12:00:01.080Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T12:00:01.106Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-24T12:00:01.172Z] INFO  [StorageFactory] [trace=3b51f593fd9dda407a114faf9f9cc1c0] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-24T12:00:01.213Z] INFO  [StorageFactory] [trace=3b51f593fd9dda407a114faf9f9cc1c0] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-24T12:00:01.826Z] INFO  [McpServer] [trace=3b51f593fd9dda407a114faf9f9cc1c0] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T12:00:07.544Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T12:00:07.567Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-24T12:00:07.589Z] INFO  [StorageFactory] [trace=4e739921d2e9f983be6286e0bb8d226d] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-24T12:00:07.626Z] INFO  [StorageFactory] [trace=4e739921d2e9f983be6286e0bb8d226d] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-24T12:00:08.202Z] INFO  [McpServer] [trace=4e739921d2e9f983be6286e0bb8d226d] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T12:01:10.634Z] INFO  [SessionStartHook] SessionStartHook invoked (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T12:01:10.665Z] INFO  [SessionStartHook] No briefing generated (skipped or timed out)
+[2026-07-24T12:01:10.733Z] INFO  [StorageFactory] [trace=f742205d5c8a20c4ff0aa051d65bcd20] StorageFactory.create: storageMode=dual-write, projectPath=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder
+[2026-07-24T12:01:10.765Z] INFO  [StorageFactory] [trace=f742205d5c8a20c4ff0aa051d65bcd20] Storage mode: dual-write (primary=orphan, shadow=folder)
+[2026-07-24T12:01:11.601Z] INFO  [McpServer] [trace=f742205d5c8a20c4ff0aa051d65bcd20] MCP server connected over stdio (cwd=/Users/rahulsanap/Documents/Projects/Nextjs 2026/ai-shopify-template-builder)
+[2026-07-24T12:19:58.591Z] INFO  [PostMergeHook] [trace=2db5dcfec4750836f7aa2924dc8686c4] Post-merge hook triggered
+[2026-07-24T12:19:58.627Z] INFO  [PostMergeHook] [trace=2db5dcfec4750836f7aa2924dc8686c4] No merge commits in pull range -- fast-forward or error, skipping

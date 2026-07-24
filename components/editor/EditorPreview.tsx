@@ -48,6 +48,7 @@ export default function EditorPreview() {
     setActivePage,
     closePage,
     generatingPageId,
+    isImageGenerating,
     sendMessage,
     updatePageHtml,
   } = useBuilder();
@@ -112,7 +113,8 @@ export default function EditorPreview() {
         ctx.sendMessage(
           isImage
             ? `Update the image in the element with id "${targetId}": ${prompt}`
-            : `In the element with id "${targetId}": ${prompt}`
+            : `In the element with id "${targetId}": ${prompt}`,
+          { source: isImage ? 'image-edit' : 'chat' }
         );
       }
     }
@@ -223,18 +225,26 @@ export default function EditorPreview() {
           >
             {/* Inline-edit toggle — top-right of the preview. */}
             {activePage && activeHtml && (
-              <button
-                onClick={() => setEditMode((v) => !v)}
-                aria-pressed={editMode}
-                className={`absolute right-3 top-3 z-20 flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[13px] font-medium shadow-sm transition ${
-                  editMode
-                    ? 'border-transparent bg-[#f05a32] text-white hover:bg-[#e14a24]'
-                    : 'border-[#eee7e3] bg-white/90 text-[#4b5563] backdrop-blur hover:bg-white hover:text-[#111827]'
-                }`}
-              >
-                {editMode ? <Check size={15} strokeWidth={2.2} /> : <Pencil size={15} strokeWidth={2} />}
-                {editMode ? 'Done' : 'Edit'}
-              </button>
+              <div className="absolute right-3 top-3 z-20 flex items-center gap-2">
+                {isImageGenerating && (
+                  <div className="flex items-center gap-2 rounded-lg border border-[#ffd7ce] bg-white/95 px-3 py-1.5 text-[13px] font-medium text-[#c0432f] shadow-sm backdrop-blur">
+                    <Loader2 size={15} strokeWidth={2.2} className="animate-spin" />
+                    Generating image…
+                  </div>
+                )}
+                <button
+                  onClick={() => setEditMode((v) => !v)}
+                  aria-pressed={editMode}
+                  className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[13px] font-medium shadow-sm transition ${
+                    editMode
+                      ? 'border-transparent bg-[#f05a32] text-white hover:bg-[#e14a24]'
+                      : 'border-[#eee7e3] bg-white/90 text-[#4b5563] backdrop-blur hover:bg-white hover:text-[#111827]'
+                  }`}
+                >
+                  {editMode ? <Check size={15} strokeWidth={2.2} /> : <Pencil size={15} strokeWidth={2} />}
+                  {editMode ? 'Done' : 'Edit'}
+                </button>
+              </div>
             )}
 
             {activePage ? (

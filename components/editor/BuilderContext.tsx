@@ -48,8 +48,9 @@ interface BuilderContextValue {
   styleGuide: string | null;
   isStreaming: boolean;
   generatingPageId: string | null;
+  isImageGenerating: boolean;
   error: string | null;
-  sendMessage: (text: string) => void;
+  sendMessage: (text: string, options?: SendMessageOptions) => void;
   setActivePage: (id: string) => void;
   closePage: (id: string) => void;
   /**
@@ -62,6 +63,10 @@ interface BuilderContextValue {
 }
 
 const BuilderContext = createContext<BuilderContextValue | null>(null);
+
+interface SendMessageOptions {
+  source?: 'chat' | 'image-edit';
+}
 
 interface BuilderSnapshot {
   messages: ChatMessage[];
@@ -137,6 +142,7 @@ export function BuilderProvider({
   const [themeCss, setThemeCss] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
   const [generatingPageId, setGeneratingPageId] = useState<string | null>(null);
+  const [isImageGenerating, setIsImageGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
@@ -254,16 +260,18 @@ export function BuilderProvider({
   // once it settles instead of on every input event.
   const editPersistTimersRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
-  const sendMessage = useCallback((text: string) => {
+  const sendMessage = useCallback((text: string, options?: SendMessageOptions) => {
     const content = text.trim();
     if (!content || abortRef.current) return;
 
     const priorMessages = stateRef.current.messages;
     const outgoing = [...priorMessages, { role: 'user' as const, content }];
+    const isImageEditRequest = options?.source === 'image-edit';
 
     const assistantId = newId();
     erroredRef.current = false;
     setError(null);
+    setIsImageGenerating(isImageEditRequest);
     setMessages((prev) => [
       ...prev,
       { id: newId(), role: 'user', content },
@@ -406,6 +414,7 @@ export function BuilderProvider({
         persistArmedRef.current = !controller.signal.aborted && !erroredRef.current;
         abortRef.current = null;
         setIsStreaming(false);
+        setIsImageGenerating(false);
         setGeneratingPageId(null);
       }
     })();
@@ -559,6 +568,7 @@ export function BuilderProvider({
     setActivePageId(null);
     setThemeCss('');
     setGeneratingPageId(null);
+    setIsImageGenerating(false);
     setError(null);
     setIsStreaming(false);
     writeSnapshot(projectId, {
@@ -598,6 +608,7 @@ export function BuilderProvider({
     styleGuide: themeRef.current?.styleGuide ?? null,
     isStreaming,
     generatingPageId,
+    isImageGenerating,
     error,
     sendMessage,
     setActivePage,
