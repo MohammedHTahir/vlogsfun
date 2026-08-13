@@ -111,14 +111,22 @@ function stripJsonFences(text: string): string {
 }
 
 export function createVercelAIGoogleProvider(model: string): AIProvider {
+  // When VERCEL_AI_GATEWAY_URL is set, route requests through the Vercel AI
+  // Gateway so Vercel credits are used instead of a direct Google API key.
+  // Otherwise fall back to a direct Google API key (GOOGLE_GENERATIVE_AI_API_KEY).
+  const gatewayUrl = process.env.VERCEL_AI_GATEWAY_URL;
   const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-  if (!apiKey) {
+
+  if (!gatewayUrl && !apiKey) {
     throw new Error(
-      'GOOGLE_GENERATIVE_AI_API_KEY is not set. Add it to .env.local (same key as GEMINI_API_KEY).'
+      'Set either VERCEL_AI_GATEWAY_URL (Vercel AI Gateway) or GOOGLE_GENERATIVE_AI_API_KEY in your environment.'
     );
   }
 
-  const google = createGoogleGenerativeAI({ apiKey });
+  const google = gatewayUrl
+    ? createGoogleGenerativeAI({ baseURL: gatewayUrl, apiKey: 'vercel' })
+    : createGoogleGenerativeAI({ apiKey: apiKey! });
+
   const mdl = google(model);
 
   return {
