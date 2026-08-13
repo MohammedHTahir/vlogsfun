@@ -1,5 +1,4 @@
 import 'server-only';
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { generateText, streamText } from 'ai';
 import type {
   AIProvider,
@@ -28,13 +27,18 @@ import {
 } from '../prompts';
 
 /**
- * Vercel AI SDK + Google Gemini adapter.
- * Replaces the direct @google/genai usage with the provider-independent
- * `ai` package so the app works cleanly on Vercel (AGENTS.md §7).
+ * Vercel AI Gateway adapter.
+ *
+ * Uses the Vercel AI SDK with a plain model string so requests are routed
+ * through the Vercel AI Gateway and billed against your Vercel credits.
+ * No external API key required — Vercel handles auth to the model provider.
  *
  * Env vars:
- *   GOOGLE_GENERATIVE_AI_API_KEY  — Gemini API key (same key as before)
- *   AI_MODEL                      — model id, default "gemini-2.5-flash"
+ *   AI_MODEL — model string as shown in the Vercel AI Gateway catalog.
+ *              Default: "moonshotai/kimi-k3" (cheapest capable model).
+ *              Examples: "openai/gpt-4o-mini", "google/gemini-2.5-flash"
+ *
+ * Docs: https://vercel.com/docs/ai/ai-gateway
  */
 
 type Turn = { role: 'user' | 'assistant'; content: string };
@@ -49,7 +53,7 @@ function toMessages(system: string, turns: Turn[]) {
   };
 }
 
-// --- normalisation helpers (ported from gemini.ts) ---
+// --- normalisation helpers ---
 
 function slugifyId(value: unknown, fallback: string): string {
   const slug = String(value ?? '')
@@ -111,23 +115,9 @@ function stripJsonFences(text: string): string {
 }
 
 export function createVercelAIGoogleProvider(model: string): AIProvider {
-  // When VERCEL_AI_GATEWAY_URL is set, route requests through the Vercel AI
-  // Gateway so Vercel credits are used instead of a direct Google API key.
-  // Otherwise fall back to a direct Google API key (GOOGLE_GENERATIVE_AI_API_KEY).
-  const gatewayUrl = process.env.VERCEL_AI_GATEWAY_URL;
-  const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-
-  if (!gatewayUrl && !apiKey) {
-    throw new Error(
-      'Set either VERCEL_AI_GATEWAY_URL (Vercel AI Gateway) or GOOGLE_GENERATIVE_AI_API_KEY in your environment.'
-    );
-  }
-
-  const google = gatewayUrl
-    ? createGoogleGenerativeAI({ baseURL: gatewayUrl, apiKey: 'vercel' })
-    : createGoogleGenerativeAI({ apiKey: apiKey! });
-
-  const mdl = google(model);
+  // The Vercel AI Gateway uses a plain model string — no provider wrapper needed.
+  // Vercel injects the necessary auth at the edge when deployed.
+  const mdl = model;
 
   return {
     async planTurn(input: PlanTurnInput): Promise<TurnPlan> {
@@ -136,7 +126,7 @@ export function createVercelAIGoogleProvider(model: string): AIProvider {
         input.messages
       );
       const { text } = await generateText({
-        model: mdl,
+        model: mdl as Parameters<typeof generateText>[0]['model'],
         system,
         messages,
         temperature: 0.7,
@@ -161,7 +151,7 @@ export function createVercelAIGoogleProvider(model: string): AIProvider {
     async generateTheme(input: GenerateThemeInput): Promise<ThemeSpec> {
       const { system, messages } = toMessages(themeSystemPrompt(), input.messages);
       const { text } = await generateText({
-        model: mdl,
+        model: mdl as Parameters<typeof generateText>[0]['model'],
         system,
         messages,
         temperature: 0.7,
@@ -186,7 +176,7 @@ export function createVercelAIGoogleProvider(model: string): AIProvider {
         input.messages
       );
       const result = streamText({
-        model: mdl,
+        model: mdl as Parameters<typeof streamText>[0]['model'],
         system,
         messages,
         temperature: 0.8,
@@ -205,7 +195,7 @@ export function createVercelAIGoogleProvider(model: string): AIProvider {
         input.messages
       );
       const { text } = await generateText({
-        model: mdl,
+        model: mdl as Parameters<typeof generateText>[0]['model'],
         system,
         messages,
         temperature: 0.4,
@@ -234,7 +224,7 @@ export function createVercelAIGoogleProvider(model: string): AIProvider {
         styleGuide: input.styleGuide,
       });
       const { text } = await generateText({
-        model: mdl,
+        model: mdl as Parameters<typeof generateText>[0]['model'],
         system,
         messages: [{ role: 'user', content: input.html }],
         temperature: 0.4,
