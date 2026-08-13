@@ -16,8 +16,8 @@ import { createVercelAIGoogleProvider } from './providers/vercel-ai-google';
  * Legacy Gemini SDK (gemini) reads:       GEMINI_API_KEY
  */
 export function getAIProvider(): AIProvider {
-  const provider = (process.env.AI_PROVIDER ?? 'vercel-ai-google').toLowerCase();
-  const model = process.env.AI_MODEL ?? 'gemini-2.5-flash';
+  const provider = (process.env.AI_PROVIDER || 'vercel-ai-google').toLowerCase();
+  const model = process.env.AI_MODEL || 'gemini-2.5-flash';
 
   switch (provider) {
     case 'vercel-ai-google':
