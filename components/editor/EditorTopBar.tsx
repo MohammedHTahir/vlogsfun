@@ -124,21 +124,27 @@ export default function EditorTopBar({
   return (
     <header className="flex h-16 shrink-0 items-center justify-between gap-3 border-b border-[#ece6e2] bg-white px-4">
       <div className="flex items-center gap-3">
+        {/* Logo includes the wordmark — no adjacent text. Icon only on mobile. */}
         <Image
-          src="/logo.png"
-          alt="Shopify Theme Builder"
-          width={34}
-          height={34}
-          className="shrink-0 rounded-lg"
+          src="/logo-icon.png"
+          alt="vlogs.fun"
+          width={32}
+          height={32}
+          className="shrink-0 rounded-lg sm:hidden"
           priority
         />
-        <span className="hidden text-[15px] font-bold text-[#111827] sm:block">
-          Shopify Theme Builder
-        </span>
+        <Image
+          src="/logo.png"
+          alt="vlogs.fun"
+          width={40}
+          height={40}
+          className="hidden shrink-0 rounded-lg sm:block"
+          priority
+        />
         <button
           aria-label={collapsed ? 'Expand chat panel' : 'Collapse chat panel'}
           onClick={onToggleSidebar}
-          className="grid h-8 w-8 place-items-center rounded-lg border border-[#e8e2de] bg-white text-[#4b5563] transition hover:bg-[#fff8f5]"
+          className="grid h-8 w-8 place-items-center rounded-lg border border-[#E5E7EB] bg-white text-[#3B424B] transition hover:bg-[#F8FAFC]"
         >
           <ChevronLeft
             size={17}
@@ -153,11 +159,11 @@ export default function EditorTopBar({
           <button
             onClick={() => setMenuOpen((open) => !open)}
             disabled={dialogOpen || busy !== null}
-            className="flex h-11 items-center gap-2 rounded-xl border border-[#e8e2de] bg-white px-4 text-sm font-medium text-[#111827] shadow-[0_8px_20px_rgba(31,41,55,0.04)] transition hover:bg-[#fff8f5] disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex h-11 items-center gap-2 rounded-xl border border-[#E5E7EB] bg-white px-4 text-sm font-medium text-[#0D1117] shadow-[0_8px_20px_rgba(16,24,40,0.04)] transition hover:bg-[#F8FAFC] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {busy ? (
               <>
-                <Loader2 size={16} strokeWidth={2} className="animate-spin text-[#ff6747]" />
+                <Loader2 size={16} strokeWidth={2} className="animate-spin text-[#0D1117]" />
                 {busy === 'png' ? pngStatus || 'Exporting…' : 'Exporting…'}
               </>
             ) : (
@@ -167,15 +173,15 @@ export default function EditorTopBar({
                 <ChevronDown
                   size={16}
                   strokeWidth={2}
-                  className={`text-[#9aa2af] transition-transform ${menuOpen ? 'rotate-180' : ''}`}
+                  className={`text-[#9CA3AF] transition-transform ${menuOpen ? 'rotate-180' : ''}`}
                 />
               </>
             )}
           </button>
 
           {menuOpen && (
-            <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-64 overflow-hidden rounded-2xl border border-[#eee7e3] bg-white p-2 shadow-[0_24px_48px_rgba(31,41,55,0.14)]">
-              <p className="px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-[#9aa2af]">
+            <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-64 overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white p-2 shadow-[0_24px_48px_rgba(16,24,40,0.14)]">
+              <p className="px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-[#9CA3AF]">
                 Export options
               </p>
               {!hasExportablePages && (
@@ -192,7 +198,7 @@ export default function EditorTopBar({
                     key={option.id}
                     onClick={option.action}
                     disabled={disabled}
-                    className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-[#111827] transition hover:bg-[#fff3ef] disabled:cursor-not-allowed disabled:opacity-40"
+                    className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-[#0D1117] transition hover:bg-[#F1F2F5] disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     <Icon size={17} strokeWidth={1.9} className="text-[#6b7280]" />
                     {option.label}
@@ -203,13 +209,13 @@ export default function EditorTopBar({
           )}
 
           {exportError && !menuOpen && (
-            <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-72 rounded-xl border border-[#f6d5cf] bg-[#fdeceb] px-3.5 py-2.5 text-[12px] text-[#c0432f] shadow-[0_16px_32px_rgba(31,41,55,0.12)]">
+            <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-72 rounded-xl border border-[#f6d5cf] bg-[#fdeceb] px-3.5 py-2.5 text-[12px] text-[#c0432f] shadow-[0_16px_32px_rgba(16,24,40,0.12)]">
               {exportError}
             </div>
           )}
         </div>
 
-        <button className="flex h-11 items-center gap-2 rounded-xl bg-[#ff6747] px-5 text-sm font-semibold text-white shadow-[0_12px_22px_rgba(255,103,71,0.2)] transition hover:bg-[#f85b3a]">
+        <button className="flex h-11 items-center gap-2 rounded-xl bg-[#0D1117] px-5 text-sm font-semibold text-white shadow-[0_12px_22px_rgba(16,24,40,0.2)] transition hover:bg-[#1A1F24]">
           <Save size={17} strokeWidth={1.9} />
           Save
         </button>

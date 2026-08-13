@@ -11,17 +11,21 @@ export default function Header() {
       <div className="flex items-center justify-between px-6 h-16">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2">
+            {/* Logo includes the wordmark — no adjacent text. Icon only on mobile. */}
+            <Image
+              src="/logo-icon.png"
+              alt="vlogs.fun"
+              width={36}
+              height={36}
+              className="rounded-lg sm:hidden"
+            />
             <Image
               src="/logo.png"
-              alt="Shopify Theme Builder"
-              width={40}
-              height={40}
-              className="rounded-lg"
+              alt="vlogs.fun"
+              width={44}
+              height={44}
+              className="hidden rounded-lg sm:block"
             />
-            <div className="flex flex-col">
-              <p className="text-sm font-semibold text-neutral-900">Shopify</p>
-              <p className="text-xs text-neutral-600">Theme Builder</p>
-            </div>
           </Link>
         </div>
 

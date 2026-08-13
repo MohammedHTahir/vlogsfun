@@ -16,12 +16,12 @@ export default function AuthButtons() {
     const label = user.name || user.email;
     return (
       <div className="flex items-center gap-3">
-        <span className="hidden max-w-[180px] truncate text-sm font-medium text-[#111827] sm:block">
+        <span className="hidden max-w-[180px] truncate text-sm font-medium text-[#0D1117] sm:block">
           {label}
         </span>
         <button
           onClick={() => void signOut()}
-          className="flex h-10 items-center gap-2 rounded-xl border border-[#e8e2de] bg-white px-4 text-[15px] font-medium text-[#111827] shadow-[0_10px_24px_rgba(31,41,55,0.04)] transition hover:bg-[#fff8f5]"
+          className="flex h-10 items-center gap-2 rounded-xl border border-[#E5E7EB] bg-white px-4 text-[15px] font-medium text-[#0D1117] shadow-[0_10px_24px_rgba(16,24,40,0.04)] transition hover:bg-[#F8FAFC]"
         >
           <LogOut size={16} strokeWidth={1.8} />
           Sign out
@@ -34,13 +34,13 @@ export default function AuthButtons() {
     <>
       <Link
         href="/sign-in"
-        className="grid h-10 place-items-center rounded-xl border border-[#e8e2de] bg-white px-6 text-[15px] font-medium text-[#111827] shadow-[0_10px_24px_rgba(31,41,55,0.04)] transition hover:bg-[#fff8f5]"
+        className="grid h-10 place-items-center rounded-xl border border-[#E5E7EB] bg-white px-6 text-[15px] font-medium text-[#0D1117] shadow-[0_10px_24px_rgba(16,24,40,0.04)] transition hover:bg-[#F8FAFC]"
       >
         Sign in
       </Link>
       <Link
         href="/sign-up"
-        className="grid h-10 place-items-center rounded-xl bg-[#ff6747] px-6 text-[15px] font-medium text-white shadow-[0_12px_22px_rgba(255,103,71,0.18)] transition hover:bg-[#f85b3a]"
+        className="grid h-10 place-items-center rounded-xl bg-[#0D1117] px-6 text-[15px] font-medium text-white shadow-[0_12px_22px_rgba(16,24,40,0.18)] transition hover:bg-[#1A1F24]"
       >
         Sign up
       </Link>

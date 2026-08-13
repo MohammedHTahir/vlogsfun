@@ -70,9 +70,9 @@ export default function BillingPage() {
 
   if (authLoading || (loading && !entitlement)) {
     return (
-      <div className="grid min-h-screen place-items-center bg-[#fffdfc] text-[#6b7280]">
+      <div className="grid min-h-screen place-items-center bg-[#FFFFFF] text-[#6b7280]">
         <div className="flex items-center gap-3 text-sm font-medium">
-          <Loader2 size={18} className="animate-spin text-[#ff6747]" />
+          <Loader2 size={18} className="animate-spin text-[#0D1117]" />
           Loading billing…
         </div>
       </div>
@@ -117,10 +117,10 @@ export default function BillingPage() {
     isPaid || !maxProjects ? 100 : Math.min(100, Math.round((projectCount / maxProjects) * 100));
 
   return (
-    <div className="min-h-screen bg-[#fffdfc] px-8 py-10">
+    <div className="min-h-screen bg-[#FFFFFF] px-8 py-10">
       <div className="mx-auto max-w-[960px]">
         <header className="mb-8">
-          <h1 className="text-[28px] font-bold leading-tight text-[#111827]">Billing &amp; plans</h1>
+          <h1 className="text-[28px] font-bold leading-tight text-[#0D1117]">Billing &amp; plans</h1>
           <p className="mt-1 text-sm text-[#6b7280]">
             Manage your subscription, usage, and payment details.
           </p>
@@ -143,18 +143,18 @@ export default function BillingPage() {
         )}
 
         {/* Current plan summary */}
-        <section className="mb-6 rounded-2xl border border-[#eee7e3] bg-white p-6 shadow-[0_10px_24px_rgba(31,41,55,0.035)]">
+        <section className="mb-6 rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_10px_24px_rgba(16,24,40,0.035)]">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="flex items-center gap-3">
               <span
                 className={`grid h-11 w-11 place-items-center rounded-xl ${
-                  isPaid ? 'bg-[#fff7ec] text-[#f59b14]' : 'bg-[#fff3ef] text-[#ff6747]'
+                  isPaid ? 'bg-[#fff7ec] text-[#f59b14]' : 'bg-[#F1F2F5] text-[#0D1117]'
                 }`}
               >
                 {isPaid ? <Crown size={22} strokeWidth={1.9} /> : <CreditCard size={22} strokeWidth={1.9} />}
               </span>
               <div>
-                <p className="text-lg font-bold text-[#111827]">{PLANS[plan].name} plan</p>
+                <p className="text-lg font-bold text-[#0D1117]">{PLANS[plan].name} plan</p>
                 <div className="mt-1 flex items-center gap-2">
                   <span
                     className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
@@ -162,7 +162,7 @@ export default function BillingPage() {
                         ? 'bg-[#effaf3] text-[#1f7a44]'
                         : status === 'past_due' || status === 'unpaid'
                           ? 'bg-[#fdeceb] text-[#c0432f]'
-                          : 'bg-[#f4f1ee] text-[#6b7280]'
+                          : 'bg-[#F3F4F6] text-[#6b7280]'
                     }`}
                   >
                     {STATUS_LABEL[status] ?? status}
@@ -182,7 +182,7 @@ export default function BillingPage() {
                 <button
                   onClick={() => void run('portal', openBillingPortal)}
                   disabled={busy !== null}
-                  className="flex h-10 items-center gap-2 rounded-xl border border-[#e8e2de] bg-white px-4 text-sm font-medium text-[#111827] transition hover:bg-[#fff8f5] disabled:opacity-60"
+                  className="flex h-10 items-center gap-2 rounded-xl border border-[#E5E7EB] bg-white px-4 text-sm font-medium text-[#0D1117] transition hover:bg-[#F8FAFC] disabled:opacity-60"
                 >
                   {busy === 'portal' ? <Loader2 size={15} className="animate-spin" /> : <CreditCard size={15} />}
                   Manage Billing
@@ -202,7 +202,7 @@ export default function BillingPage() {
                 <button
                   onClick={() => void resume()}
                   disabled={busy !== null}
-                  className="flex h-10 items-center gap-2 rounded-xl bg-[#ff6747] px-4 text-sm font-semibold text-white transition hover:bg-[#f85b3a] disabled:opacity-60"
+                  className="flex h-10 items-center gap-2 rounded-xl bg-[#0D1117] px-4 text-sm font-semibold text-white transition hover:bg-[#1A1F24] disabled:opacity-60"
                 >
                   {busy === 'resume' ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                   Resume subscription
@@ -220,17 +220,17 @@ export default function BillingPage() {
 
         {/* Usage */}
         <section id="usage" className="mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
-          <div className="rounded-2xl border border-[#eee7e3] bg-white p-6 shadow-[0_10px_24px_rgba(31,41,55,0.035)]">
-            <p className="text-sm font-semibold text-[#111827]">Project usage</p>
-            <p className="mt-1 text-2xl font-bold text-[#111827]">
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_10px_24px_rgba(16,24,40,0.035)]">
+            <p className="text-sm font-semibold text-[#0D1117]">Project usage</p>
+            <p className="mt-1 text-2xl font-bold text-[#0D1117]">
               {projectCount}
-              <span className="text-base font-medium text-[#9aa2af]">
+              <span className="text-base font-medium text-[#9CA3AF]">
                 {' '}/ {isPaid ? '∞' : maxProjects}
               </span>
             </p>
-            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-[#f0eae6]">
+            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-[#F1F2F5]">
               <div
-                className="h-full rounded-full bg-[#ff6747] transition-all"
+                className="h-full rounded-full bg-[#0D1117] transition-all"
                 style={{ width: `${usagePct}%` }}
               />
             </div>
@@ -239,17 +239,17 @@ export default function BillingPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-[#eee7e3] bg-white p-6 shadow-[0_10px_24px_rgba(31,41,55,0.035)]">
-            <p className="text-sm font-semibold text-[#111827]">Shopify export</p>
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_10px_24px_rgba(16,24,40,0.035)]">
+            <p className="text-sm font-semibold text-[#0D1117]">Shopify export</p>
             <div className="mt-3 flex items-center gap-2">
               <span
                 className={`grid h-9 w-9 place-items-center rounded-xl ${
-                  entitlement?.canExport ? 'bg-[#effaf3] text-[#1f7a44]' : 'bg-[#f4f1ee] text-[#9aa2af]'
+                  entitlement?.canExport ? 'bg-[#effaf3] text-[#1f7a44]' : 'bg-[#F3F4F6] text-[#9CA3AF]'
                 }`}
               >
                 <Download size={18} strokeWidth={1.9} />
               </span>
-              <p className="text-sm font-medium text-[#111827]">
+              <p className="text-sm font-medium text-[#0D1117]">
                 {entitlement?.canExport ? 'Enabled' : 'Disabled on Free'}
               </p>
             </div>
@@ -263,7 +263,7 @@ export default function BillingPage() {
 
         {/* Pricing / plan switching */}
         <section>
-          <h2 className="mb-4 text-lg font-bold text-[#111827]">Plans</h2>
+          <h2 className="mb-4 text-lg font-bold text-[#0D1117]">Plans</h2>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {(['free', 'monthly', 'yearly'] as PlanId[]).map((id) => {
               const p = PLANS[id];
@@ -272,28 +272,28 @@ export default function BillingPage() {
               return (
                 <div
                   key={id}
-                  className={`flex flex-col rounded-2xl border bg-white p-5 shadow-[0_10px_24px_rgba(31,41,55,0.035)] ${
-                    isCurrent ? 'border-[#ff6747] ring-1 ring-[#ffd4c7]' : 'border-[#eee7e3]'
+                  className={`flex flex-col rounded-2xl border bg-white p-5 shadow-[0_10px_24px_rgba(16,24,40,0.035)] ${
+                    isCurrent ? 'border-[#0D1117] ring-1 ring-[#C0C4CC]' : 'border-[#E5E7EB]'
                   }`}
                 >
                   <div className="mb-3 flex items-center justify-between">
-                    <p className="text-sm font-semibold text-[#111827]">{p.name}</p>
+                    <p className="text-sm font-semibold text-[#0D1117]">{p.name}</p>
                     {isCurrent && (
-                      <span className="rounded-full bg-[#fff3ef] px-2.5 py-0.5 text-xs font-semibold text-[#ff6747]">
+                      <span className="rounded-full bg-[#F1F2F5] px-2.5 py-0.5 text-xs font-semibold text-[#0D1117]">
                         Current
                       </span>
                     )}
                   </div>
                   <p className="flex items-baseline gap-1">
-                    <span className="text-2xl font-bold text-[#111827]">
+                    <span className="text-2xl font-bold text-[#0D1117]">
                       {formatPrice(p.amount, p.currency)}
                     </span>
                     {p.interval && <span className="text-sm text-[#6b7280]">/{p.interval}</span>}
                   </p>
-                  <p className="mt-0.5 text-xs text-[#9aa2af]">{p.tagline}</p>
+                  <p className="mt-0.5 text-xs text-[#9CA3AF]">{p.tagline}</p>
                   <ul className="my-4 space-y-2">
                     {p.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-[13px] text-[#4b5563]">
+                      <li key={f} className="flex items-start gap-2 text-[13px] text-[#3B424B]">
                         <Check size={15} strokeWidth={2.4} className="mt-0.5 shrink-0 text-[#35b86b]" />
                         {f}
                       </li>
@@ -303,7 +303,7 @@ export default function BillingPage() {
                     {isCurrent ? (
                       <button
                         disabled
-                        className="h-10 w-full rounded-xl border border-[#e8e2de] bg-[#faf7f5] text-sm font-medium text-[#9aa2af]"
+                        className="h-10 w-full rounded-xl border border-[#E5E7EB] bg-[#F8FAFC] text-sm font-medium text-[#9CA3AF]"
                       >
                         Current plan
                       </button>
@@ -311,7 +311,7 @@ export default function BillingPage() {
                       <button
                         onClick={() => void run(`checkout-${id}`, () => startCheckout(id as 'monthly' | 'yearly'))}
                         disabled={busy !== null}
-                        className="flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#ff6747] text-sm font-semibold text-white transition hover:bg-[#f85b3a] disabled:opacity-60"
+                        className="flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#0D1117] text-sm font-semibold text-white transition hover:bg-[#1A1F24] disabled:opacity-60"
                       >
                         {busy === `checkout-${id}` ? (
                           <Loader2 size={15} className="animate-spin" />
@@ -325,7 +325,7 @@ export default function BillingPage() {
                       <button
                         onClick={() => void run('portal', openBillingPortal)}
                         disabled={busy !== null || !isPaid}
-                        className="h-10 w-full rounded-xl border border-[#e8e2de] bg-white text-sm font-medium text-[#111827] transition hover:bg-[#fff8f5] disabled:opacity-50"
+                        className="h-10 w-full rounded-xl border border-[#E5E7EB] bg-white text-sm font-medium text-[#0D1117] transition hover:bg-[#F8FAFC] disabled:opacity-50"
                         title={isPaid ? 'Cancel your paid plan to return to Free' : ''}
                       >
                         {isPaid ? 'Downgrade' : 'Included'}

@@ -1,8 +1,8 @@
 <img width="1672" height="941" alt="Full Stack Shopify Theme Builder_2" src="https://github.com/user-attachments/assets/d5777d9a-9ec1-47fe-a4ac-dcc6f8b8f074" />
 
-# AI Shopify Theme Builder
+# vlogs.fun — AI Shopify Theme Builder
 
-AI Shopify Theme Builder is a Next.js app for generating Shopify storefront concepts from prompts, previewing them in real time, editing sections inline, and exporting the result into Shopify-friendly theme assets.
+vlogs.fun is a Next.js app for generating Shopify storefront concepts from prompts, previewing them in real time, editing sections inline, and exporting the result into Shopify-friendly theme assets.
 
 ## Requirements
 

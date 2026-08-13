@@ -152,11 +152,11 @@ export default function EditorPreview() {
 
   return (
     <section className="flex min-w-0 flex-1 flex-col">
-      <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-[#ece6e2] bg-white shadow-[0_10px_30px_rgba(31,41,55,0.05)]">
+      <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-[#ece6e2] bg-white shadow-[0_10px_30px_rgba(16,24,40,0.05)]">
         {/* Browser tab strip */}
         <div className="flex items-center gap-1 overflow-x-auto border-b border-[#efeae6] bg-[#f4f0ec] px-2 pt-2">
           {pages.length === 0 && (
-            <div className="flex h-9 items-center px-3 text-sm text-[#9aa2af]">No pages yet</div>
+            <div className="flex h-9 items-center px-3 text-sm text-[#9CA3AF]">No pages yet</div>
           )}
           {pages.map((tab) => (
             <PreviewTab
@@ -178,24 +178,24 @@ export default function EditorPreview() {
             <span className="h-3 w-3 rounded-full bg-[#28c840]" />
           </div>
 
-          <div className="flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-[#eee7e3] bg-[#faf8f6] px-3 py-1.5">
+          <div className="flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-[#E5E7EB] bg-[#faf8f6] px-3 py-1.5">
             <span className="grid h-4 w-4 place-items-center rounded-full bg-[#e8f6ee] text-[9px] font-bold text-[#35b86b]">
               ✓
             </span>
             <span className="truncate text-[13px] text-[#6b7280]">
               {STORE_DOMAIN}
-              <span className="text-[#9aa2af]">{activePage?.path ?? '/'}</span>
+              <span className="text-[#9CA3AF]">{activePage?.path ?? '/'}</span>
             </span>
             <button
               aria-label="Reload preview"
               onClick={() => setReloadKey((k) => k + 1)}
-              className="ml-auto grid h-6 w-6 shrink-0 place-items-center rounded-md text-[#9aa2af] transition hover:bg-black/5 hover:text-[#4b5563]"
+              className="ml-auto grid h-6 w-6 shrink-0 place-items-center rounded-md text-[#9CA3AF] transition hover:bg-black/5 hover:text-[#3B424B]"
             >
               <RotateCw size={14} strokeWidth={2} />
             </button>
           </div>
 
-          <div className="flex items-center gap-1 rounded-lg border border-[#eee7e3] bg-white p-0.5">
+          <div className="flex items-center gap-1 rounded-lg border border-[#E5E7EB] bg-white p-0.5">
             {VIEWPORTS.map((v) => {
               const Icon = v.icon;
               const isActive = v.id === viewport;
@@ -206,8 +206,8 @@ export default function EditorPreview() {
                   aria-pressed={isActive}
                   onClick={() => setViewport(v.id)}
                   className={`grid h-7 w-7 place-items-center rounded-md transition ${isActive
-                      ? 'bg-[#fff3ef] text-[#f05a32]'
-                      : 'text-[#9aa2af] hover:bg-[#faf8f6] hover:text-[#4b5563]'
+                      ? 'bg-[#F1F2F5] text-[#0D1117]'
+                      : 'text-[#9CA3AF] hover:bg-[#faf8f6] hover:text-[#3B424B]'
                     }`}
                 >
                   <Icon size={15} strokeWidth={1.9} />
@@ -237,8 +237,8 @@ export default function EditorPreview() {
                   aria-pressed={editMode}
                   className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[13px] font-medium shadow-sm transition ${
                     editMode
-                      ? 'border-transparent bg-[#f05a32] text-white hover:bg-[#e14a24]'
-                      : 'border-[#eee7e3] bg-white/90 text-[#4b5563] backdrop-blur hover:bg-white hover:text-[#111827]'
+                      ? 'border-transparent bg-[#0D1117] text-white hover:bg-[#1A1F24]'
+                      : 'border-[#E5E7EB] bg-white/90 text-[#3B424B] backdrop-blur hover:bg-white hover:text-[#0D1117]'
                   }`}
                 >
                   {editMode ? <Check size={15} strokeWidth={2.2} /> : <Pencil size={15} strokeWidth={2} />}
@@ -267,10 +267,10 @@ export default function EditorPreview() {
               />
             ) : (
               <div className="grid h-full min-h-[320px] place-items-center">
-                <div className="flex flex-col items-center gap-3 text-center text-[#9aa2af]">
+                <div className="flex flex-col items-center gap-3 text-center text-[#9CA3AF]">
                   {generatingPageId ? (
                     <>
-                      <Loader2 size={22} className="animate-spin text-[#ff8a66]" />
+                      <Loader2 size={22} className="animate-spin text-[#C0C4CC]" />
                       <p className="text-sm font-medium">Generating your preview…</p>
                     </>
                   ) : (
@@ -285,8 +285,8 @@ export default function EditorPreview() {
             {/* Overlay while a page is still empty and generating. */}
             {activePage && !activeHtml && generatingPageId === activePage.id && (
               <div className="pointer-events-none absolute inset-0 grid place-items-center bg-white">
-                <div className="flex flex-col items-center gap-3 text-center text-[#9aa2af]">
-                  <Loader2 size={22} className="animate-spin text-[#ff8a66]" />
+                <div className="flex flex-col items-center gap-3 text-center text-[#9CA3AF]">
+                  <Loader2 size={22} className="animate-spin text-[#C0C4CC]" />
                   <p className="text-sm font-medium">Generating your {activePage.label}…</p>
                 </div>
               </div>
@@ -315,22 +315,22 @@ function PreviewTab({
   return (
     <div
       className={`group flex h-9 min-w-0 max-w-[180px] shrink-0 items-center gap-2 rounded-t-lg px-3 text-sm transition ${isActive
-          ? '-mb-px border-x border-t border-[#efeae6] bg-white font-medium text-[#111827]'
+          ? '-mb-px border-x border-t border-[#efeae6] bg-white font-medium text-[#0D1117]'
           : 'text-[#6b7280] hover:bg-white/60'
         }`}
     >
       <button onClick={onSelect} className="flex min-w-0 items-center gap-2">
         {isGenerating ? (
-          <Loader2 size={14} className="animate-spin text-[#f05a32]" />
+          <Loader2 size={14} className="animate-spin text-[#0D1117]" />
         ) : (
-          <Icon size={15} strokeWidth={1.9} className={isActive ? 'text-[#f05a32]' : 'text-[#9aa2af]'} />
+          <Icon size={15} strokeWidth={1.9} className={isActive ? 'text-[#0D1117]' : 'text-[#9CA3AF]'} />
         )}
         <span className="truncate">{tab.label}</span>
       </button>
       <button
         aria-label={`Close ${tab.label}`}
         onClick={onClose}
-        className="grid h-5 w-5 shrink-0 place-items-center rounded-md text-[#9aa2af] opacity-0 transition hover:bg-black/5 hover:text-[#4b5563] group-hover:opacity-100"
+        className="grid h-5 w-5 shrink-0 place-items-center rounded-md text-[#9CA3AF] opacity-0 transition hover:bg-black/5 hover:text-[#3B424B] group-hover:opacity-100"
       >
         <X size={13} strokeWidth={2.2} />
       </button>

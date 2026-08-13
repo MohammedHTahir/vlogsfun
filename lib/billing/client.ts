@@ -5,7 +5,7 @@ import type { SubscriptionStatus } from './types';
 /**
  * Client-side billing helpers — thin wrappers over the server billing routes.
  * They attach the InsForge access token so the server can authorize the caller.
- * No secrets here; all Stripe work happens server-side.
+ * No secrets here; all PayPal work happens server-side.
  */
 
 /**
@@ -49,7 +49,7 @@ export async function fetchEntitlement(): Promise<EntitlementDTO> {
 }
 
 /**
- * Start Stripe Checkout for a paid plan and redirect the browser to it.
+ * Start a PayPal subscription for a paid plan and redirect the browser to it.
  * Resolves only if the redirect couldn't be performed (error path).
  */
 export async function startCheckout(plan: Exclude<PlanId, 'free'>): Promise<void> {
@@ -67,7 +67,7 @@ export async function startCheckout(plan: Exclude<PlanId, 'free'>): Promise<void
 
 /**
  * Cancel (or resume) the current subscription at period end. Returns after the
- * server has updated Stripe; call `refresh()` on the subscription context to
+ * server has updated PayPal; call `refresh()` on the subscription context to
  * pick up the new state (the webhook also syncs it).
  */
 export async function setCancelAtPeriodEnd(cancel: boolean): Promise<void> {
@@ -82,7 +82,7 @@ export async function setCancelAtPeriodEnd(cancel: boolean): Promise<void> {
   }
 }
 
-/** Open the Stripe Customer Portal and redirect the browser to it. */
+/** Open the PayPal automatic-payments page and redirect the browser to it. */
 export async function openBillingPortal(): Promise<void> {
   const res = await fetch('/api/billing/portal', {
     method: 'POST',

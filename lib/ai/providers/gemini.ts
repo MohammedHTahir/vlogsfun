@@ -42,6 +42,65 @@ function toContents(messages: Turn[]) {
   }));
 }
 
+/**
+ * Models routinely deviate from the exact enum/casing we ask for ("Homepage"
+ * instead of "home", mixed-case ids, missing targetPage). Normalize the raw
+ * plan JSON BEFORE Zod validation so one bad casing doesn't kill the turn.
+ */
+function slugifyId(value: unknown, fallback: string): string {
+  const slug = String(value ?? '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 40);
+  return slug || fallback;
+}
+
+const TYPE_MAP: Record<string, string> = {
+  homepage: 'home',
+  'home-page': 'home',
+  landing: 'home',
+  'landing-page': 'home',
+  index: 'home',
+  products: 'product',
+  'product-page': 'product',
+  pdp: 'product',
+  collections: 'collection',
+  'collection-page': 'collection',
+  plp: 'collection',
+  'shopping-cart': 'cart',
+  checkout: 'checkout',
+  page: 'custom',
+};
+
+function normalizePage(raw: unknown, fallbackId: string): unknown {
+  if (!raw || typeof raw !== 'object') return raw;
+  const p = raw as Record<string, unknown>;
+  const rawType = String(p.type ?? 'custom').toLowerCase().trim();
+  const type = TYPE_MAP[rawType] ?? rawType;
+  const label = String(p.label ?? 'Page').slice(0, 60) || 'Page';
+  return {
+    id: slugifyId(p.id, fallbackId),
+    label,
+    type,
+    path: typeof p.path === 'string' && p.path.trim() ? p.path.trim().slice(0, 120) : '/',
+  };
+}
+
+function normalizeTurnPlan(raw: unknown): unknown {
+  if (!raw || typeof raw !== 'object') return raw;
+  const plan = raw as Record<string, unknown>;
+  const plannedPages = Array.isArray(plan.plannedPages)
+    ? plan.plannedPages.map((p, i) => normalizePage(p, `page-${i + 1}`))
+    : [];
+  return {
+    reply: typeof plan.reply === 'string' && plan.reply.trim() ? plan.reply : 'Working on that now.',
+    action: plan.action,
+    plannedPages,
+    targetPage: plan.targetPage ? normalizePage(plan.targetPage, 'home') : plan.targetPage ?? null,
+  };
+}
+
 export function createGeminiProvider(model: string): AIProvider {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
@@ -71,8 +130,9 @@ export function createGeminiProvider(model: string): AIProvider {
         return { reply: text.trim() || 'Sorry, could you rephrase that?', action: 'chat', plannedPages: [] };
       }
 
-      const result = turnPlanSchema.safeParse(parsed);
+      const result = turnPlanSchema.safeParse(normalizeTurnPlan(parsed));
       if (!result.success) {
+        console.error('[ai] planTurn schema mismatch:', result.error.issues, '\nraw:', text.slice(0, 500));
         return { reply: 'Sorry, I had trouble planning that. Could you rephrase?', action: 'chat', plannedPages: [] };
       }
       return result.data;

@@ -22,7 +22,7 @@ export default function DesignSystemPage() {
               ⬡
             </div>
             <div>
-              <h1 className="text-h1 text-neutral-900">Shopify Theme Builder</h1>
+              <h1 className="text-h1 text-neutral-900">vlogs.fun</h1>
               <p className="text-body-lg text-neutral-500 mt-1">Design System</p>
             </div>
           </div>

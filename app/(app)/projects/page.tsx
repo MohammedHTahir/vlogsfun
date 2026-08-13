@@ -62,18 +62,18 @@ export default function ProjectsPage() {
   }, [user, authLoading]);
 
   return (
-    <div className="min-h-screen bg-[#fffdfc] px-8 py-10">
+    <div className="min-h-screen bg-[#FFFFFF] px-8 py-10">
       <div className="mx-auto max-w-[1120px]">
         <header className="mb-8 flex items-end justify-between gap-4">
           <div>
-            <h1 className="text-[28px] font-bold leading-tight text-[#111827]">Your projects</h1>
+            <h1 className="text-[28px] font-bold leading-tight text-[#0D1117]">Your projects</h1>
             <p className="mt-1 text-sm text-[#6b7280]">
               Every storefront you&apos;ve generated, ready to reopen and edit.
             </p>
           </div>
           <Link
             href="/"
-            className="inline-flex h-10 shrink-0 items-center gap-2 rounded-xl bg-[#ff6747] px-4 text-sm font-semibold text-white shadow-[0_12px_22px_rgba(255,103,71,0.2)] transition hover:bg-[#f85b3a]"
+            className="inline-flex h-10 shrink-0 items-center gap-2 rounded-xl bg-[#0D1117] px-4 text-sm font-semibold text-white shadow-[0_12px_22px_rgba(16,24,40,0.2)] transition hover:bg-[#1A1F24]"
           >
             <Plus size={17} strokeWidth={2.2} />
             New project
@@ -83,7 +83,7 @@ export default function ProjectsPage() {
         {state === 'loading' && (
           <div className="grid place-items-center py-28 text-[#6b7280]">
             <div className="flex items-center gap-3 text-sm font-medium">
-              <Loader2 size={18} className="animate-spin text-[#ff6747]" />
+              <Loader2 size={18} className="animate-spin text-[#0D1117]" />
               Loading your projects…
             </div>
           </div>
@@ -98,20 +98,20 @@ export default function ProjectsPage() {
         )}
 
         {state === 'ready' && projects.length === 0 && (
-          <div className="grid place-items-center rounded-2xl border border-dashed border-[#e7e2df] bg-white py-24 text-center">
+          <div className="grid place-items-center rounded-2xl border border-dashed border-[#E5E7EB] bg-white py-24 text-center">
             <div className="flex flex-col items-center gap-4">
-              <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#fff3ef] text-[#f05a32]">
+              <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#F1F2F5] text-[#0D1117]">
                 <FolderOpen size={26} strokeWidth={1.8} />
               </span>
               <div>
-                <h2 className="text-base font-bold text-[#111827]">No projects yet</h2>
+                <h2 className="text-base font-bold text-[#0D1117]">No projects yet</h2>
                 <p className="mt-1 text-sm text-[#6b7280]">
                   Describe a Shopify page on the home screen to create your first one.
                 </p>
               </div>
               <Link
                 href="/"
-                className="inline-flex h-10 items-center gap-2 rounded-xl bg-[#ff6747] px-4 text-sm font-semibold text-white transition hover:bg-[#f85b3a]"
+                className="inline-flex h-10 items-center gap-2 rounded-xl bg-[#0D1117] px-4 text-sm font-semibold text-white transition hover:bg-[#1A1F24]"
               >
                 <Plus size={17} strokeWidth={2.2} />
                 Create a project
@@ -136,9 +136,9 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/editor/${project.id}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-[#eee7e3] bg-white shadow-[0_10px_24px_rgba(31,41,55,0.035)] transition hover:-translate-y-0.5 hover:border-[#ffd4c7] hover:shadow-[0_16px_32px_rgba(31,41,55,0.08)]"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-[0_10px_24px_rgba(16,24,40,0.035)] transition hover:-translate-y-0.5 hover:border-[#C0C4CC] hover:shadow-[0_16px_32px_rgba(16,24,40,0.08)]"
     >
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#f6f2ef]">
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#F3F4F6]">
         {project.thumbnail_url ? (
           // eslint-disable-next-line @next/next/no-img-element -- remote InsForge Storage URL, not optimizable at build time.
           <img
@@ -158,10 +158,10 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="flex flex-1 flex-col gap-1 p-4">
-        <h3 className="line-clamp-2 text-[15px] font-bold leading-snug text-[#111827]">
+        <h3 className="line-clamp-2 text-[15px] font-bold leading-snug text-[#0D1117]">
           {project.name}
         </h3>
-        <p className="mt-auto pt-2 text-xs font-medium text-[#9aa2af]">
+        <p className="mt-auto pt-2 text-xs font-medium text-[#9CA3AF]">
           Created {formatCreatedAt(project.created_at)}
         </p>
       </div>

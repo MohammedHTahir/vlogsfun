@@ -1,38 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  /* Primary Colors */
-  --color-primary-600: #FF5840;
-  --color-primary-500: #FF8966;
-  --color-primary-300: #FFB3A1;
-  --color-primary-200: #FFC9B8;
-  --color-primary-100: #FFE5DE;
+  /* Primary — graphite scale (style guide) */
+  --color-primary-900: #0D1117;
+  --color-primary-700: #1A1F24;
+  --color-primary-500: #3B424B;
+  --color-primary-600: #0D1117;
+  --color-primary-300: #6B7280;
+  --color-primary-200: #9CA3AF;
+  --color-primary-100: #E5E7EB;
 
-  /* Neutral Colors */
-  --color-neutral-900: #0F1724;
-  --color-neutral-700: #2C3E54;
-  --color-neutral-500: #6B7C96;
-  --color-neutral-300: #B0C4D9;
-  --color-neutral-100: #DCE5ED;
-  --color-neutral-50: #F4F9FF;
+  /* Neutral — cool grey scale (style guide) */
+  --color-neutral-900: #0D1117;
+  --color-neutral-700: #3B424B;
+  --color-neutral-500: #6B7280;
+  --color-neutral-300: #D1D5DB;
+  --color-neutral-200: #E5E7EB;
+  --color-neutral-100: #F3F4F6;
+  --color-neutral-50: #F8FAFC;
 
-  /* Semantic Colors */
-  --color-success: #22CC58;
-  --color-warning: #F9B838;
+  /* Silver accents (style guide) */
+  --color-silver: #C0C4CC;
+  --color-silver-light: #E9EAEE;
+  --color-accent-soft: #F1F2F5;
+
+  /* Semantic Colors (style guide) */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
   --color-error: #EF4444;
-  --color-info: #2882F6;
+  --color-info: #3B82F6;
   --color-purple: #885CF8;
 
   /* Background & Foreground */
   --background: #FFFFFF;
-  --foreground: #0F1724;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #F4F9FF;
-  }
+  --foreground: #0D1117;
 }
 
 @theme inline {
@@ -57,6 +58,9 @@
   --color-error: var(--color-error);
   --color-info: var(--color-info);
   --color-purple: var(--color-purple);
+  --color-silver: var(--color-silver);
+  --color-silver-light: var(--color-silver-light);
+  --color-accent-soft: var(--color-accent-soft);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -84,12 +88,12 @@
   --radius-lg: 20px;
   --radius-full: 999px;
 
-  /* Shadows */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.08);
-  --shadow-xl: 0 32px 64px rgba(0, 0, 0, 0.1);
+  /* Shadows (style guide: rgba(16, 24, 40, ...)) */
+  --shadow-xs: 0px 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-sm: 0px 1px 3px rgba(16, 24, 40, 0.08), 0px 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-md: 0px 4px 6px rgba(16, 24, 40, 0.08), 0px 2px 4px rgba(16, 24, 40, 0.04);
+  --shadow-lg: 0px 10px 15px rgba(16, 24, 40, 0.08), 0px 4px 6px rgba(16, 24, 40, 0.04);
+  --shadow-xl: 0px 20px 25px rgba(16, 24, 40, 0.12), 0px 10px 10px rgba(16, 24, 40, 0.04);
 
   /* Font Sizes */
   --text-xs: 12px;

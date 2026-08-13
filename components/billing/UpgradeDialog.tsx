@@ -7,7 +7,7 @@ import { startCheckout } from '@/lib/billing/client';
 
 /**
  * Reusable upgrade modal shown when a Free user hits the project limit or tries
- * to export. Presents the Monthly and Yearly plans and starts Stripe Checkout
+ * to export. Presents the Monthly and Yearly plans and starts PayPal checkout
  * for the chosen one. Purely presentational beyond the checkout call.
  */
 interface UpgradeDialogProps {
@@ -34,7 +34,7 @@ export default function UpgradeDialog({
     setBusy(plan);
     try {
       await startCheckout(plan);
-      // On success the browser navigates to Stripe; nothing else to do.
+      // On success the browser navigates to PayPal; nothing else to do.
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not start checkout.');
       setBusy(null);
@@ -50,14 +50,14 @@ export default function UpgradeDialog({
         if (e.target === e.currentTarget && !busy) onClose();
       }}
     >
-      <div className="w-full max-w-[560px] overflow-hidden rounded-2xl border border-[#eee7e3] bg-white shadow-[0_32px_64px_rgba(31,41,55,0.24)]">
+      <div className="w-full max-w-[560px] overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-[0_32px_64px_rgba(16,24,40,0.24)]">
         <div className="flex items-start justify-between gap-4 border-b border-[#f1ebe7] px-6 py-5">
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-full bg-[#fff3ef] text-[#ff6747]">
+            <span className="grid h-10 w-10 place-items-center rounded-full bg-[#F1F2F5] text-[#0D1117]">
               <Sparkles size={20} fill="currentColor" strokeWidth={1.5} />
             </span>
             <div>
-              <h2 className="text-base font-bold text-[#111827]">{title}</h2>
+              <h2 className="text-base font-bold text-[#0D1117]">{title}</h2>
               <p className="mt-0.5 text-sm text-[#6b7280]">{description}</p>
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function UpgradeDialog({
             aria-label="Close"
             onClick={onClose}
             disabled={busy !== null}
-            className="grid h-8 w-8 shrink-0 place-items-center rounded-lg text-[#9aa2af] transition hover:bg-[#f6f2ef] hover:text-[#111827] disabled:opacity-40"
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-lg text-[#9CA3AF] transition hover:bg-[#F3F4F6] hover:text-[#0D1117] disabled:opacity-40"
           >
             <X size={18} strokeWidth={2} />
           </button>
@@ -76,21 +76,21 @@ export default function UpgradeDialog({
           {PAID_PLANS.map((plan) => (
             <div
               key={plan.id}
-              className="flex flex-col rounded-2xl border border-[#eee7e3] bg-[#fffdfc] p-5"
+              className="flex flex-col rounded-2xl border border-[#E5E7EB] bg-[#FFFFFF] p-5"
             >
               <div className="mb-3">
-                <p className="text-sm font-semibold text-[#111827]">{plan.name}</p>
+                <p className="text-sm font-semibold text-[#0D1117]">{plan.name}</p>
                 <p className="mt-1 flex items-baseline gap-1">
-                  <span className="text-2xl font-bold text-[#111827]">
+                  <span className="text-2xl font-bold text-[#0D1117]">
                     {formatPrice(plan.amount, plan.currency)}
                   </span>
                   <span className="text-sm text-[#6b7280]">/{plan.interval}</span>
                 </p>
-                <p className="mt-0.5 text-xs text-[#9aa2af]">{plan.tagline}</p>
+                <p className="mt-0.5 text-xs text-[#9CA3AF]">{plan.tagline}</p>
               </div>
               <ul className="mb-5 space-y-2">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2 text-[13px] text-[#4b5563]">
+                  <li key={feature} className="flex items-start gap-2 text-[13px] text-[#3B424B]">
                     <Check size={15} strokeWidth={2.4} className="mt-0.5 shrink-0 text-[#35b86b]" />
                     {feature}
                   </li>
@@ -100,7 +100,7 @@ export default function UpgradeDialog({
                 type="button"
                 onClick={() => void choose(plan.id as 'monthly' | 'yearly')}
                 disabled={busy !== null}
-                className="mt-auto flex h-11 items-center justify-center gap-2 rounded-xl bg-[#ff6747] text-sm font-semibold text-white shadow-[0_12px_22px_rgba(255,103,71,0.2)] transition hover:bg-[#f85b3a] disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-auto flex h-11 items-center justify-center gap-2 rounded-xl bg-[#0D1117] text-sm font-semibold text-white shadow-[0_12px_22px_rgba(16,24,40,0.2)] transition hover:bg-[#1A1F24] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {busy === plan.id ? (
                   <Loader2 size={16} className="animate-spin" />

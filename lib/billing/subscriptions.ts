@@ -6,9 +6,17 @@ import type { Entitlement, Subscription, SubscriptionStatus } from './types';
 
 /**
  * Server-side `subscriptions` repository. All access uses the admin client
- * (bypasses RLS) because writes happen in the Stripe webhook where there is no
+ * (bypasses RLS) because writes happen in the PayPal webhook where there is no
  * user session, and reads back the row for server-side gating. Keep every query
  * here (AGENTS.md §14) — routes stay thin.
+ *
+ * NOTE on column names: the table was provisioned with `stripe_customer_id` /
+ * `stripe_subscription_id` columns during the Stripe era. Billing now runs on
+ * PayPal, so those columns store the PayPal payer id and PayPal subscription
+ * (billing agreement) id respectively. They can be renamed with:
+ *   ALTER TABLE subscriptions RENAME COLUMN stripe_customer_id TO paypal_payer_id;
+ *   ALTER TABLE subscriptions RENAME COLUMN stripe_subscription_id TO paypal_subscription_id;
+ * (then update the field names in this file, types.ts, and the routes).
  */
 
 const TABLE = 'subscriptions';
@@ -32,21 +40,6 @@ export async function getSubscription(userId: string): Promise<Subscription | nu
   return unwrap<Subscription>(data);
 }
 
-/** Look up a subscription by its Stripe customer id (used from webhooks). */
-export async function getSubscriptionByCustomer(
-  customerId: string
-): Promise<Subscription | null> {
-  const { data, error } = await getAdminClient()
-    .database.from(TABLE)
-    .select('*')
-    .eq('stripe_customer_id', customerId)
-    .limit(1);
-
-  if (error) {
-    throw new Error(error.message ?? 'Failed to load subscription.');
-  }
-  return unwrap<Subscription>(data);
-}
 
 /** Count the projects a user owns. Drives the Free-plan limit check. */
 export async function countUserProjects(userId: string): Promise<number> {
@@ -63,7 +56,9 @@ export async function countUserProjects(userId: string): Promise<number> {
 
 export interface SubscriptionUpsert {
   userId: string;
+  /** PayPal payer id (stored in the legacy stripe_customer_id column). */
   stripeCustomerId: string | null;
+  /** PayPal subscription / billing-agreement id (legacy stripe_subscription_id column). */
   stripeSubscriptionId: string | null;
   plan: PlanId;
   billingInterval: BillingInterval | null;
@@ -75,8 +70,8 @@ export interface SubscriptionUpsert {
 
 /**
  * Insert or update the subscription row for a user (one row per user). Called
- * from the webhook after every relevant Stripe event so local state always
- * mirrors Stripe. Uses `user_id` as the natural key.
+ * from the webhook after every relevant PayPal event so local state always
+ * mirrors PayPal. Uses `user_id` as the natural key.
  */
 export async function upsertSubscription(input: SubscriptionUpsert): Promise<void> {
   const db = getAdminClient().database;
@@ -107,42 +102,6 @@ export async function upsertSubscription(input: SubscriptionUpsert): Promise<voi
   if (error) throw new Error(error.message ?? 'Failed to create subscription.');
 }
 
-/**
- * Persist just the Stripe customer id for a user (before a subscription exists),
- * so we can reuse the same customer across checkout sessions and the portal.
- */
-export async function ensureCustomerId(
-  userId: string,
-  customerId: string
-): Promise<void> {
-  const existing = await getSubscription(userId);
-  const db = getAdminClient().database;
-  const now = new Date().toISOString();
-
-  if (existing) {
-    if (existing.stripe_customer_id === customerId) return;
-    const { error } = await db
-      .from(TABLE)
-      .update({ stripe_customer_id: customerId, updated_at: now })
-      .eq('user_id', userId);
-    if (error) throw new Error(error.message ?? 'Failed to save customer id.');
-    return;
-  }
-
-  const { error } = await db.from(TABLE).insert([
-    {
-      user_id: userId,
-      stripe_customer_id: customerId,
-      plan: 'free',
-      billing_interval: null,
-      status: 'free',
-      cancel_at_period_end: false,
-      created_at: now,
-      updated_at: now,
-    },
-  ]);
-  if (error) throw new Error(error.message ?? 'Failed to save customer id.');
-}
 
 /** Load the authoritative entitlement for a user (subscription + project count). */
 export async function getEntitlement(userId: string): Promise<Entitlement> {

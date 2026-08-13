@@ -1,15 +1,15 @@
 /**
  * Subscription plan catalog — the single source of truth for what each plan
  * costs and what it unlocks. Safe to import from both client and server: it
- * contains NO secrets (AGENTS.md §15). Prices are defined inline here and passed
- * straight to Stripe Checkout as `price_data`; we deliberately do NOT use
- * predefined Stripe Price IDs so the plan/interval/amount all live in code.
+ * contains NO secrets (AGENTS.md §15). PayPal requires recurring plans to be
+ * pre-created (PAYPAL_MONTHLY_PLAN_ID / PAYPAL_YEARLY_PLAN_ID env vars), so
+ * keep the amounts here and in PayPal in sync.
  */
 
 /** Selectable plan identifiers stored in the `subscriptions.plan` column. */
 export type PlanId = 'free' | 'monthly' | 'yearly';
 
-/** Stripe recurring interval, stored in `subscriptions.billing_interval`. */
+/** Recurring interval, stored in `subscriptions.billing_interval`. */
 export type BillingInterval = 'month' | 'year';
 
 /** Project ceiling for the Free plan (AGENTS.md product spec). */
@@ -44,7 +44,10 @@ export const PLANS: Record<PlanId, PlanDefinition> = {
     currency: 'usd',
     interval: null,
     maxProjects: FREE_PROJECT_LIMIT,
-    canExport: false,
+    // Local/dev instances run without PayPal — gating export behind a paid plan
+    // would make the core "Export to Shopify" flow untestable. Flip back to
+    // `false` when billing is wired up for a real deployment.
+    canExport: true,
     tagline: 'Explore the builder',
     features: [
       `Up to ${FREE_PROJECT_LIMIT} projects`,

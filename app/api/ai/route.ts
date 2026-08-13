@@ -94,8 +94,11 @@ export async function POST(req: NextRequest) {
                 const generated = await provider.generateTheme({ messages, abortSignal: abort });
                 styleGuide = generated.styleGuide;
                 send({ type: 'theme', css: sanitizeThemeCss(generated.css), styleGuide: generated.styleGuide });
-              } catch {
-                // Non-fatal — fall back to generating the page without a shared theme.
+              } catch (themeErr) {
+                // Non-fatal — fall back to generating the page without a shared
+                // theme, but log it: a silent failure here is why every page can
+                // end up looking the same regardless of the prompt.
+                console.error('[ai] theme generation failed:', themeErr);
               }
             }
 

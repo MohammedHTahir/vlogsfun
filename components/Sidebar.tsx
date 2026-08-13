@@ -17,35 +17,32 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[#e7e2df] bg-white px-5 py-8">
+    <aside className="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[#E5E7EB] bg-white px-5 py-8">
       <Link href="/" className="mb-9 flex items-center gap-3 px-1">
+        {/* Logo includes the wordmark — no adjacent text (sidebar is desktop-only). */}
         <Image
-          src="/logo.png"
-          alt="Shopify Theme Builder"
-          width={50}
-          height={50}
-          className="shrink-0 rounded-lg"
+          src="/logotext.png"
+          alt="vlogs.fun"
+          width={140}
+          height={48}
+          className="shrink-0"
           priority
         />
-        <div className="leading-tight">
-          <p className="text-base font-bold text-[#111827]">Shopify</p>
-          <p className="text-base font-bold text-[#111827]">Theme Builder</p>
-        </div>
       </Link>
 
-      <nav className="space-y-3">
+      <nav className="space-y-1.5">
         {navigationItems.map(({ href, label, icon: Icon }) => {
           const isActive = pathname === href;
           return (
             <Link
               key={href}
               href={href}
-              className={`flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] transition-colors ${isActive
-                ? 'bg-[#fff3ef] text-[#f05a32]'
-                : 'text-[#1f2937] hover:bg-[#fff8f5]'
+              className={`flex items-center gap-3 rounded-lg px-4 py-3 text-[15px] transition-colors ${isActive
+                ? 'bg-[#0D1117] text-white'
+                : 'text-[#3B424B] hover:bg-[#F3F4F6]'
                 }`}
             >
-              <span className={`grid h-7 w-7 place-items-center rounded-lg ${isActive ? 'bg-white/60' : 'bg-neutral-50'}`}>
+              <span className={`grid h-7 w-7 place-items-center rounded-md ${isActive ? 'bg-white/10' : 'bg-[#F1F2F5]'}`}>
                 <Icon size={18} strokeWidth={1.8} />
               </span>
               <span className="font-medium">{label}</span>

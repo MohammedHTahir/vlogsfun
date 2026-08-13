@@ -6,8 +6,9 @@ import type { BillingInterval, PlanId } from './plans';
  */
 
 /**
- * Subscription lifecycle status. Mirrors Stripe's subscription statuses plus a
- * local `free` value for users who have never paid (no Stripe subscription).
+ * Subscription lifecycle status. A superset covering the PayPal mappings (see
+ * app/api/billing/webhook/route.ts) plus a local `free` value for users who
+ * have never paid.
  */
 export type SubscriptionStatus =
   | 'free'
@@ -24,7 +25,9 @@ export type SubscriptionStatus =
 export interface Subscription {
   id: string;
   user_id: string;
+  /** Legacy column name — stores the PayPal payer id. */
   stripe_customer_id: string | null;
+  /** Legacy column name — stores the PayPal subscription id. */
   stripe_subscription_id: string | null;
   plan: PlanId;
   billing_interval: BillingInterval | null;

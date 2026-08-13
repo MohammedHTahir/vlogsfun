@@ -45,7 +45,7 @@ export default function SidebarUser() {
         </p>
         <Link
           href="/sign-in"
-          className="grid h-10 place-items-center rounded-xl bg-[#ff6747] text-[15px] font-medium text-white shadow-[0_12px_22px_rgba(255,103,71,0.18)] transition hover:bg-[#f85b3a]"
+          className="grid h-10 place-items-center rounded-xl bg-[#0D1117] text-[15px] font-medium text-white shadow-[0_12px_22px_rgba(16,24,40,0.18)] transition hover:bg-[#1A1F24]"
         >
           Sign in
         </Link>
@@ -71,13 +71,13 @@ export default function SidebarUser() {
             className="h-10 w-10 shrink-0 rounded-full object-cover"
           />
         ) : (
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#fff3ef] text-sm font-semibold text-[#f05a32]">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#F1F2F5] text-sm font-semibold text-[#0D1117]">
             {getInitials(user.name, user.email)}
           </span>
         )}
 
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-[#111827]">
+          <p className="truncate text-sm font-semibold text-[#0D1117]">
             {displayName}
           </p>
           <p className="truncate text-xs text-[#6b7280]">{user.email}</p>
@@ -88,7 +88,7 @@ export default function SidebarUser() {
           onClick={() => void signOut()}
           aria-label="Sign out"
           title="Sign out"
-          className="grid h-8 w-8 shrink-0 place-items-center rounded-lg text-[#6b7280] transition-colors hover:bg-[#fff3ef] hover:text-[#f05a32]"
+          className="grid h-8 w-8 shrink-0 place-items-center rounded-lg text-[#6b7280] transition-colors hover:bg-[#F1F2F5] hover:text-[#0D1117]"
         >
           <LogOut size={16} strokeWidth={1.8} />
         </button>

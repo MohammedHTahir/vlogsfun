@@ -5,7 +5,7 @@ import { createAdminClient, createClient } from '@insforge/sdk';
  * Server-only InsForge clients for the billing layer.
  *
  * The ADMIN client uses the `ik_` api key from `.insforge/project.json`. It
- * bypasses RLS, so it is used exclusively on the server — for the Stripe webhook
+ * bypasses RLS, so it is used exclusively on the server — for the PayPal webhook
  * (no user session) to write the `subscriptions` table, and for server-side
  * project-limit enforcement. It must NEVER be imported into client code; the
  * `server-only` guard turns that into a build error (AGENTS.md §15).

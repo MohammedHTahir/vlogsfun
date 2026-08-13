@@ -52,7 +52,7 @@ export default function EditorPage() {
     return (
       <div className="grid h-screen place-items-center bg-[#fafafa] text-[#6b7280]">
         <div className="flex items-center gap-3 text-sm font-medium">
-          <Loader2 size={18} className="animate-spin text-[#ff6747]" />
+          <Loader2 size={18} className="animate-spin text-[#0D1117]" />
           Loading your project…
         </div>
       </div>
@@ -63,13 +63,13 @@ export default function EditorPage() {
     return (
       <div className="grid h-screen place-items-center bg-[#fafafa] px-6 text-center">
         <div>
-          <h1 className="text-lg font-semibold text-[#111827]">Project not found</h1>
+          <h1 className="text-lg font-semibold text-[#0D1117]">Project not found</h1>
           <p className="mt-2 text-sm text-[#6b7280]">
             This project doesn&apos;t exist or you don&apos;t have access to it.
           </p>
           <button
             onClick={() => router.push('/')}
-            className="mt-5 inline-flex h-10 items-center rounded-xl bg-[#ff6747] px-5 text-sm font-semibold text-white transition hover:bg-[#f85b3a]"
+            className="mt-5 inline-flex h-10 items-center rounded-xl bg-[#0D1117] px-5 text-sm font-semibold text-white transition hover:bg-[#1A1F24]"
           >
             Back to home
           </button>

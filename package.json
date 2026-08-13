@@ -1,5 +1,5 @@
 {
-  "name": "ai-shopify-template-builder",
+  "name": "vlogs-fun",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,15 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@ai-sdk/google": "^4.0.43",
     "@google/genai": "^2.12.0",
     "@insforge/sdk": "^1.4.5",
+    "ai": "^7.0.64",
     "html-to-image": "^1.11.13",
     "lucide-react": "^1.25.0",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "server-only": "^0.0.1",
-    "stripe": "^22.3.2",
     "zod": "^4.4.3"
   },
   "devDependencies": {

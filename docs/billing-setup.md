@@ -1,8 +1,8 @@
-# Billing & subscriptions setup (Stripe + InsForge)
+# Billing & subscriptions setup (PayPal + InsForge)
 
 This wires up the subscription system: Free / Monthly ($9.99) / Yearly ($99.99)
-plans, Stripe Checkout, the Customer Portal, webhooks, and server-enforced
-project limits. Complete these one-time steps before the feature works.
+plans, PayPal Subscriptions checkout, webhooks, and server-enforced project
+limits. Complete these one-time steps before the feature works.
 
 ## 1. Create the `subscriptions` table (InsForge)
 
@@ -14,8 +14,8 @@ row per user; only the user can read their own row, and only the service key
 create table if not exists public.subscriptions (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null unique references auth.users(id) on delete cascade,
-  stripe_customer_id text,
-  stripe_subscription_id text,
+  stripe_customer_id text,      -- stores the PayPal payer id (legacy name)
+  stripe_subscription_id text,  -- stores the PayPal subscription id (legacy name)
   plan text not null default 'free',
   billing_interval text,
   status text not null default 'free',
@@ -26,17 +26,22 @@ create table if not exists public.subscriptions (
   updated_at timestamptz not null default now()
 );
 
-create index if not exists subscriptions_customer_idx
-  on public.subscriptions (stripe_customer_id);
-
 alter table public.subscriptions enable row level security;
 
 -- Users may read ONLY their own subscription. No client insert/update/delete:
--- all writes go through the server (admin key) in the Stripe webhook.
+-- all writes go through the server (admin key) in the PayPal webhook.
 create policy "read own subscription"
   on public.subscriptions for select
   using (auth.uid() = user_id);
 ```
+
+> The `stripe_*` column names are legacy — billing migrated from Stripe to
+> PayPal and the columns were kept to avoid a schema change. They store the
+> PayPal payer id and PayPal subscription (billing agreement) id. Optional
+> rename: `alter table public.subscriptions rename column stripe_customer_id to paypal_payer_id;`
+> (and `stripe_subscription_id` → `paypal_subscription_id`), then update the
+> field names in `lib/billing/subscriptions.ts`, `lib/billing/types.ts`, and
+> the billing routes.
 
 > The webhook and server routes use the InsForge **admin** key, which bypasses
 > RLS, so no write policies are needed for anon/authenticated roles.
@@ -44,47 +49,62 @@ create policy "read own subscription"
 The existing `projects` table is unchanged — the project-limit check counts rows
 there server-side.
 
-## 2. Stripe dashboard
+## 2. PayPal developer dashboard
 
-1. Grab your **Secret key** (`sk_test_…`) from Developers → API keys.
-2. Create a **webhook endpoint** pointing at `https://<your-domain>/api/billing/webhook`
-   and subscribe to these events:
-   - `checkout.session.completed`
-   - `customer.subscription.created`
-   - `customer.subscription.updated`
-   - `customer.subscription.deleted`
-   - `invoice.paid`
-   - `invoice.payment_failed`
-   Copy the endpoint's **Signing secret** (`whsec_…`).
-3. Enable the **Customer Portal** (Settings → Billing → Customer portal) so
-   "Manage Billing" works.
+1. Create a **REST API app** at developer.paypal.com (Sandbox for dev) and copy
+   the **Client ID** and **Secret**.
+2. Create a **Product** (Catalog → Products → Add product, type "Service"),
+   then two **billing plans** under it:
+   - Monthly — $9.99 / month
+   - Yearly — $99.99 / year
+   Copy each plan id (`P-…`). Amounts must match `lib/billing/plans.ts`.
+   (Plans can also be created via the `/v1/billing/plans` API.)
+3. Create a **webhook** pointing at `https://<your-domain>/api/billing/webhook`
+   subscribed to:
+   - `BILLING.SUBSCRIPTION.ACTIVATED`
+   - `BILLING.SUBSCRIPTION.UPDATED`
+   - `BILLING.SUBSCRIPTION.CANCELLED`
+   - `BILLING.SUBSCRIPTION.SUSPENDED`
+   - `BILLING.SUBSCRIPTION.EXPIRED`
+   - `PAYMENT.SALE.COMPLETED`
+   Copy the **Webhook ID** (shown in the webhook's details).
 
-We do **not** create Products or Prices in Stripe — plan name, interval, and
-amount are sent inline as `price_data` from `lib/billing/plans.ts`.
+Note: PayPal subscriptions cannot take inline prices (unlike Stripe Checkout's
+`price_data`) — the plan ids are read from env vars. There is also no hosted
+customer portal: "Manage Billing" redirects to the subscriber's own PayPal
+account → Settings → Payments → Automatic payments. Cancellation is immediate
+(PayPal has no cancel-at-period-end).
 
 ## 3. Environment variables (`.env.local`, server-only)
 
 ```bash
-# Stripe — never expose these to the browser (no NEXT_PUBLIC_ prefix).
-STRIPE_SECRET_KEY=sk_test_xxx
-STRIPE_WEBHOOK_SECRET=whsec_xxx
+# PayPal — never expose these to the browser (no NEXT_PUBLIC_ prefix).
+PAYPAL_ENV=sandbox            # or "live"
+PAYPAL_CLIENT_ID=xxx
+PAYPAL_CLIENT_SECRET=***PAYPAL_WEBHOOK_ID=xxx          # webhook id from step 2.3
+PAYPAL_MONTHLY_PLAN_ID=P-xxx # from step 2.2
+PAYPAL_YEARLY_PLAN_ID=P-xxx
 
 # InsForge admin (service) key — the `api_key` from .insforge/project.json.
 # Server-only: bypasses RLS, used by the webhook and project-limit routes.
 INSFORGE_ADMIN_KEY=ik_xxx
 
-# Public base URL used for Stripe success/cancel/return URLs.
+# Public base URL used for PayPal return/cancel URLs.
 # Optional in dev (falls back to the request origin / http://localhost:3000).
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
 ## 4. Local webhook testing
 
-```bash
-stripe listen --forward-to localhost:3000/api/billing/webhook
-# copy the printed whsec_… into STRIPE_WEBHOOK_SECRET, then:
-stripe trigger checkout.session.completed
-```
+PayPal can't push webhooks to localhost, so either:
+
+- expose the dev server (`ngrok http 3000` or a Cloudflare tunnel) and point a
+  second sandbox webhook at the public URL, or
+- use "Webhook simulator"-style manual testing: send a signed test event from
+  the dashboard's webhook page (PayPal shows delivery attempts + responses).
+
+Sandbox checkout flow: subscribe with a sandbox **personal** account; the money
+moves between sandbox accounts only.
 
 ## 5. How enforcement works
 
@@ -94,6 +114,6 @@ stripe trigger checkout.session.completed
   402 to an upgrade dialog. The browser cannot bypass this.
 - **Shopify export** — gated in the editor by the server-provided entitlement
   (`canExport`); Free users see the upgrade dialog instead of the export flow.
-- **Sync** — the webhook mirrors every Stripe subscription change into the
+- **Sync** — the webhook mirrors every PayPal subscription change into the
   `subscriptions` table, so permissions update automatically after checkout,
-  renewal, cancellation, or a failed payment.
+  renewal, cancellation, or suspension.
