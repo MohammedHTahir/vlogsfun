@@ -1,21 +1,21 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
 import { bearerToken, getUserFromToken } from '@/lib/billing/admin';
-import { paypalPlanId, paypalRequest } from '@/lib/billing/paypal';
+import { getStripe, stripePriceId } from '@/lib/billing/stripe';
 import { appOrigin } from '@/lib/billing/server-utils';
 import { PLANS } from '@/lib/billing/plans';
+import { getSubscription } from '@/lib/billing/subscriptions';
 
 export const runtime = 'nodejs';
 
 /**
- * Start a PayPal subscription for a paid plan (AGENTS.md §5: thin route, §15:
- * the PayPal secret stays server-side).
+ * Create a Stripe Checkout Session for a recurring subscription.
+ * The user is redirected to Stripe's hosted checkout page.
+ * On success Stripe redirects to /billing?checkout=success,
+ * on cancel to /billing?checkout=cancelled.
  *
- * PayPal has no equivalent of Stripe Checkout's inline `price_data`: recurring
- * plans must exist in PayPal ahead of time, so we look up the plan id from env
- * (PAYPAL_MONTHLY_PLAN_ID / PAYPAL_YEARLY_PLAN_ID) and create a subscription
- * that references it. The user id rides along as `custom_id`, which PayPal
- * returns on every webhook event so we can attribute the subscription.
+ * If the user already has a Stripe customer id we attach the session to it so
+ * their payment methods are remembered.
  */
 const bodySchema = z.object({ plan: z.enum(['monthly', 'yearly']) });
 
@@ -36,31 +36,30 @@ export async function POST(req: NextRequest) {
   }
 
   const origin = appOrigin(req);
+  const stripe = getStripe();
+
+  // Reuse existing Stripe customer if we have one.
+  const sub = await getSubscription(user.id);
+  const existingCustomerId = sub?.stripe_customer_id ?? undefined;
+
   try {
-    const subscription = await paypalRequest<{
-      id: string;
-      status: string;
-      links?: Array<{ href: string; rel: string }>;
-    }>('POST', '/v1/billing/subscriptions', {
-      plan_id: paypalPlanId(plan.id),
-      custom_id: user.id,
-      subscriber: user.email ? { email_address: user.email } : undefined,
-      application_context: {
-        brand_name: 'vlogs.fun',
-        user_action: 'SUBSCRIBE_NOW',
-        return_url: `${origin}/billing?checkout=success`,
-        cancel_url: `${origin}/billing?checkout=cancelled`,
+    const session = await stripe.checkout.sessions.create({
+      mode: 'subscription',
+      customer: existingCustomerId,
+      customer_email: existingCustomerId ? undefined : (user.email || undefined),
+      line_items: [{ price: stripePriceId(plan.id), quantity: 1 }],
+      subscription_data: {
+        // Carry the InsForge user id so the webhook can attribute the subscription.
+        metadata: { userId: user.id },
       },
+      success_url: `${origin}/billing?checkout=success`,
+      cancel_url: `${origin}/billing?checkout=cancelled`,
     });
 
-    const approve = subscription.links?.find((l) => l.rel === 'approve');
-    if (!approve) {
-      return Response.json(
-        { error: 'PayPal did not return an approval URL.' },
-        { status: 502 }
-      );
+    if (!session.url) {
+      return Response.json({ error: 'Stripe did not return a checkout URL.' }, { status: 502 });
     }
-    return Response.json({ url: approve.href });
+    return Response.json({ url: session.url });
   } catch (err) {
     return Response.json(
       { error: err instanceof Error ? err.message : 'Failed to start checkout.' },
